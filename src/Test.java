@@ -57,7 +57,7 @@ public class Test {
     }
 
 
-    public boolean nValue(int nVal){
+    public boolean getNValue(int nVal){ // Returns false if nVal = 0, true otherwise.
         return (!(nVal==0));
     }
 

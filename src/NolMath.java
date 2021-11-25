@@ -19,6 +19,7 @@ public class NolMath {
     public NolMath (BigInteger val){
         parent = val;
     }
+
     public void setNVal() {
         parent = parent.mod(V);
         int tester4 = parent.compareTo(IV);
@@ -47,7 +48,7 @@ public class NolMath {
        child = Temporary.divide(NFIN);
     }
 
-    private void setParent(int a){ //Goes from a child to a parent
+    public void setParent(int a){ //Goes from a child to a parent
         BigInteger NFIN = BigInteger.valueOf(nVal);
         parent = parent.multiply(NFIN);
         BigInteger imm = BigInteger.valueOf(nVal/5);
