@@ -45,11 +45,11 @@ public class NolMath {
         }
 
     public void setChild (BigInteger x) { //Goes from a parent to child
-        System.out.println("x: " + x);
+       // System.out.println("x: " + x);
         setNVal(x);
         //After setChild is completed, nList should add a value.
         BigInteger NFIN = BigInteger.valueOf(nVal);
-        System.out.println("NVal: " + nVal);
+       // System.out.println("NVal: " + nVal);
         BigInteger Temporary = BigInteger.valueOf(16);
         Temporary = x.multiply(Temporary);
        BigInteger imm = BigInteger.valueOf(nVal/5);
@@ -58,7 +58,7 @@ public class NolMath {
     }
 
     public BigInteger hypoSetChild(BigInteger x){
-        System.out.println("x: " + x);
+       // System.out.println("x: " + x);
         setNVal(x);
         BigInteger NFIN = BigInteger.valueOf(nVal);
         System.out.println("NVal: " + nVal);

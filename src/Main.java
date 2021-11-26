@@ -6,7 +6,7 @@ class Main {
     public static boolean terminator = true;
     public static boolean children = true;
     public static FileGenerator gen = new FileGenerator();
-
+    public static BigInteger count = NolMath.I;
     public static void main(String[] args) {
         CalculationDriver bob = new CalculationDriver();
 
@@ -16,18 +16,24 @@ class Main {
                // System.out.println("Iteration 1");
                 children = bob.getDepth();
                 gen.addToFile(bob.savedValue());
+                count = count.add(NolMath.I);
+                System.out.println(count);
             }
 
-            System.out.println("loop ended");
+            //System.out.println("loop ended");
             children = true;
 
 
             while (children){
               //  System.out.println("Iteration 2");
                 children = bob.getBreadth();
+                if (!bob.getRevertEnd()){
                     gen.addToFile(bob.savedValue());
+                    count = count.add(NolMath.I);
+                    System.out.println(count);
+                }
             }
-            System.out.println("next partial loop ended");
+            //System.out.println("next partial loop ended");
             children = true;
             terminator = bob.getUltimatum();
         }

@@ -51,12 +51,12 @@ public class Test {
             }
         }
         if (count != pathNum) {
-            System.out.println(" pathNum: " + pathNum + ", count: " + count);
+            //System.out.println(" pathNum: " + pathNum + ", count: " + count);
             npnPassed = false;
         }
         else
         {
-            System.out.println("Success! " +parent+ ", pathnum: "+ pathNum);
+           // System.out.println("Success! " +parent+ ", pathnum: "+ pathNum);
             npnPassed = true;
         }
     }

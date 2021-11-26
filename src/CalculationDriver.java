@@ -9,6 +9,7 @@ public class CalculationDriver {
     private Test test = new Test();
     private int multiplier = 0;
     private boolean ultimatum = true;
+    private boolean revertEnd = false;
 
     public CalculationDriver() {
         //nList.add(5);
@@ -19,6 +20,7 @@ public class CalculationDriver {
     public boolean getDepth(){ //As far as I can tell, getDepth is working well. Not sure if multiplier
         //becomes properly uppdated when '1' changes to 19 via a sibling swapity thing.
        // System.out.println("GetDepth called");
+        revertEnd = false;
         Window.setChild(parent);
         nList.add(Window.getNVal());
     //    System.out.println("The last nList value is now: " + nList.get(nList.size()-1));
@@ -40,7 +42,7 @@ public class CalculationDriver {
     }
 
     public boolean getBreadth(){
-        System.out.println("GetBreadth called");
+        //System.out.println("GetBreadth called");
         Window.setChildfromChild(parent);
         boolean impy = sibCheck();
        //System.out.println("impy: " + impy);
@@ -49,7 +51,7 @@ public class CalculationDriver {
         if (ultimatum)
         {
             boolean temp = organizer();
-            System.out.println("temp: " + temp);
+            //System.out.println("temp: " + temp);
             //multiplier++;
             boolean out = test.maxCheck();
             if (out && temp){//was !Out
@@ -61,11 +63,13 @@ public class CalculationDriver {
               }
               else{
                   revert();
+                  revertEnd = true;
                   return true;
               }
             }
             else{
                 revert();
+                revertEnd = true;
                 return true;
             }
 
@@ -78,7 +82,7 @@ public class CalculationDriver {
     }
 
     private void revert(){
-        System.out.println("revert called");
+       // System.out.println("revert called");
         Window.revert();
         Window.parentToChild();
         parent = Window.getChild();
@@ -119,7 +123,8 @@ public class CalculationDriver {
         boolean important = true;
         if (parent.compareTo(NolMath.I) == 0){//Warning: Highly experimental.
             Window.setChildfromChild(NolMath.I);
-            System.out.println(Window.getChild());
+           // System.out.println(Window.getChild());
+            //Window.getChild();
             multiplier++;
             parent = Window.getChild();
             //System.out.println("Parent is now: " + parent);
@@ -143,6 +148,9 @@ public class CalculationDriver {
         //return important;
     }
 
+    public boolean getRevertEnd(){
+        return revertEnd;
+    }
 
     public boolean getUltimatum(){
         return ultimatum;
