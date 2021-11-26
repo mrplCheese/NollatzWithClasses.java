@@ -20,12 +20,12 @@ public class NolMath {
         parent = val;
     }
 
-    public void setNVal() {
-        parent = parent.mod(V);
-        int tester4 = parent.compareTo(IV);
-        int tester3 = parent.compareTo(III);
-        int tester2 = parent.compareTo(II);
-        int tester1 = parent.compareTo(I);
+    private void setNVal(BigInteger x) {
+        x = x.mod(V);
+        int tester4 = x.compareTo(IV);
+        int tester3 = x.compareTo(III);
+        int tester2 = x.compareTo(II);
+        int tester1 = x.compareTo(I);
         if (tester4 == 0) {
             nVal = 20;
         } else if (tester3 == 0) {
@@ -39,13 +39,40 @@ public class NolMath {
         }
         }
 
-    public void setChild (int a) { //Goes from a parent to a child
+        public int hypoGetNVal (BigInteger x){
+        setNVal(x);
+        return nVal;
+        }
+
+    public void setChild (BigInteger x) { //Goes from a parent to child
+        System.out.println("x: " + x);
+        setNVal(x);
+        //After setChild is completed, nList should add a value.
         BigInteger NFIN = BigInteger.valueOf(nVal);
+        System.out.println("NVal: " + nVal);
         BigInteger Temporary = BigInteger.valueOf(16);
-       Temporary = Temporary.pow(a);
+        Temporary = x.multiply(Temporary);
        BigInteger imm = BigInteger.valueOf(nVal/5);
        Temporary = Temporary.subtract(imm);
        child = Temporary.divide(NFIN);
+    }
+
+    public BigInteger hypoSetChild(BigInteger x){
+        System.out.println("x: " + x);
+        setNVal(x);
+        BigInteger NFIN = BigInteger.valueOf(nVal);
+        System.out.println("NVal: " + nVal);
+        BigInteger Temporary = BigInteger.valueOf(16);
+        Temporary = x.multiply(Temporary);
+        BigInteger imm = BigInteger.valueOf(nVal/5);
+        Temporary = Temporary.subtract(imm);
+        return Temporary;
+    }
+
+    public void setChildfromChild (BigInteger x) { //Goes from a child to a child
+        x = x.multiply(BigInteger.valueOf(16));
+        x = x.add(III);
+        child = x;
     }
 
     public void setParent(int a){ //Goes from a child to a parent
@@ -75,7 +102,18 @@ public class NolMath {
     }
 
     public int getNVal(){
+       // setNVal();
         return nVal;
+    }
+
+    public void revert(){
+        BigInteger x = child;
+        x = x.multiply(V);
+        x = x.add(I);
+        while (x.mod(II).equals(E)){
+            x = x.divide(II);
+        }
+        child = x;
     }
 
 

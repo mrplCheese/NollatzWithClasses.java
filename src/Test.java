@@ -3,6 +3,18 @@ import java.math.BigInteger;
 //Test will be responsible for making sure every number has the correct NPN, passes the maxTest, and is not a "hole"
 //Nor a loop.
 public class Test {
+    //Important BigInteger values for doing basic math more quickly when working with BigIntegers
+    public static final BigInteger R = BigInteger.valueOf(-1);
+    public static final BigInteger E = BigInteger.ZERO;
+    public static final BigInteger I = BigInteger.ONE;
+    public static final BigInteger II = BigInteger.TWO;
+    public static final BigInteger III = BigInteger.valueOf(3);
+    public static final BigInteger IV = BigInteger.valueOf(4);
+    public static final BigInteger V = BigInteger.valueOf(5);
+    public static final BigInteger MAX_VAL = new BigInteger(
+            "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");
+    public static final BigInteger MAX_SIB = (MAX_VAL.divide(BigInteger.valueOf(16))).subtract(III);
+
     private BigInteger parent = BigInteger.ZERO;
     private int pathNum = 0;
     private boolean npnPassed = false;
@@ -17,7 +29,7 @@ public class Test {
         BigInteger Tested;
         int twisted;
         int terminator;
-        while (bob)
+        while (bob && count <pathNum+5) //&& count <pathNum+5
         {
             Tested = Bearer.mod(II);
             twisted = Tested.compareTo(I);
@@ -39,12 +51,12 @@ public class Test {
             }
         }
         if (count != pathNum) {
-            System.out.println("failed number: "  + parent);
+            System.out.println(" pathNum: " + pathNum + ", count: " + count);
             npnPassed = false;
         }
         else
         {
-            System.out.println("Success!");
+            System.out.println("Success! " +parent+ ", pathnum: "+ pathNum);
             npnPassed = true;
         }
     }
@@ -52,9 +64,14 @@ public class Test {
 
     public boolean maxCheck() {
         int wizard = parent.compareTo(MAX_VAL);
-        //When wizard is equal to 1, tested > MAX_VAL (Returns 0 for "false")
-        return (!(wizard==1));
+        //Returns false if parent > MAX_VAL
+        return ((wizard!=1));
     }
+
+        public boolean sibMaxCheck(){ //returns false if parent > maxValue
+        int wizard = parent.compareTo(MAX_SIB);
+        return (wizard!=1);
+        }
 
 
     public boolean getNValue(int nVal){ // Returns false if nVal = 0, true otherwise.
@@ -65,14 +82,5 @@ public class Test {
         return npnPassed;
         }
 
-    //Important BigInteger values for doing basic math more quickly when working with BigIntegers
-    public static final BigInteger R = BigInteger.valueOf(-1);
-    public static final BigInteger E = BigInteger.ZERO;
-    public static final BigInteger I = BigInteger.ONE;
-    public static final BigInteger II = BigInteger.TWO;
-    public static final BigInteger III = BigInteger.valueOf(3);
-    public static final BigInteger IV = BigInteger.valueOf(4);
-    public static final BigInteger V = BigInteger.valueOf(5);
-    public static final BigInteger MAX_VAL = new BigInteger(
-            "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");
+
 }

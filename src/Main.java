@@ -10,16 +10,29 @@ class Main {
     public static void main(String[] args) {
         CalculationDriver bob = new CalculationDriver();
 
-        while (terminator){
+        while (terminator){ // Full loop
 
-            while (children){
-
-                children = bob.mutate();
-
+            while (children) { // Depth loop (A partial)
+               // System.out.println("Iteration 1");
+                children = bob.getDepth();
+                gen.addToFile(bob.savedValue());
             }
 
-            terminator = bob.finished();
+            System.out.println("loop ended");
+            children = true;
+
+
+            while (children){
+              //  System.out.println("Iteration 2");
+                children = bob.getBreadth();
+                    gen.addToFile(bob.savedValue());
+            }
+            System.out.println("next partial loop ended");
+            children = true;
+            terminator = bob.getUltimatum();
         }
+        gen.completeFile();
+        System.out.println("Terminated.");
 
     }
 }
