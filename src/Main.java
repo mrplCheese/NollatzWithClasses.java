@@ -15,9 +15,12 @@ class Main {
             while (children) { // Depth loop (A partial)
                // System.out.println("Iteration 1");
                 children = bob.getDepth();
-                gen.addToFile(bob.savedValue());
-                count = count.add(NolMath.I);
-                System.out.println(count);
+
+                if (!bob.getRevertEnd()){
+                    gen.addToFile(bob.savedValue());
+                    count = count.add(NolMath.I);
+                    System.out.println(count);
+                }
             }
 
             //System.out.println("loop ended");
@@ -31,6 +34,10 @@ class Main {
                     gen.addToFile(bob.savedValue());
                     count = count.add(NolMath.I);
                     System.out.println(count);
+                }
+                if (count.compareTo(BigInteger.valueOf(1000000)) == 1){
+                    System.out.println("BAZZZZZZINGA");
+                    gen.completeFile();
                 }
             }
             //System.out.println("next partial loop ended");
