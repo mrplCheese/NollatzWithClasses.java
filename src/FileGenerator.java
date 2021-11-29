@@ -14,6 +14,7 @@ public class FileGenerator {
             pw = new PrintWriter(fos);
         }
         catch(IOException ex) {
+            //TODO: Think about maybe logging to an error log
             ex.printStackTrace();
         }
     }

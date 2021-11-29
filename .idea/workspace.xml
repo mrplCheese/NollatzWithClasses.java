@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ed1b119-e3fc-48bb-be04-c8dadda131cc" name="Changes" comment="Commit when it matters, I guess.">
-      <change afterPath="$PROJECT_DIR$/src/Val.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unit/test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Answers" beforeDir="false" afterPath="$PROJECT_DIR$/Answers" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NollatzWithClasses.java.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CalculationDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalculationDriver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FileGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/NolMath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NolMath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StarterValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StarterValues.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/newCalcDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/newCalcDriver.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,9 +32,6 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedIndex" value="1" />
-  </component>
   <component name="ProjectId" id="20Nymayh2t1gk3qabqiuxyVxVXR" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -49,12 +42,18 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="full.screen.before.presentation.mode" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Bachs\IdeaProjects\NollatzWithClasses.java" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">

@@ -39,14 +39,14 @@ public class NolMath {
 
     public void setChild (BigInteger parentNode) { //Goes from a parent to child
        // System.out.println("x: " + x);
+        //TODO: Think about reducing this math to a private function in NolMath
         setNVal(parentNode);
         //After setChild is completed, nList should add a value.
         BigInteger NFIN = BigInteger.valueOf(nVal);
        // System.out.println("NVal: " + nVal);
         BigInteger temporaryNode = BigInteger.valueOf(16);
         temporaryNode = parentNode.multiply(temporaryNode);
-       BigInteger imm = BigInteger.valueOf(nVal/5);
-       temporaryNode = temporaryNode.subtract(imm);
+       temporaryNode = temporaryNode.subtract(BigInteger.valueOf(nVal/5));
        child = temporaryNode.divide(NFIN);
     }
 
