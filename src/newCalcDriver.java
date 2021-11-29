@@ -1,9 +1,11 @@
+//This class should be removed.
+
 import java.math.BigInteger;
 import java.util.ArrayList;
 
 public class newCalcDriver {
         private ArrayList<Integer> nList;
-        private BigInteger parent; //May want to rename parent to node, since it's taking on a bigger role than parent.
+        private BigInteger node; //May want to rename parent to node, since it's taking on a bigger role than parent.
         private NolMath Window;
         private Test test = new Test();
         private int multiplier = 0;
@@ -11,13 +13,13 @@ public class newCalcDriver {
 
         public newCalcDriver(ArrayList nRecords, BigInteger parent) {
                 nList.add(5);
-                parent = NolMath.I;
-                Window = new NolMath (this.parent);
+                parent = Val.I;
+                Window = new NolMath (node);
         }
 
         public boolean getDepth(){ //I'm so confused.
-            Window.setChild(parent);
-            parent = Window.getChild();
+            Window.setChild(node);
+            node = Window.getChild();
             boolean temp = organizer();
             multiplier = 1;
             if (ultimatum){
@@ -29,8 +31,8 @@ public class newCalcDriver {
         }
 
         public boolean getBreadth(){
-            Window.setChildfromChild(parent);
-            parent = Window.getChild();
+            Window.setChildfromChild(node);
+            node = Window.getChild();
             boolean temp = organizer();
             if (ultimatum)
             {
@@ -48,7 +50,7 @@ public class newCalcDriver {
         private void revert(){
             Window.setParent(multiplier);
             Window.parentToChild();
-            parent = Window.getChild();
+            node = Window.getChild();
             nList.remove(nList.size()-1);
             multiplier = 0;
 
@@ -56,7 +58,7 @@ public class newCalcDriver {
 
         private boolean organizer(){
             boolean temp;
-            test.setNpnPassed(parent, nList.size());
+            test.setNpnPassed(node, nList.size());
             if (test.getNpnPassed()){
                temp = pregnancyTest();
             }

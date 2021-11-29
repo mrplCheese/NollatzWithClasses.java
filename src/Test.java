@@ -1,27 +1,23 @@
 import java.math.BigInteger;
 
-//Test will be responsible for making sure every number has the correct NPN, passes the maxTest, and is not a "hole"
+//Test is responsible for making sure every number has the correct NPN, passes the maxTest, and is not a "hole"
 //Nor a loop.
+//Not sure what I dod. It''s no longer running the updated version of the program, but is running the most recently-aded-to-gitHub version of it.
+
+//Should I push this local one up first?? Or will that break things?
+
+
 public class Test {
-    //Important BigInteger values for doing basic math more quickly when working with BigIntegers
-    public static final BigInteger R = BigInteger.valueOf(-1);
-    public static final BigInteger E = BigInteger.ZERO;
-    public static final BigInteger I = BigInteger.ONE;
-    public static final BigInteger II = BigInteger.TWO;
-    public static final BigInteger III = BigInteger.valueOf(3);
-    public static final BigInteger IV = BigInteger.valueOf(4);
-    public static final BigInteger V = BigInteger.valueOf(5);
     public static final BigInteger MAX_VAL = new BigInteger(
             "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");
-    public static final BigInteger MAX_SIB = (MAX_VAL.divide(BigInteger.valueOf(16))).subtract(III);
+    public static final BigInteger MAX_SIB = (MAX_VAL.divide(BigInteger.valueOf(16))).subtract(Val.III);
 
     private BigInteger parent = BigInteger.ZERO;
-    private int pathNum = 0;
     private boolean npnPassed = false;
     private boolean isRoot = false;
 
     public void setNpnPassed(BigInteger tempParent, int length) {
-        pathNum = length;
+        int pathNum = length;
         parent = tempParent;
         BigInteger Bearer = parent;
         int count = 0;
@@ -31,21 +27,21 @@ public class Test {
         int terminator;
         while (bob && count <pathNum+5) //&& count <pathNum+5
         {
-            Tested = Bearer.mod(II);
-            twisted = Tested.compareTo(I);
+            Tested = Bearer.mod(Val.II);
+            twisted = Tested.compareTo(Val.I);
             // If bearer is odd, twisted is 0.
             // If bearer is even, twisted is -1.
 
             if (twisted == 0)// If bearer is odd
             {
-                Bearer = Bearer.multiply(V);
-                Bearer = Bearer.add(I);
+                Bearer = Bearer.multiply(Val.V);
+                Bearer = Bearer.add(Val.I);
                 count++;
             } else// If bearer is even
             {
-                Bearer = Bearer.divide(II);
+                Bearer = Bearer.divide(Val.II);
             }
-            terminator = Bearer.compareTo(I);
+            terminator = Bearer.compareTo(Val.I);
             if (terminator == 0) {
                 bob = false;
             }

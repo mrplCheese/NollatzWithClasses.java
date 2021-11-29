@@ -8,24 +8,17 @@ public class NolMath {
     //private boolean isRoot = false;
 
     //Important BigInteger values for doing basic math more quickly when working with BigIntegers
-    public static final BigInteger R = BigInteger.valueOf(-1);
-    public static final BigInteger E = BigInteger.ZERO;
-    public static final BigInteger I = BigInteger.ONE;
-    public static final BigInteger II = BigInteger.TWO;
-    public static final BigInteger III = BigInteger.valueOf(3);
-    public static final BigInteger IV = BigInteger.valueOf(4);
-    public static final BigInteger V = BigInteger.valueOf(5);
 
     public NolMath (BigInteger val){
         parent = val;
     }
 
     private void setNVal(BigInteger x) {
-        x = x.mod(V);
-        int tester4 = x.compareTo(IV);
-        int tester3 = x.compareTo(III);
-        int tester2 = x.compareTo(II);
-        int tester1 = x.compareTo(I);
+        x = x.mod(Val.V);
+        int tester4 = x.compareTo(Val.IV);
+        int tester3 = x.compareTo(Val.III);
+        int tester2 = x.compareTo(Val.II);
+        int tester1 = x.compareTo(Val.I);
         if (tester4 == 0) {
             nVal = 20;
         } else if (tester3 == 0) {
@@ -71,7 +64,7 @@ public class NolMath {
 
     public void setChildfromChild (BigInteger x) { //Goes from a child to a child
         x = x.multiply(BigInteger.valueOf(16));
-        x = x.add(III);
+        x = x.add(Val.III);
         child = x;
     }
 
@@ -108,10 +101,10 @@ public class NolMath {
 
     public void revert(){
         BigInteger x = child;
-        x = x.multiply(V);
-        x = x.add(I);
-        while (x.mod(II).equals(E)){
-            x = x.divide(II);
+        x = x.multiply(Val.V);
+        x = x.add(Val.I);
+        while (x.mod(Val.II).equals(Val.E)){
+            x = x.divide(Val.II);
         }
         child = x;
     }

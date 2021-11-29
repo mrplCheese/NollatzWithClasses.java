@@ -1,12 +1,10 @@
 import java.math.BigInteger;
 import java.io.*;
 class Main {
-    public static final BigInteger R = BigInteger.valueOf(-1);
-    public static final BigInteger E = BigInteger.ZERO;
     public static boolean terminator = true;
     public static boolean children = true;
     public static FileGenerator gen = new FileGenerator();
-    public static BigInteger count = NolMath.I;
+    public static BigInteger count = Val.I;
     public static void main(String[] args) {
         CalculationDriver bob = new CalculationDriver();
 
@@ -16,10 +14,10 @@ class Main {
                // System.out.println("Iteration 1");
                 children = bob.getDepth();
 
-                if (!bob.getRevertEnd()){
+                if (!bob.isRevertEnd()){
                     gen.addToFile(bob.savedValue());
-                    count = count.add(NolMath.I);
-                    System.out.println(count);
+                    count = count.add(Val.I);
+                    //System.out.println(count);
                 }
             }
 
@@ -30,15 +28,17 @@ class Main {
             while (children){
               //  System.out.println("Iteration 2");
                 children = bob.getBreadth();
-                if (!bob.getRevertEnd()){
+                if (!bob.isRevertEnd()){
                     gen.addToFile(bob.savedValue());
-                    count = count.add(NolMath.I);
-                    System.out.println(count);
+                    count = count.add(Val.I);
+                    System.out.println(bob.savedValue());
+                    //System.out.println(count);
                 }
-                if (count.compareTo(BigInteger.valueOf(1000000)) == 1){
+                /*if (count.compareTo(BigInteger.valueOf(1000000)) == 1){
+                    System.out.println(bob.savedValue());
                     System.out.println("BAZZZZZZINGA");
-                    gen.completeFile();
-                }
+                    gen.completeFile();*/
+                //}
             }
             //System.out.println("next partial loop ended");
             children = true;

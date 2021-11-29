@@ -1,19 +1,15 @@
 import java.math.BigInteger;
-import java.util.ArrayList;
 
 public class CalculationDriver {
-    private ArrayList<Integer> nList = new ArrayList<Integer>();
-    //It may be possible to replace nList with a simple counter.
+    private int nCount;
     private BigInteger parent; //May want to rename parent to node, since it's taking on a bigger role than parent.
-    private NolMath Window;
-    private Test test = new Test();
-    private int multiplier = 0;
+    private final NolMath Window;
+    private final Test test = new Test();
     private boolean ultimatum = true;
     private boolean revertEnd = false;
 
     public CalculationDriver() {
-        //nList.add(5);
-        parent = NolMath.I;
+        parent = Val.I;
         Window = new NolMath (this.parent);
     }
 
@@ -22,20 +18,19 @@ public class CalculationDriver {
        // System.out.println("GetDepth called");
         revertEnd = false;
         Window.setChild(parent);
-        nList.add(Window.getNVal());
+        nCount++;
     //    System.out.println("The last nList value is now: " + nList.get(nList.size()-1));
         parent = Window.getChild();
       //  System.out.println("Parent is now: " + parent);
         boolean temp = organizer();
-        multiplier = 1;
         if (ultimatum){
            // nList.add(Window.getNVal());
             Window.childToParent();
             boolean out = test.maxCheck();
-            if (!temp || !out){
+            //if (!temp || !out){
               //  nList.remove(nList.size()-1); //HIGHLY EXPERIMENTAL
               //  System.out.println("The last nList value is now (removed a number): " + nList.get(nList.size()-1));
-            }
+           // }
             return (temp && out);
         }
         return false;
@@ -44,8 +39,6 @@ public class CalculationDriver {
     public boolean getBreadth(){
         //System.out.println("GetBreadth called");
         Window.setChildfromChild(parent);
-        boolean impy = sibCheck();
-       //System.out.println("impy: " + impy);
         parent = Window.getChild();
        // System.out.println("parent is now: " + parent +" (From getBreadth");
         if (ultimatum)
@@ -86,11 +79,9 @@ public class CalculationDriver {
         Window.revert();
         Window.parentToChild();
         parent = Window.getChild();
-        nList.remove(nList.size()-1);
+        nCount--;
 
         //nList.remove(nList.size()-1);
-        multiplier = 0;
-
     }
 
     private boolean organizer(){
@@ -100,7 +91,7 @@ public class CalculationDriver {
             return false;
         }
         */
-        test.setNpnPassed(parent, nList.size());
+        test.setNpnPassed(parent, nCount);
         if (test.getNpnPassed()){
             temp = pregnancyTest();
         }
@@ -117,38 +108,28 @@ public class CalculationDriver {
     }
 
     private boolean pregnancyTest(){
-        //System.out.println("pregnancyTest called");
-       // System.out.println("Pregnancy test value: " + parent);
         //Assume the NPNTest is true.
-        boolean important = true;
-        if (parent.compareTo(NolMath.I) == 0){//Warning: Highly experimental.
-            Window.setChildfromChild(NolMath.I);
+        if (parent.compareTo(Val.I) == 0){//Warning: Highly experimental.
+            Window.setChildfromChild(Val.I);
            // System.out.println(Window.getChild());
             //Window.getChild();
-            multiplier++;
             parent = Window.getChild();
-            //System.out.println("Parent is now: " + parent);
             return true;
         }
-        if (nList.size()>=100)
+        if (nCount>=100)
         {
             return false;
         }
-        else if (nList.get(nList.size()-1) == 0){
+      //  else if (nList.get(nList.size()-1) == 0){
+        //    return false;
+        //}
+        else if (Window.hypoGetNVal(parent)==0){ //Not sure if this will work the same way as the if statement above.
             return false;
         }
-        else if (Window.hypoGetNVal(parent) == 0){
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-       // System.out.println(parent + " pregnancy status: " + important);
-        //return important;
+        else return Window.hypoGetNVal(parent) != 0;
     }
 
-    public boolean getRevertEnd(){
+    public boolean isRevertEnd(){
         return revertEnd;
     }
 

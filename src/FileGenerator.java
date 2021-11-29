@@ -1,3 +1,5 @@
+//This class works flawlessly. No modification necessary.
+
 import java.math.BigInteger;
 import java.io.*;
 public class FileGenerator {
