@@ -6,16 +6,16 @@ class Main {
     public static FileGenerator gen = new FileGenerator();
     public static BigInteger count = Val.I;
     public static void main(String[] args) {
-        CalculationDriver bob = new CalculationDriver();
+        CalculationDriver calculationDriver = new CalculationDriver();
 
         while (terminator){ // Full loop
 
             while (children) { // Depth loop (A partial)
                // System.out.println("Iteration 1");
-                children = bob.getDepth();
+                children = calculationDriver.getDepth();
 
-                if (!bob.isRevertEnd()){
-                    gen.addToFile(bob.savedValue());
+                if (!calculationDriver.isRevertEnd()){
+                    gen.addToFile(calculationDriver.savedValue());
                     count = count.add(Val.I);
                     //System.out.println(count);
                 }
@@ -27,22 +27,22 @@ class Main {
 
             while (children){
               //  System.out.println("Iteration 2");
-                children = bob.getBreadth();
-                if (!bob.isRevertEnd()){
-                    gen.addToFile(bob.savedValue());
+                children = calculationDriver.getBreadth();
+                if (!calculationDriver.isRevertEnd()){
+                    gen.addToFile(calculationDriver.savedValue());
                     count = count.add(Val.I);
-                    System.out.println(bob.savedValue());
+                    System.out.println(calculationDriver.savedValue());
                     //System.out.println(count);
                 }
                 /*if (count.compareTo(BigInteger.valueOf(1000000)) == 1){
-                    System.out.println(bob.savedValue());
+                    System.out.println(calculationDriver.savedValue());
                     System.out.println("BAZZZZZZINGA");
                     gen.completeFile();*/
                 //}
             }
             //System.out.println("next partial loop ended");
             children = true;
-            terminator = bob.getUltimatum();
+            terminator = calculationDriver.getUltimatum();
         }
         gen.completeFile();
         System.out.println("Terminated.");

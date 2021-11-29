@@ -37,17 +37,17 @@ public class NolMath {
         return nVal;
         }
 
-    public void setChild (BigInteger x) { //Goes from a parent to child
+    public void setChild (BigInteger parentNode) { //Goes from a parent to child
        // System.out.println("x: " + x);
-        setNVal(x);
+        setNVal(parentNode);
         //After setChild is completed, nList should add a value.
         BigInteger NFIN = BigInteger.valueOf(nVal);
        // System.out.println("NVal: " + nVal);
-        BigInteger Temporary = BigInteger.valueOf(16);
-        Temporary = x.multiply(Temporary);
+        BigInteger temporaryNode = BigInteger.valueOf(16);
+        temporaryNode = parentNode.multiply(temporaryNode);
        BigInteger imm = BigInteger.valueOf(nVal/5);
-       Temporary = Temporary.subtract(imm);
-       child = Temporary.divide(NFIN);
+       temporaryNode = temporaryNode.subtract(imm);
+       child = temporaryNode.divide(NFIN);
     }
 
     public BigInteger hypoSetChild(BigInteger x){
