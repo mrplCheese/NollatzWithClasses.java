@@ -2,35 +2,27 @@ import java.math.BigInteger;
 
 public class CalculationDriver {
     private int nCount;
-    private BigInteger parent; //May want to rename parent to node, since it's taking on a bigger role than parent.
+    private BigInteger root; //May want to rename parent to node, since it's taking on a bigger role than parent.
     private final NolMath Window;
     private final Test test = new Test();
     private boolean ultimatum = true;
     private boolean revertEnd = false;
 
     public CalculationDriver() {
-        parent = Val.I;
-        Window = new NolMath (this.parent);
+        root = Val.I;
+        Window = new NolMath (root);
     }
 
-    public boolean getDepth(){ //As far as I can tell, getDepth is working well. Not sure if multiplier
-        //becomes properly uppdated when '1' changes to 19 via a sibling swapity thing.
-       // System.out.println("GetDepth called");
+    public boolean getDepth(){
         revertEnd = false;
-        Window.setChild(parent);
+        Window.setChild(root);
         nCount++;
-    //    System.out.println("The last nList value is now: " + nList.get(nList.size()-1));
-        parent = Window.getChild();
+        root = Window.getChild();
       //  System.out.println("Parent is now: " + parent);
         boolean temp = organizer();
         if (ultimatum){
-           // nList.add(Window.getNVal());
             Window.childToParent();
             boolean out = test.maxCheck();
-            //if (!temp || !out){
-              //  nList.remove(nList.size()-1); //HIGHLY EXPERIMENTAL
-              //  System.out.println("The last nList value is now (removed a number): " + nList.get(nList.size()-1));
-           // }
             return (temp && out);
         }
         return false;
@@ -38,60 +30,58 @@ public class CalculationDriver {
 
     public boolean getBreadth(){
         //System.out.println("GetBreadth called");
-        Window.setChildfromChild(parent);
-        parent = Window.getChild();
+        Window.setChildfromChild(root);
+        root = Window.getChild();
+        //System.out.println("new possible parent: " + root);
        // System.out.println("parent is now: " + parent +" (From getBreadth");
-        if (ultimatum)
-        {
             boolean temp = organizer();
-            //System.out.println("temp: " + temp);
-            //multiplier++;
             boolean out = test.maxCheck();
-            if (out && temp){//was !Out
+            //System.out.println("out: " + out);
+            if (out && temp){
                 return false;
             }
-            else if (!out && ! temp){//was out
+            else if (out && ! temp){
               if (sibCheck()){
-                  return false;
+                  return true;
               }
               else{
                   revert();
                   revertEnd = true;
+                  if (root.equals(Val.I)){
+                      System.out.println("Complete! With no errors.");
+                      ultimatum = false;
+                        return false;
+                  }
                   return true;
               }
             }
             else{
                 revert();
                 revertEnd = true;
+                if (root.equals(Val.I)){
+                    System.out.println("Complete! With no errors");
+                    ultimatum = false;
+                    return false;
+                }
                 return true;
             }
 
-        }
-        return false;
     }
 
     public BigInteger savedValue(){
-        return parent;
+        return root;
     }
 
     private void revert(){
-       // System.out.println("revert called");
         Window.revert();
         Window.parentToChild();
-        parent = Window.getChild();
+        root = Window.getChild();
         nCount--;
-
-        //nList.remove(nList.size()-1);
     }
 
     private boolean organizer(){
-       // System.out.println("organizer called");
         boolean temp;
-       /* if (parent.compareTo(NolMath.I) == 0){
-            return false;
-        }
-        */
-        test.setNpnPassed(parent, nCount);
+        test.setNpnPassed(root, nCount);
         if (test.getNpnPassed()){
             temp = pregnancyTest();
         }
@@ -99,6 +89,8 @@ public class CalculationDriver {
             ultimatum = false;
             temp = false;
         }
+        //System.out.println("temp: " + temp);
+        //System.out.println("ultimatum: " + ultimatum);
         return (temp);
     }
 
@@ -109,24 +101,23 @@ public class CalculationDriver {
 
     private boolean pregnancyTest(){
         //Assume the NPNTest is true.
-        if (parent.compareTo(Val.I) == 0){//Warning: Highly experimental.
+        if (root.compareTo(Val.I) == 0){//Warning: Highly experimental.
             Window.setChildfromChild(Val.I);
            // System.out.println(Window.getChild());
             //Window.getChild();
-            parent = Window.getChild();
+            root = Window.getChild();
+            //System.out.println("Returned true");
             return true;
         }
         if (nCount>=100)
         {
+            //System.out.println("returned false.");
             return false;
         }
-      //  else if (nList.get(nList.size()-1) == 0){
-        //    return false;
-        //}
-        else if (Window.hypoGetNVal(parent)==0){ //Not sure if this will work the same way as the if statement above.
+        else if (Window.hypoGetNVal(root)==0){
             return false;
         }
-        else return Window.hypoGetNVal(parent) != 0;
+        else return Window.hypoGetNVal(root) != 0;
     }
 
     public boolean isRevertEnd(){

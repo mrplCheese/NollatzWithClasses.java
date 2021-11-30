@@ -7,8 +7,6 @@ public class NolMath {
     private BigInteger child = BigInteger.ZERO;
     //private boolean isRoot = false;
 
-    //Important BigInteger values for doing basic math more quickly when working with BigIntegers
-
     public NolMath (BigInteger val){
         parent = val;
     }
@@ -37,29 +35,24 @@ public class NolMath {
         return nVal;
         }
 
+        private BigInteger childMath(BigInteger parentNode){
+            setNVal(parentNode);
+            //After setChild is completed, nList should add a value.
+            BigInteger NFIN = BigInteger.valueOf(nVal);
+            // System.out.println("NVal: " + nVal);
+            BigInteger temporaryNode = BigInteger.valueOf(16);
+            temporaryNode = parentNode.multiply(temporaryNode);
+            temporaryNode = temporaryNode.subtract(BigInteger.valueOf(nVal/5));
+            return (temporaryNode.divide(NFIN));
+        }
+
     public void setChild (BigInteger parentNode) { //Goes from a parent to child
-       // System.out.println("x: " + x);
-        //TODO: Think about reducing this math to a private function in NolMath
-        setNVal(parentNode);
-        //After setChild is completed, nList should add a value.
-        BigInteger NFIN = BigInteger.valueOf(nVal);
-       // System.out.println("NVal: " + nVal);
-        BigInteger temporaryNode = BigInteger.valueOf(16);
-        temporaryNode = parentNode.multiply(temporaryNode);
-       temporaryNode = temporaryNode.subtract(BigInteger.valueOf(nVal/5));
-       child = temporaryNode.divide(NFIN);
+
+       child = childMath(parentNode);
     }
 
     public BigInteger hypoSetChild(BigInteger x){
-       // System.out.println("x: " + x);
-        setNVal(x);
-        BigInteger NFIN = BigInteger.valueOf(nVal);
-        System.out.println("NVal: " + nVal);
-        BigInteger Temporary = BigInteger.valueOf(16);
-        Temporary = x.multiply(Temporary);
-        BigInteger imm = BigInteger.valueOf(nVal/5);
-        Temporary = Temporary.subtract(imm);
-        return Temporary;
+       return childMath(x);
     }
 
     public void setChildfromChild (BigInteger x) { //Goes from a child to a child

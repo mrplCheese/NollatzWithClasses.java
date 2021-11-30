@@ -11,40 +11,41 @@ class Main {
         while (terminator){ // Full loop
 
             while (children) { // Depth loop (A partial)
-               // System.out.println("Iteration 1");
+               //System.out.println("Iteration 1");
                 children = calculationDriver.getDepth();
 
                 if (!calculationDriver.isRevertEnd()){
                     gen.addToFile(calculationDriver.savedValue());
                     count = count.add(Val.I);
+                    //System.out.println(calculationDriver.savedValue());
                     //System.out.println(count);
                 }
             }
 
             //System.out.println("loop ended");
             children = true;
+            terminator = calculationDriver.getUltimatum();
 
-
-            while (children){
-              //  System.out.println("Iteration 2");
+            while (children && terminator){
+               //System.out.println("Iteration 2");
                 children = calculationDriver.getBreadth();
                 if (!calculationDriver.isRevertEnd()){
                     gen.addToFile(calculationDriver.savedValue());
                     count = count.add(Val.I);
-                    System.out.println(calculationDriver.savedValue());
+                    //System.out.println(calculationDriver.savedValue());
                     //System.out.println(count);
                 }
-                /*if (count.compareTo(BigInteger.valueOf(1000000)) == 1){
+               /* if (count.compareTo(BigInteger.valueOf(1000000)) == 1) {
                     System.out.println(calculationDriver.savedValue());
-                    System.out.println("BAZZZZZZINGA");
-                    gen.completeFile();*/
-                //}
+                    gen.completeFile();
+                }*/
             }
             //System.out.println("next partial loop ended");
             children = true;
             terminator = calculationDriver.getUltimatum();
         }
         gen.completeFile();
+        System.out.println("Number of values generated: " + count);
         System.out.println("Terminated.");
 
     }
