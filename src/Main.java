@@ -26,7 +26,7 @@ class Main {
             children = true;
             terminator = calculationDriver.getUltimatum();
 
-            while (children && terminator){
+            while (children && terminator){ //Breadth loop (also partial)
                //System.out.println("Iteration 2");
                 children = calculationDriver.getBreadth();
                 if (!calculationDriver.isRevertEnd()){
@@ -38,6 +38,8 @@ class Main {
                /* if (count.compareTo(BigInteger.valueOf(1000000)) == 1) {
                     System.out.println(calculationDriver.savedValue());
                     gen.completeFile();
+                    * Used for the millionth number timer. Not a great solution. I don't want to put more effort
+                    * into this pursuit as of now. heh
                 }*/
             }
             //System.out.println("next partial loop ended");

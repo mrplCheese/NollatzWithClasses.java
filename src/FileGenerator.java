@@ -1,5 +1,8 @@
-//This class works flawlessly. No modification necessary.
-
+/*
+* This generates a file, adds to the file, and closes it.
+* As of now, there is no error log, which may be useful. I've looked into the prospect, however.
+* Instantiated once, by Main.
+ */
 import java.math.BigInteger;
 import java.io.*;
 public class FileGenerator {

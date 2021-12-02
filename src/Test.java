@@ -1,11 +1,11 @@
 import java.math.BigInteger;
 
-//Test is responsible for making sure every number has the correct NPN, passes the maxTest, and is not a "hole"
-//Nor a loop.
-//Not sure what I dod. It''s no longer running the updated version of the program, but is running the most recently-aded-to-gitHub version of it.
-
-//Should I push this local one up first?? Or will that break things?
-
+/*
+* Called via CalculationDriver.
+* Stores exactly one node data piece at a time, and performs tests when asked to do so.
+* Since it stores a value, it can perform many tests after having been given one piece of data only once.
+* When asked to do so, it can return values to CalculationDriver.
+*/
 
 public class Test {
     public static final BigInteger MAX_VAL = new BigInteger(
@@ -25,7 +25,7 @@ public class Test {
         BigInteger Tested;
         int twisted;
         int terminator;
-        while (bob && count <pathNum+5) //&& count <pathNum+5
+        while (bob && count <pathNum+5)
         {
             Tested = Bearer.mod(Val.II);
             twisted = Tested.compareTo(Val.I);

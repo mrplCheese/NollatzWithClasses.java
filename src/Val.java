@@ -1,3 +1,9 @@
+/*
+*
+* A class of important BigInteger values, now much easier to access from within any class.
+*
+ */
+
 import java.math.BigInteger;
 
 public final class Val {

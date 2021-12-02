@@ -1,26 +1,37 @@
+/*
+* Will be called by Main.
+* Communicates values between NolMath and Test.
+* Instantiates NolMath and Test.
+* Basically the orchestrator of the production and development of "nodes".
+ */
+
 import java.math.BigInteger;
 
 public class CalculationDriver {
     private int nCount;
-    private BigInteger root; //May want to rename parent to node, since it's taking on a bigger role than parent.
+    private BigInteger root;
     private final NolMath Window;
+    // Looks at a section of the problem at a time.
+    // Moves along the vast paths of the problem like a screen.
     private final Test test = new Test();
     private boolean ultimatum = true;
     private boolean revertEnd = false;
 
     public CalculationDriver() {
-        root = Val.I;
+        root = Val.I; // The value of '1' is the "Adam," or first parent.
         Window = new NolMath (root);
     }
 
     public boolean getDepth(){
+        // Goes from parent node to child.
+        // Runs tests to predict the next course of action (Breadth, depth, or complete?)
         revertEnd = false;
         Window.setChild(root);
-        nCount++;
+        nCount++; //Tracks the number of children generated, via number of n-values generated.
         root = Window.getChild();
-      //  System.out.println("Parent is now: " + parent);
+      // System.out.println("Parent is now: " + parent);
         boolean temp = organizer();
-        if (ultimatum){
+        if (ultimatum){ // if (the NPN check was passed and the program is not yet complete.)
             Window.childToParent();
             boolean out = test.maxCheck();
             return (temp && out);
