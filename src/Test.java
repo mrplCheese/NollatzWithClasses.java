@@ -16,8 +16,7 @@ public class Test {
     private boolean npnPassed = false;
     private boolean isRoot = false;
 
-    public void setNpnPassed(BigInteger tempParent, int length) {
-        int pathNum = length;
+    private boolean isNPN(BigInteger tempParent, int length){
         parent = tempParent;
         BigInteger Bearer = parent;
         int count = 0;
@@ -25,7 +24,7 @@ public class Test {
         BigInteger Tested;
         int twisted;
         int terminator;
-        while (bob && count <pathNum+5)
+        while (bob && count < length +5)
         {
             Tested = Bearer.mod(Val.II);
             twisted = Tested.compareTo(Val.I);
@@ -36,6 +35,9 @@ public class Test {
             {
                 Bearer = Bearer.multiply(Val.V);
                 Bearer = Bearer.add(Val.I);
+                Bearer = Bearer.divide(Val.II);
+                //Following the trends of efficiency in testing Collatz numbers! We know this value will
+                //be even, so we can divide it by two here.
                 count++;
             } else// If bearer is even
             {
@@ -46,7 +48,37 @@ public class Test {
                 bob = false;
             }
         }
-        if (count != pathNum) {
+        return (count!= length);
+    }
+
+    private boolean isNPN2(BigInteger tempParent, BigInteger grandParent){
+        //Much more efficient, I think, It takes out a ton of repetitive math, and only requires
+        //accessing the parent of a node, which now is really easy to do! (Once Nodes is up and running)
+        //The old one would have to do this process up to 100 times for a lowest-level value.
+        //Once implemented, the pattern will only have to be done once per value.
+        parent = tempParent;
+        tempParent = tempParent.multiply(Val.V);
+        tempParent = tempParent.add(Val.I);
+        tempParent = tempParent.divide(Val.II);
+
+        BigInteger Tested = tempParent.mod(Val.II);
+        int twisted = Tested.compareTo(Val.I);
+
+        while (twisted == 0)
+        {
+            tempParent.divide(Val.II);
+            Tested = tempParent.mod(Val.II);
+            twisted = Tested.compareTo(Val.I);
+            // If bearer is odd, twisted is 0.
+            // If bearer is even, twisted is -1.
+        }
+
+        return (tempParent != grandParent);
+    }
+
+    public void setNpnPassed(BigInteger tempParent, int length) {
+
+        if (isNPN(tempParent, length)) {
             //System.out.println(" pathNum: " + pathNum + ", count: " + count);
             npnPassed = false;
         }

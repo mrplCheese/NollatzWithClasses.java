@@ -1,5 +1,6 @@
 import java.math.BigInteger;
 import java.io.*;
+//I timed it, it takes about 1 minute, 20 seconds to exceed 1 million values as of now.
 class Main {
     public static boolean terminator = true;
     public static boolean children = true;
@@ -35,12 +36,12 @@ class Main {
                     //System.out.println(calculationDriver.savedValue());
                     //System.out.println(count);
                 }
-               /* if (count.compareTo(BigInteger.valueOf(1000000)) == 1) {
+                if (count.compareTo(BigInteger.valueOf(1000000)) == 1) {
                     System.out.println(calculationDriver.savedValue());
                     gen.completeFile();
-                    * Used for the millionth number timer. Not a great solution. I don't want to put more effort
-                    * into this pursuit as of now. heh
-                }*/
+                    //* Used for the millionth number timer. Not a great solution. I don't want to put more effort
+                    //* into this pursuit as of now. heh
+                }
             }
             //System.out.println("next partial loop ended");
             children = true;
