@@ -23,17 +23,44 @@ public class Node {
         this.parent = parent;
     }
 
-//    public void mutate(Node node){ //A parent with an exhausted child will change to its sibling
-//        //teh set of tests will ensue to get booleans for sibling and child
-//        if(node.sibling) {
-//            node.value = sibling.value;
-//        }
-//
-//    }
+    public BigInteger getValue() {
+        return value;
+    }
 
-    public void generate(){ // A new node is created
-        // which is linked to the parent.
+    public void setValue(BigInteger value) {
+        this.value = value;
+    }
 
+    public Node getParent() {
+        return parent;
+    }
+
+    public void setParent(Node parent) {
+        this.parent = parent;
+    }
+
+    public Node getSibling() {
+        return sibling;
+    }
+
+    public void setSibling(Node sibling) {
+        this.sibling = sibling;
+    }
+
+    public Boolean getChild() {
+        return child;
+    }
+
+    public void setChild(Boolean child) {
+        this.child = child;
+    }
+
+    public void mutate(Node node){ //A parent with an exhausted child will change to its sibling
+        //teh set of tests will ensue to get booleans for sibling and child
+        if(node.sibling != null) {
+            node.value = sibling.value;
+            node.sibling = null;
+        }
     }
 
     public void search(){ //Will move up the chain until it finds a node whose sibling value is false.
