@@ -12,21 +12,24 @@
 */
 
 import java.math.BigInteger;
-public class Nodes {
-    private BigInteger parent;
-    private boolean sibling; //A node is exhausted when sibling is false.
-    private boolean child;
+public class Node {
 
-    public Nodes(BigInteger parent, boolean sibling, boolean child){
+    private BigInteger value;
+    private Node parent;
+    private Node sibling;
+    private Boolean child;
+
+    public Node(Node parent){
         this.parent = parent;
-        this.sibling = sibling;
-        this.child = child;
     }
 
-    public void mutate(){ //A parent with an exhausted child will change to its sibling
-        //teh set of tests will ensue to get booleans for sibling and child
-
-    }
+//    public void mutate(Node node){ //A parent with an exhausted child will change to its sibling
+//        //teh set of tests will ensue to get booleans for sibling and child
+//        if(node.sibling) {
+//            node.value = sibling.value;
+//        }
+//
+//    }
 
     public void generate(){ // A new node is created
         // which is linked to the parent.

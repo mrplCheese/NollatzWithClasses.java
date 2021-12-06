@@ -8,8 +8,7 @@ import java.math.BigInteger;
 */
 
 public class Test {
-    public static final BigInteger MAX_VAL = new BigInteger(
-            "10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000");
+    public static final BigInteger MAX_VAL = BigInteger.valueOf(10).pow(100);
     public static final BigInteger MAX_SIB = (MAX_VAL.divide(BigInteger.valueOf(16))).subtract(Val.III);
 
     private BigInteger parent = BigInteger.ZERO;
