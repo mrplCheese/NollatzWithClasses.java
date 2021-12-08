@@ -9,6 +9,7 @@ class Main {
     public static void main(String[] args) {
         CalculationDriver calculationDriver = new CalculationDriver();
 
+
         while (terminator){ // Full loop
 
             while (children) { // Depth loop (A partial)

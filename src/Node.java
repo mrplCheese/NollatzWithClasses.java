@@ -19,8 +19,8 @@ public class Node {
     private Node sibling;
     private Boolean child;
 
-    public Node(Node parent){
-        this.parent = parent;
+    public Node(){
+
     }
 
     public BigInteger getValue() {
@@ -45,6 +45,10 @@ public class Node {
 
     public void setSibling(Node sibling) {
         this.sibling = sibling;
+    }
+
+    public void setSibling(BigInteger siblingVal){ //It'll come out in the wash.
+        sibling.setValue(siblingVal);
     }
 
     public Boolean getChild() {

@@ -9,44 +9,60 @@ import java.math.BigInteger;
 
 public class CalculationDriver {
     private int nCount;
-    private BigInteger root;
     private final NolMath Window;
+    Node head = new Node();
+    Node powerful = new Node();
     // Looks at a section of the problem at a time.
     // Moves along the vast paths of the problem like a screen.
     private final Test test = new Test();
     private boolean ultimatum = true;
     private boolean revertEnd = false;
 
+//Assume, for the sake of simplicity, that the node called powerful is the ultimate saviour.
+
     public CalculationDriver() {
-        root = Val.I; // The value of '1' is the "Adam," or first parent.
-        Window = new NolMath (root);
+        head.setValue(Val.I);
+        head.setParent(null);
+
+
+        Window = new NolMath (Val.I);  // The value of '1' is the "Adam," or first parent.
     }
 
-    public boolean getDepth(){
+    //What methods should change values in Node?
+
+    public boolean getDepth(){  //CHANGE NODE
         // Goes from parent node to child.
         // Runs tests to predict the next course of action (Breadth, depth, or complete?)
         revertEnd = false;
-        Window.setChild(root);
+        if(head.getChild() ==null) {
+            Window.setChild(head.getValue());
+            return true;
+        }
+        Node child = new Node();
+
+        child.setValue(Window.setChild(powerful.getValue()));
         nCount++; //Tracks the number of children generated, via number of n-values generated.
-        root = Window.getChild();
+        //root = Window.getChild(powerful.getValue());
+        //To be replaced with some
+
       // System.out.println("Parent is now: " + parent);
         boolean temp = organizer();
         if (ultimatum){ // if (the NPN check was passed and the program is not yet complete.)
-            Window.childToParent();
-            boolean out = test.maxCheck();
+            //Window.childToParent(powerful.getValue());
+            //To be replaced with
+            boolean out = test.maxCheck(powerful.getValue());
             return (temp && out);
         }
         return false;
     }
 
-    public boolean getBreadth(){
+    public boolean getBreadth(){ //CHANGE NODE
         //System.out.println("GetBreadth called");
-        Window.setChildfromChild(root);
-        root = Window.getChild();
+        powerful.setSibling(Window.setChildfromChild(powerful.getValue()));
         //System.out.println("new possible parent: " + root);
        // System.out.println("parent is now: " + parent +" (From getBreadth");
             boolean temp = organizer();
-            boolean out = test.maxCheck();
+            boolean out = test.maxCheck(powerful.getValue());
             //System.out.println("out: " + out);
             if (out && temp){
                 return false;
@@ -58,7 +74,7 @@ public class CalculationDriver {
               else{
                   revert();
                   revertEnd = true;
-                  if (root.equals(Val.I)){
+                  if (powerful.getValue().equals(Val.I)){
                       System.out.println("Complete! With no errors.");
                       ultimatum = false;
                         return false;
@@ -69,7 +85,7 @@ public class CalculationDriver {
             else{
                 revert();
                 revertEnd = true;
-                if (root.equals(Val.I)){
+                if (powerful.getValue().equals(Val.I)){
                     System.out.println("Complete! With no errors");
                     ultimatum = false;
                     return false;
@@ -79,20 +95,18 @@ public class CalculationDriver {
 
     }
 
-    public BigInteger savedValue(){
-        return root;
+    public BigInteger savedValue(){ //NO CHANGE IN NODE
+        return powerful.getValue();
     }
 
-    private void revert(){
-        Window.revert();
-        Window.parentToChild();
-        root = Window.getChild();
+    private void revert(){ //PERFORMS NODE SEARCH, DOES NOT CHANGE VALUES OF NODE
+        powerful.search();
         nCount--;
     }
 
-    private boolean organizer(){
+    private boolean organizer(){ //PERFORMS TESTS ON NODE, DOES NOT CHANGE VALUES OF NODE
         boolean temp;
-        test.setNpnPassed(root, nCount);
+        test.setNpnPassed(powerful.getValue(), nCount);
         if (test.getNpnPassed()){
             temp = pregnancyTest();
         }
@@ -105,18 +119,25 @@ public class CalculationDriver {
         return (temp);
     }
 
-    private boolean sibCheck(){
+    private boolean sibCheck(){ //DOES NOT CHANGE VALUES OF NODE
        // System.out.println("sibCheck called");
-        return test.sibMaxCheck();
+        return test.sibMaxCheck(powerful.getValue());
     }
 
     private boolean pregnancyTest(){
+        //(Node child) ?? Or can child be accessed by the entire CalculationDriver??
+        // DOES NOT CHANGE VALUES OF NODE
         //Assume the NPNTest is true.
-        if (root.compareTo(Val.I) == 0){//Warning: Highly experimental.
+        if (powerful.getValue().compareTo(Val.I) == 0){
             Window.setChildfromChild(Val.I);
            // System.out.println(Window.getChild());
+
+
             //Window.getChild();
-            root = Window.getChild();
+            //Child.setChild();
+            //root = Window.getChild(powerful.getValue());
+            //UHH, something will need to be done here. I'm too weak tonight to figure it out.
+
             //System.out.println("Returned true");
             return true;
         }
@@ -125,17 +146,17 @@ public class CalculationDriver {
             //System.out.println("returned false.");
             return false;
         }
-        else if (Window.hypoGetNVal(root)==0){
+        else if (Window.hypoGetNVal(powerful.getValue())==0){
             return false;
         }
-        else return Window.hypoGetNVal(root) != 0;
+        else return Window.hypoGetNVal(powerful.getValue()) != 0;
     }
 
-    public boolean isRevertEnd(){
+    public boolean isRevertEnd(){ //DOES NOT CHANGE VALUES OF NODE
         return revertEnd;
     }
 
     public boolean getUltimatum(){
         return ultimatum;
-    }
+    } //DOES NOT CHANGE VALUES OF NODE
 }

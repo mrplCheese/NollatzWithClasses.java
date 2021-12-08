@@ -12,11 +12,11 @@ import java.math.BigInteger;
 
 public class NolMath {
     private int nVal;
-    private BigInteger parent = BigInteger.ZERO;
-    private BigInteger child = BigInteger.ZERO;
+    private Node head = new Node();
 
     public NolMath (BigInteger val){
-        parent = val;
+        head.setValue(val);
+        head.setParent(null);
     }
 
     private void setNVal(BigInteger parentNode) { // Based on the Nollatz functions. Nothing too fancy. This is the 'n' value
@@ -64,9 +64,8 @@ public class NolMath {
             return (temporaryNode.divide(NFINAL));
         }
 
-    public void setChild (BigInteger parentNode) { //Goes from a parent to child
-
-       child = childMath(parentNode);
+    public BigInteger setChild (BigInteger parentNode) { //Goes from a parent to child
+         return(childMath(parentNode));
     }
 /*
     public BigInteger hypoSetChild(BigInteger parentNode){
@@ -74,12 +73,12 @@ public class NolMath {
     }
     * I thought I would need hypoSetChild. It turns out I don't.
 */
-    public void setChildfromChild (BigInteger childChanger) {
+    public BigInteger setChildfromChild (BigInteger childChanger) {
         //Goes from a child to a child (Sibling node generated)
         //I used algebra to prove this will always work (;
         childChanger = childChanger.multiply(BigInteger.valueOf(16));
         childChanger = childChanger.add(Val.III);
-        child = childChanger;
+        return (childChanger);
     }
 
     /*
@@ -93,7 +92,7 @@ public class NolMath {
         parent = parent.divide(Temporary);
     }*/
 
-    public void revert(){
+    public BigInteger revert(BigInteger child){
         /*
         Is much more efficient than setParent.
          I used algebra to prove they were the same (:
@@ -105,25 +104,25 @@ public class NolMath {
         while (parentToBe.mod(Val.II).equals(Val.E)){ //While parentToBe is even
             parentToBe = parentToBe.divide(Val.II);
         }
-        child = parentToBe;
+         return(parentToBe);
     }
 
-    public void childToParent(){
-        child = parent;
-    }
-
-    public void parentToChild(){
-        parent = child;
-    }
-
-    public BigInteger getParent(){
-        return parent;
-    }
-
-    public BigInteger getChild(){
-        return child;
-    }
-
+//    public void childToParent(){
+//        child = parent;
+//    }
+//
+//    public void parentToChild(){
+//        parent = child;
+//    }
+//
+//    public BigInteger getParent(){
+//        return parent;
+//    }
+//
+//    public BigInteger getChild(){
+//        return child;
+//    }
+//    Now it's completely unnecessary!
     public int getNVal(){
         return nVal;
     }

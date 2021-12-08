@@ -11,13 +11,12 @@ public class Test {
     public static final BigInteger MAX_VAL = BigInteger.valueOf(10).pow(100);
     public static final BigInteger MAX_SIB = (MAX_VAL.divide(BigInteger.valueOf(16))).subtract(Val.III);
 
-    private BigInteger parent = BigInteger.ZERO;
+
     private boolean npnPassed = false;
     private boolean isRoot = false;
 
     private boolean isNPN(BigInteger tempParent, int length){
-        parent = tempParent;
-        BigInteger Bearer = parent;
+        BigInteger Bearer = tempParent;
         int count = 0;
         boolean bob = true;
         BigInteger Tested;
@@ -55,7 +54,6 @@ public class Test {
         //accessing the parent of a node, which now is really easy to do! (Once Nodes is up and running)
         //The old one would have to do this process up to 100 times for a lowest-level value.
         //Once implemented, the pattern will only have to be done once per value.
-        parent = tempParent;
         tempParent = tempParent.multiply(Val.V);
         tempParent = tempParent.add(Val.I);
         tempParent = tempParent.divide(Val.II);
@@ -89,13 +87,13 @@ public class Test {
     }
 
 
-    public boolean maxCheck() {
+    public boolean maxCheck(BigInteger parent) {
         int wizard = parent.compareTo(MAX_VAL);
         //Returns false if parent > MAX_VAL
         return ((wizard!=1));
     }
 
-        public boolean sibMaxCheck(){ //returns false if parent > maxValue
+        public boolean sibMaxCheck(BigInteger parent){ //returns false if parent > maxValue
         int wizard = parent.compareTo(MAX_SIB);
         return (wizard!=1);
         }
