@@ -9,6 +9,10 @@
 * A node will represent 1 "layer," it will be all the siblings within the domain, at one point.
 *
 *
+* It might make the most sense to instantiate children nodes within the Node class itself.
+*
+* Not entirely sure, however. I'll experiment with that later.
+*
 */
 
 import java.math.BigInteger;
@@ -47,7 +51,7 @@ public class Node {
         this.sibling = sibling;
     }
 
-    public void setSibling(BigInteger siblingVal){ //It'll come out in the wash.
+    public void setSiblingWBigInteger(BigInteger siblingVal){ //It'll come out in the wash.
         sibling.setValue(siblingVal);
     }
 
@@ -70,5 +74,6 @@ public class Node {
     public void search(){ //Will move up the chain until it finds a node whose sibling value is false.
 
     }
+    //search could eventually be a private method! This would entail that it's done regardless of getBreadth or getDepth.
 
 }

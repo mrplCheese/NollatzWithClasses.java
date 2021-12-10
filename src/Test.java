@@ -5,6 +5,8 @@ import java.math.BigInteger;
 * Stores exactly one node data piece at a time, and performs tests when asked to do so.
 * Since it stores a value, it can perform many tests after having been given one piece of data only once.
 * When asked to do so, it can return values to CalculationDriver.
+*
+* In the future, data storing may be a thing of the past, to prevent confusion.
 */
 
 public class Test {
@@ -78,8 +80,7 @@ public class Test {
         if (isNPN(tempParent, length)) {
             //System.out.println(" pathNum: " + pathNum + ", count: " + count);
             npnPassed = false;
-        }
-        else
+        } else
         {
            // System.out.println("Success! " +parent+ ", pathnum: "+ pathNum);
             npnPassed = true;

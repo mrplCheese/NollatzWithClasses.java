@@ -6,6 +6,8 @@
 *
 * Instantiated exactly once.
 *
+* This will likely act simply as a "factory" class. If all information is being fed into the system, no info needs
+* to be traversed more than one method in and out; it can be a class of static methods??
  */
 
 import java.math.BigInteger;
@@ -14,10 +16,12 @@ public class NolMath {
     private int nVal;
     private Node head = new Node();
 
+    // Probably no longer necessary.
     public NolMath (BigInteger val){
         head.setValue(val);
         head.setParent(null);
     }
+
 
     private void setNVal(BigInteger parentNode) { // Based on the Nollatz functions. Nothing too fancy. This is the 'n' value
         //based on the modulus of the "parent" function.

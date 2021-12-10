@@ -2,7 +2,10 @@
 * Will be called by Main.
 * Communicates values between NolMath and Test.
 * Instantiates NolMath and Test.
-* Basically the orchestrator of the production and development of "nodes".
+* Instantiates Node
+* This will be responsible for supplying Node with information, given from NolMath and Test.
+*
+*
  */
 
 import java.math.BigInteger;
@@ -10,8 +13,9 @@ import java.math.BigInteger;
 public class CalculationDriver {
     private int nCount;
     private final NolMath Window;
-    Node head = new Node();
-    Node powerful = new Node();
+    private Node head = new Node();
+    public Node powerful = new Node(); //Powerful will be what is accessed by Main when needed?? Not quite sure.
+
     // Looks at a section of the problem at a time.
     // Moves along the vast paths of the problem like a screen.
     private final Test test = new Test();
@@ -22,9 +26,8 @@ public class CalculationDriver {
 
     public CalculationDriver() {
         head.setValue(Val.I);
-        head.setParent(null);
-
-
+        head.setParent(null); //1 has a null parent.
+        head.setSibling(null); //1 has no siblings.
         Window = new NolMath (Val.I);  // The value of '1' is the "Adam," or first parent.
     }
 
@@ -38,7 +41,7 @@ public class CalculationDriver {
             Window.setChild(head.getValue());
             return true;
         }
-        Node child = new Node();
+        Node child = new Node(); //Should child be made every time?? Or should Node.java generate the child nodes?
 
         child.setValue(Window.setChild(powerful.getValue()));
         nCount++; //Tracks the number of children generated, via number of n-values generated.
@@ -58,7 +61,7 @@ public class CalculationDriver {
 
     public boolean getBreadth(){ //CHANGE NODE
         //System.out.println("GetBreadth called");
-        powerful.setSibling(Window.setChildfromChild(powerful.getValue()));
+        powerful.setSiblingWBigInteger(Window.setChildfromChild(powerful.getValue()));
         //System.out.println("new possible parent: " + root);
        // System.out.println("parent is now: " + parent +" (From getBreadth");
             boolean temp = organizer();
@@ -150,6 +153,11 @@ public class CalculationDriver {
             return false;
         }
         else return Window.hypoGetNVal(powerful.getValue()) != 0;
+    }
+
+    private void setPowerful(){ //Game-changing aspect: will change CalcDriver's definitions of parent and node
+        //Will traverse the tree as efficiently as possible.
+
     }
 
     public boolean isRevertEnd(){ //DOES NOT CHANGE VALUES OF NODE
