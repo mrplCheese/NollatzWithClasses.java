@@ -21,10 +21,13 @@ public class Node {
     private BigInteger value;
     private Node parent;
     private Node sibling;
+    private Node itself; //Oh, this aught to be good.
     private Boolean child;
 
     public Node(){
-
+        //itself = itself; //lol
+        //I guess I need to do more research on the nature of nodes, in order to effectively implement the concept.
+        //Linked lists are a bit confusing.
     }
 
     public BigInteger getValue() {
@@ -71,9 +74,13 @@ public class Node {
         }
     }
 
-    public void search(){ //Will move up the chain until it finds a node whose sibling value is false.
-
+    public void search(){ //Will move up the chain until it finds a node whose sibling value is null
+        while (parent.getSibling() == null){
+            parent = parent.getParent(); //So is this valid??
+        }
     }
+    //Where can we reference the node itself?? Reference line 24.
+    //The traditional ideas of a binary tree traversal and structure will not suffice.
     //search could eventually be a private method! This would entail that it's done regardless of getBreadth or getDepth.
 
 }

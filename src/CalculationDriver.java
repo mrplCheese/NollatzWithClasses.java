@@ -14,6 +14,7 @@ public class CalculationDriver {
     private int nCount;
     private final NolMath Window;
     private Node head = new Node();
+    private Node child;
     public Node powerful = new Node(); //Powerful will be what is accessed by Main when needed?? Not quite sure.
 
     // Looks at a section of the problem at a time.
@@ -32,7 +33,7 @@ public class CalculationDriver {
     }
 
     //What methods should change values in Node?
-
+            //node values are only changed in getDepth and getBreadth.
     public boolean getDepth(){  //CHANGE NODE
         // Goes from parent node to child.
         // Runs tests to predict the next course of action (Breadth, depth, or complete?)
@@ -41,7 +42,6 @@ public class CalculationDriver {
             Window.setChild(head.getValue());
             return true;
         }
-        Node child = new Node(); //Should child be made every time?? Or should Node.java generate the child nodes?
 
         child.setValue(Window.setChild(powerful.getValue()));
         nCount++; //Tracks the number of children generated, via number of n-values generated.
