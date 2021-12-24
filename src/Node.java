@@ -78,16 +78,16 @@ public class Node {
            // node.value = sibling.value;
             node.value = node.sibling.getValue();
             //node.sibling.setValue(Val.I); Heheheheheheh
-            System.out.println("Arg");
+         //   System.out.println("Arg");
             return node.value;
         }
         return null;
     }
 
     public Node search(Node p){ //Will move up the chain until it finds a node whose sibling value is null
-        System.out.println("RRRR");
+       // System.out.println("RRRR");
         while (p.getSiblingVal() == null){
-            System.out.println("AAAAA");
+          //  System.out.println("AAAAA");
             p = p.getParent();//It seems the sibling of the parent has the same value as the parent? For some reason?
             CalculationDriver.nCount--;
         }

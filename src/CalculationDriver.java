@@ -37,7 +37,7 @@ public class CalculationDriver {
         revertEnd = false;
 
         if(bottom.getHasChild() ==null) { //This shouldn't actually be called, right???
-            System.out.println("Uh?");
+          //  System.out.println("Uh?");
             Window.setChild(bottom.getValue());
             return true;
         }
@@ -126,9 +126,9 @@ public class CalculationDriver {
     private void revert(){ //PERFORMS NODE SEARCH, DOES NOT CHANGE VALUES OF NODE
         bottom = bottom.search(bottom);
         setSibling();
-        System.out.println("Parent: " + bottom.getValue());
+       // System.out.println("Parent: " + bottom.getValue());
         bottom.setValue(bottom.transmute(bottom));
-        System.out.println("Uncle: " + bottom.getValue());
+        //System.out.println("Uncle: " + bottom.getValue());
     }
 
     private boolean organizer(){ //PERFORMS TESTS ON NODE, DOES NOT CHANGE VALUES OF NODE
