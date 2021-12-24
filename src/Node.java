@@ -43,6 +43,10 @@ public class Node {
         return parent;
     }
 
+    public BigInteger getParentValue(){
+        return (parent.getValue());
+    }
+
     public Node getSibling() {
         return sibling;
     }

@@ -63,27 +63,30 @@ public class Test {
         BigInteger Tested = tempParent.mod(Val.II);
         int twisted = Tested.compareTo(Val.I);
 
-        while (twisted == 0)
+        while (twisted == -1)
         {
-            tempParent.divide(Val.II);
+            tempParent = tempParent.divide(Val.II);
             Tested = tempParent.mod(Val.II);
             twisted = Tested.compareTo(Val.I);
             // If bearer is odd, twisted is 0.
             // If bearer is even, twisted is -1.
         }
-
-        return (tempParent != grandParent);
+       // System.out.println(tempParent.compareTo(grandParent) != 0);
+        return (tempParent.compareTo(grandParent) != 0);
     }
 
-    public void setNpnPassed(BigInteger tempParent, int length) {
-
-        if (isNPN(tempParent, length)) {
+    public void setNpnPassed(BigInteger tempParent, BigInteger temp2) {
+            //System.out.println("tempParent: " + tempParent);
+           // System.out.println("tempgrand: " + temp2);
+        if (isNPN2(tempParent, temp2)) {
             //System.out.println(" pathNum: " + pathNum + ", count: " + count);
             npnPassed = false;
+          //  System.out.println("false");
         } else
         {
            // System.out.println("Success! " +parent+ ", pathnum: "+ pathNum);
             npnPassed = true;
+           // System.out.println("true");
         }
     }
 

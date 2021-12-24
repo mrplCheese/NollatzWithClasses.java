@@ -136,7 +136,7 @@ public class CalculationDriver {
             return false;
         }
         boolean temp;
-        test.setNpnPassed(bottom.getValue(), nCount);
+        test.setNpnPassed(bottom.getValue(), bottom.getParentValue());
         if (test.getNpnPassed()){
             temp = pregnancyTest();
         }
