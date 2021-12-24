@@ -13,9 +13,7 @@ import java.math.BigInteger;
 public class CalculationDriver {
     private int nCount;
     private final NolMath Window;
-    private Node head = new Node();
-    private Node child;
-    public Node powerful = new Node(); //Powerful will be what is accessed by Main when needed?? Not quite sure.
+    private Node bottom = new Node();
 
     // Looks at a section of the problem at a time.
     // Moves along the vast paths of the problem like a screen.
@@ -26,69 +24,84 @@ public class CalculationDriver {
 //Assume, for the sake of simplicity, that the node called powerful is the ultimate saviour.
 
     public CalculationDriver() {
-        head.setValue(Val.I);
-        head.setParent(null); //1 has a null parent.
-        head.setSibling(null); //1 has no siblings.
+        bottom.setValue(Val.I);
+        bottom.setParent(null); //1 has a null parent.
+        bottom.setSibling(null); //1 has no siblings.
+        bottom.setHasChild(true);
         Window = new NolMath (Val.I);  // The value of '1' is the "Adam," or first parent.
     }
 
-    //What methods should change values in Node?
-            //node values are only changed in getDepth and getBreadth.
     public boolean getDepth(){  //CHANGE NODE
         // Goes from parent node to child.
         // Runs tests to predict the next course of action (Breadth, depth, or complete?)
         revertEnd = false;
-        if(head.getChild() ==null) {
-            Window.setChild(head.getValue());
-            return true;
-        }
 
-        child.setValue(Window.setChild(powerful.getValue()));
+        /*if(bottom.getHasChild() ==null) { //This shouldn't actually be called, right???
+            System.out.println("Uh?");
+            Window.setChild(bottom.getValue());
+            return true;
+        }*/
+
+
+        //child.setValue(Window.setChild(bottom.getValue()));
         nCount++; //Tracks the number of children generated, via number of n-values generated.
         //root = Window.getChild(powerful.getValue());
-        //To be replaced with some
 
-      // System.out.println("Parent is now: " + parent);
+
+        BigInteger x = (Window.setChild(bottom.getValue()));
+        bottom = bottom.generateChild(x, bottom);
+        //no idea if this will work as intended. Let's roll with it for now.
+
         boolean temp = organizer();
         if (ultimatum){ // if (the NPN check was passed and the program is not yet complete.)
             //Window.childToParent(powerful.getValue());
             //To be replaced with
-            boolean out = test.maxCheck(powerful.getValue());
+            boolean out = test.maxCheck(bottom.getValue());
+            setSibling();
+            bottom.setHasChild(temp && out);
             return (temp && out);
+
         }
         return false;
     }
 
     public boolean getBreadth(){ //CHANGE NODE
-        //System.out.println("GetBreadth called");
-        powerful.setSiblingWBigInteger(Window.setChildfromChild(powerful.getValue()));
-        //System.out.println("new possible parent: " + root);
-       // System.out.println("parent is now: " + parent +" (From getBreadth");
+            bottom = bottom.transmute(bottom);
+            //The sibling value of bottom will become the value of bottom.
+            //bottom's sibling will become null.
             boolean temp = organizer();
-            boolean out = test.maxCheck(powerful.getValue());
+            //temp is true if "bottom" can have a child.
+            boolean out = bottom.getValue() != null;
+            //out is true if bottom has a value stored in it.
+
             //System.out.println("out: " + out);
-            if (out && temp){
-                return false;
+            if (out && temp){  //if getDepth can be called
+                bottom.setHasChild(true);
+                return false; //will call getDepth again
             }
-            else if (out && ! temp){
-              if (sibCheck()){
+            else if (out && ! temp){ //if bottom has a value stored, but cannot have a child
+                bottom.setHasChild(false);
+              if (sibCheck()){ //if bottom has a sibling (will call getBreadth again)
+                  setSibling();
                   return true;
               }
-              else{
+              else{ //if bottom's sibling is out of range
+                  bottom.setSibling(null);
                   revert();
                   revertEnd = true;
-                  if (powerful.getValue().equals(Val.I)){
-                      System.out.println("Complete! With no errors.");
+                  if (bottom.getValue().equals(Val.I)){
+                     System.out.println("Complete! With no errors.");
                       ultimatum = false;
                         return false;
                   }
                   return true;
               }
             }
-            else{
+            else{ //if bottom is null
+                bottom.setSibling(null);
                 revert();
                 revertEnd = true;
-                if (powerful.getValue().equals(Val.I)){
+                if (bottom.getValue().equals(Val.I)){ //if all is exhausted
                     System.out.println("Complete! With no errors");
                     ultimatum = false;
                     return false;
@@ -99,17 +112,17 @@ public class CalculationDriver {
     }
 
     public BigInteger savedValue(){ //NO CHANGE IN NODE
-        return powerful.getValue();
+        return bottom.getValue();
     }
 
     private void revert(){ //PERFORMS NODE SEARCH, DOES NOT CHANGE VALUES OF NODE
-        powerful.search();
+        bottom = bottom.search(bottom);
         nCount--;
     }
 
     private boolean organizer(){ //PERFORMS TESTS ON NODE, DOES NOT CHANGE VALUES OF NODE
         boolean temp;
-        test.setNpnPassed(powerful.getValue(), nCount);
+        test.setNpnPassed(bottom.getValue(), nCount);
         if (test.getNpnPassed()){
             temp = pregnancyTest();
         }
@@ -124,24 +137,17 @@ public class CalculationDriver {
 
     private boolean sibCheck(){ //DOES NOT CHANGE VALUES OF NODE
        // System.out.println("sibCheck called");
-        return test.sibMaxCheck(powerful.getValue());
+        return test.sibMaxCheck(bottom.getValue());
     }
 
     private boolean pregnancyTest(){
         //(Node child) ?? Or can child be accessed by the entire CalculationDriver??
         // DOES NOT CHANGE VALUES OF NODE
         //Assume the NPNTest is true.
-        if (powerful.getValue().compareTo(Val.I) == 0){
-            Window.setChildfromChild(Val.I);
-           // System.out.println(Window.getChild());
+        if (bottom.getValue().compareTo(Val.I) == 0){
 
-
-            //Window.getChild();
+            bottom.setValue(Window.setChildfromChild(Val.I));
             //Child.setChild();
-            //root = Window.getChild(powerful.getValue());
-            //UHH, something will need to be done here. I'm too weak tonight to figure it out.
-
-            //System.out.println("Returned true");
             return true;
         }
         if (nCount>=100)
@@ -149,15 +155,10 @@ public class CalculationDriver {
             //System.out.println("returned false.");
             return false;
         }
-        else if (Window.hypoGetNVal(powerful.getValue())==0){
+        else if (Window.hypoGetNVal(bottom.getValue())==0){
             return false;
         }
-        else return Window.hypoGetNVal(powerful.getValue()) != 0;
-    }
-
-    private void setPowerful(){ //Game-changing aspect: will change CalcDriver's definitions of parent and node
-        //Will traverse the tree as efficiently as possible.
-
+        else return Window.hypoGetNVal(bottom.getValue()) != 0;
     }
 
     public boolean isRevertEnd(){ //DOES NOT CHANGE VALUES OF NODE
@@ -167,4 +168,17 @@ public class CalculationDriver {
     public boolean getUltimatum(){
         return ultimatum;
     } //DOES NOT CHANGE VALUES OF NODE
+
+    public void setSibling(){
+        if(sibCheck()){
+            //System.out.println("These are confusing times");
+            bottom.setSibling();
+            bottom.setSiblingWBigInteger(Window.setChildfromChild(bottom.getValue()));
+        }
+        else{
+            //System.out.println("RAT");
+            bottom.setSibling(null);
+        }
+    }
+
 }

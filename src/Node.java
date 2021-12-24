@@ -21,14 +21,15 @@ public class Node {
     private BigInteger value;
     private Node parent;
     private Node sibling;
-    private Node itself; //Oh, this aught to be good.
-    private Boolean child;
+    private Boolean hasChild;
 
     public Node(){
-        //itself = itself; //lol
-        //I guess I need to do more research on the nature of nodes, in order to effectively implement the concept.
-        //Linked lists are a bit confusing.
+
     }
+        public Node (BigInteger v, Node p){
+            value = v;
+            parent = p;
+        }
 
     public BigInteger getValue() {
         return value;
@@ -50,34 +51,49 @@ public class Node {
         return sibling;
     }
 
-    public void setSibling(Node sibling) {
-        this.sibling = sibling;
+    public void setSibling() {
+        sibling = new Node();
+    }
+    public void setSibling (Node n){
+        sibling = n;
     }
 
     public void setSiblingWBigInteger(BigInteger siblingVal){ //It'll come out in the wash.
-        sibling.setValue(siblingVal);
+       sibling.setValue(siblingVal);
     }
 
-    public Boolean getChild() {
-        return child;
+    public Boolean getHasChild() {
+        return hasChild;
     }
 
-    public void setChild(Boolean child) {
-        this.child = child;
+    public void setHasChild(Boolean hasChild) {
+        this.hasChild = hasChild;
     }
 
-    public void mutate(Node node){ //A parent with an exhausted child will change to its sibling
-        //teh set of tests will ensue to get booleans for sibling and child
+    public Node transmute(Node node){ //A parent with an exhausted child will change to its sibling
+        //the set of tests will ensue to get booleans for sibling and child
+        //System.out.println("Interesting...");
         if(node.sibling != null) {
+            //System.out.println("AAAA");
+            System.out.println("Before: " + node.getValue());
             node.value = sibling.value;
-            node.sibling = null;
+            System.out.println("After: " + node.getValue());
+            //node.sibling = null;
         }
+        return node;
     }
 
-    public void search(){ //Will move up the chain until it finds a node whose sibling value is null
-        while (parent.getSibling() == null){
-            parent = parent.getParent(); //So is this valid??
+    public Node search(Node p){ //Will move up the chain until it finds a node whose sibling value is null
+        while (p.getSibling() == null){
+            p = p.getParent();
         }
+        return p;
+    }
+
+    public Node generateChild(BigInteger v, Node p)
+    {
+        Node child = new Node(v, p);
+        return child;
     }
     //Where can we reference the node itself?? Reference line 24.
     //The traditional ideas of a binary tree traversal and structure will not suffice.
