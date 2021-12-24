@@ -11,7 +11,7 @@
 import java.math.BigInteger;
 
 public class CalculationDriver {
-    private int nCount;
+    public static int nCount;
     private final NolMath Window;
     private Node bottom = new Node();
 
@@ -36,11 +36,11 @@ public class CalculationDriver {
         // Runs tests to predict the next course of action (Breadth, depth, or complete?)
         revertEnd = false;
 
-        /*if(bottom.getHasChild() ==null) { //This shouldn't actually be called, right???
+        if(bottom.getHasChild() ==null) { //This shouldn't actually be called, right???
             System.out.println("Uh?");
             Window.setChild(bottom.getValue());
             return true;
-        }*/
+        }
 
 
         //child.setValue(Window.setChild(bottom.getValue()));
@@ -69,9 +69,16 @@ public class CalculationDriver {
             bottom = bottom.transmute(bottom);
             //The sibling value of bottom will become the value of bottom.
             //bottom's sibling will become null.
-            boolean temp = organizer();
+        boolean temp, out;
+        if (bottom!= null){
+            temp = organizer();
+        }
+        else {
+            temp = false;
+        }
+
             //temp is true if "bottom" can have a child.
-            boolean out = bottom.getValue() != null;
+            out = bottom != null;
             //out is true if bottom has a value stored in it.
 
             //System.out.println("out: " + out);
@@ -86,7 +93,7 @@ public class CalculationDriver {
                   return true;
               }
               else{ //if bottom's sibling is out of range
-                  bottom.setSibling(null);
+                  bottom.setSibling(null); //TODO AAAA NULL! MAybe we should find a way to just uze 0's or something.
                   revert();
                   revertEnd = true;
                   if (bottom.getValue().equals(Val.I)){
@@ -94,11 +101,12 @@ public class CalculationDriver {
                       ultimatum = false;
                         return false;
                   }
+
                   return true;
               }
             }
             else{ //if bottom is null
-                bottom.setSibling(null);
+               // bottom.setSibling(null);
                 revert();
                 revertEnd = true;
                 if (bottom.getValue().equals(Val.I)){ //if all is exhausted
@@ -117,7 +125,10 @@ public class CalculationDriver {
 
     private void revert(){ //PERFORMS NODE SEARCH, DOES NOT CHANGE VALUES OF NODE
         bottom = bottom.search(bottom);
-        nCount--;
+        setSibling();
+        System.out.println("Parent: " + bottom.getValue());
+        bottom = bottom.transmute(bottom);
+        System.out.println("Uncle: " + bottom.getValue());
     }
 
     private boolean organizer(){ //PERFORMS TESTS ON NODE, DOES NOT CHANGE VALUES OF NODE
@@ -173,7 +184,8 @@ public class CalculationDriver {
         if(sibCheck()){
             //System.out.println("These are confusing times");
             bottom.setSibling();
-            bottom.setSiblingWBigInteger(Window.setChildfromChild(bottom.getValue()));
+            bottom.setSiblingWBigInteger(Window.setChildfromChild(bottom.getValue())); //I think this could be a cause
+
         }
         else{
             //System.out.println("RAT");

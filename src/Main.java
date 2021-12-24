@@ -13,7 +13,7 @@ class Main {
         while (terminator){ // Full loop
 
             while (children) { // Depth loop (A partial)
-               //System.out.println("Iteration 1");
+               System.out.println("Iteration 1");
                 children = calculationDriver.getDepth();
 
                 if (!calculationDriver.isRevertEnd()){
@@ -29,7 +29,7 @@ class Main {
             terminator = calculationDriver.getUltimatum();
 
             while (children && terminator){ //Breadth loop (also partial)
-               //System.out.println("Iteration 2");
+               System.out.println("Iteration 2");
                 children = calculationDriver.getBreadth();
                 if (!calculationDriver.isRevertEnd()){
                     gen.addToFile(calculationDriver.savedValue());
