@@ -21,7 +21,7 @@ public class Node {
     private BigInteger value;
     private Node parent;
     private Node sibling;
-    private Boolean hasChild;
+    //private Boolean hasChild;
 
     public Node(){
 
@@ -47,10 +47,6 @@ public class Node {
         return (parent.getValue());
     }
 
-    public Node getSibling() {
-        return sibling;
-    }
-
     public BigInteger getSiblingVal(){
         return sibling.getValue();
     }
@@ -67,13 +63,13 @@ public class Node {
        sibling.setValue(siblingVal);
     }
 
-    public Boolean getHasChild() {
+   /* public Boolean getHasChild() {
         return hasChild;
-    }
+    }*/
 
-    public void setHasChild(Boolean hasChild) {
+    /*public void setHasChild(Boolean hasChild) {
         this.hasChild = hasChild;
-    }
+    }*/
 
     public BigInteger transmute(Node node){ //A parent with an exhausted child will change to its sibling
         //the set of tests will ensue to get booleans for sibling and child

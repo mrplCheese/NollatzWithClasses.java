@@ -15,9 +15,9 @@ public class Test {
 
 
     private boolean npnPassed = false;
-    private boolean isRoot = false;
+    //private boolean isRoot = false;
 
-    private boolean isNPN(BigInteger tempParent, int length){
+   /* private boolean isNPN(BigInteger tempParent, int length){
         BigInteger Bearer = tempParent;
         int count = 0;
         boolean bob = true;
@@ -49,9 +49,9 @@ public class Test {
             }
         }
         return (count!= length);
-    }
+    }*/
 
-    private boolean isNPN2(BigInteger tempParent, BigInteger grandParent){
+    /*private boolean isNPN2(BigInteger tempParent, BigInteger grandParent){
         //Much more efficient, I think, It takes out a ton of repetitive math, and only requires
         //accessing the parent of a node, which now is really easy to do! (Once Nodes is up and running)
         //The old one would have to do this process up to 100 times for a lowest-level value.
@@ -73,9 +73,33 @@ public class Test {
         }
        // System.out.println(tempParent.compareTo(grandParent) != 0);
         return (tempParent.compareTo(grandParent) != 0);
+    }*/
+
+    public void setNpnPassed2(BigInteger tempParent, BigInteger temp2){
+        //Much more efficient, I think, It takes out a ton of repetitive math, and only requires
+        //accessing the parent of a node, which now is really easy to do! (Once Nodes is up and running)
+        //The old one would have to do this process up to 100 times for a lowest-level value.
+        //Once implemented, the pattern will only have to be done once per value.
+        tempParent = tempParent.multiply(Val.V);
+        tempParent = tempParent.add(Val.I);
+        tempParent = tempParent.divide(Val.II);
+
+        BigInteger Tested = tempParent.mod(Val.II);
+        int twisted = Tested.compareTo(Val.I);
+
+        while (twisted == -1)
+        {
+            tempParent = tempParent.divide(Val.II);
+            Tested = tempParent.mod(Val.II);
+            twisted = Tested.compareTo(Val.I);
+            // If bearer is odd, twisted is 0.
+            // If bearer is even, twisted is -1.
+        }
+        // System.out.println(tempParent.compareTo(grandParent) != 0);
+        npnPassed = tempParent.compareTo(temp2) == 0;
     }
 
-    public void setNpnPassed(BigInteger tempParent, BigInteger temp2) {
+  /*  public void setNpnPassed(BigInteger tempParent, BigInteger temp2) {
             //System.out.println("tempParent: " + tempParent);
            // System.out.println("tempgrand: " + temp2);
         if (isNPN2(tempParent, temp2)) {
@@ -88,7 +112,7 @@ public class Test {
             npnPassed = true;
            // System.out.println("true");
         }
-    }
+    }*/
 
 
     public boolean maxCheck(BigInteger parent) {
@@ -103,13 +127,11 @@ public class Test {
         }
 
 
-    public boolean getNValue(int nVal){ // Returns false if nVal = 0, true otherwise.
+    /*public boolean getNValue(int nVal){ // Returns false if nVal = 0, true otherwise.
         return (!(nVal==0));
-    }
+    }*/
 
     public boolean getNpnPassed(){
         return npnPassed;
         }
-
-
 }

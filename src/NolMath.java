@@ -96,40 +96,5 @@ public class NolMath {
         parent = parent.divide(Temporary);
     }*/
 
-    public BigInteger revert(BigInteger child){
-        /*
-        Is much more efficient than setParent.
-         I used algebra to prove they were the same (:
-        When we revert to nodes, this will no longer be necessary.
-        */
-        BigInteger parentToBe = child;
-        parentToBe = parentToBe.multiply(Val.V);
-        parentToBe = parentToBe.add(Val.I);
-        while (parentToBe.mod(Val.II).equals(Val.E)){ //While parentToBe is even
-            parentToBe = parentToBe.divide(Val.II);
-        }
-         return(parentToBe);
-    }
-
-//    public void childToParent(){
-//        child = parent;
-//    }
-//
-//    public void parentToChild(){
-//        parent = child;
-//    }
-//
-//    public BigInteger getParent(){
-//        return parent;
-//    }
-//
-//    public BigInteger getChild(){
-//        return child;
-//    }
-//    Now it's completely unnecessary!
-    public int getNVal(){
-        return nVal;
-    }
-
 
 }
