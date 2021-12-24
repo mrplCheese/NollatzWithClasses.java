@@ -47,6 +47,10 @@ public class Node {
         return sibling;
     }
 
+    public BigInteger getSiblingVal(){
+        return sibling.getValue();
+    }
+
     public void setSibling() {
         sibling = new Node();
     }
@@ -67,22 +71,22 @@ public class Node {
         this.hasChild = hasChild;
     }
 
-    public Node transmute(Node node){ //A parent with an exhausted child will change to its sibling
+    public BigInteger transmute(Node node){ //A parent with an exhausted child will change to its sibling
         //the set of tests will ensue to get booleans for sibling and child
         //System.out.println("Interesting...");
-        if(node.sibling != null) {
+        if(node.getSiblingVal() != null) {
            // node.value = sibling.value;
             node.value = node.sibling.getValue();
             //node.sibling.setValue(Val.I); Heheheheheheh
             System.out.println("Arg");
-            return node;
+            return node.value;
         }
         return null;
     }
 
     public Node search(Node p){ //Will move up the chain until it finds a node whose sibling value is null
         System.out.println("RRRR");
-        while (p.getSibling() == null){
+        while (p.getSiblingVal() == null){
             System.out.println("AAAAA");
             p = p.getParent();//It seems the sibling of the parent has the same value as the parent? For some reason?
             CalculationDriver.nCount--;

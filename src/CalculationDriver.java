@@ -66,7 +66,7 @@ public class CalculationDriver {
     }
 
     public boolean getBreadth(){ //CHANGE NODE
-            bottom = bottom.transmute(bottom);
+            bottom.setValue(bottom.transmute(bottom));
             //The sibling value of bottom will become the value of bottom.
             //bottom's sibling will become null.
         boolean temp, out;
@@ -93,10 +93,10 @@ public class CalculationDriver {
                   return true;
               }
               else{ //if bottom's sibling is out of range
-                  bottom.setSibling(null); //TODO AAAA NULL! MAybe we should find a way to just uze 0's or something.
+                  bottom.setSiblingWBigInteger(null); //TODO AAAA NULL! MAybe we should find a way to just use 0's or something.
                   revert();
                   revertEnd = true;
-                  if (bottom.getValue().equals(Val.I)){
+                  if (bottom.getValue()!=null && bottom.getValue().equals(Val.I)){
                      System.out.println("Complete! With no errors.");
                       ultimatum = false;
                         return false;
@@ -127,11 +127,14 @@ public class CalculationDriver {
         bottom = bottom.search(bottom);
         setSibling();
         System.out.println("Parent: " + bottom.getValue());
-        bottom = bottom.transmute(bottom);
+        bottom.setValue(bottom.transmute(bottom));
         System.out.println("Uncle: " + bottom.getValue());
     }
 
     private boolean organizer(){ //PERFORMS TESTS ON NODE, DOES NOT CHANGE VALUES OF NODE
+        if (bottom.getValue() == null){
+            return false;
+        }
         boolean temp;
         test.setNpnPassed(bottom.getValue(), nCount);
         if (test.getNpnPassed()){
@@ -148,6 +151,9 @@ public class CalculationDriver {
 
     private boolean sibCheck(){ //DOES NOT CHANGE VALUES OF NODE
        // System.out.println("sibCheck called");
+        if (bottom.getValue() == null){
+            return false;
+        }
         return test.sibMaxCheck(bottom.getValue());
     }
 
@@ -189,7 +195,8 @@ public class CalculationDriver {
         }
         else{
             //System.out.println("RAT");
-            bottom.setSibling(null);
+            bottom.setSibling();
+            bottom.setSiblingWBigInteger(null);
         }
     }
 

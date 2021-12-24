@@ -32,6 +32,7 @@ class Main {
                System.out.println("Iteration 2");
                 children = calculationDriver.getBreadth();
                 if (!calculationDriver.isRevertEnd()){
+                    System.out.println("Adding");
                     gen.addToFile(calculationDriver.savedValue());
                     count = count.add(Val.I);
                     //System.out.println(calculationDriver.savedValue());
