@@ -1,5 +1,4 @@
 import java.math.BigInteger;
-import java.io.*;
 //I timed it, it takes about 1 minute, 20 seconds to exceed 1 million values as of now.
 class Main {
     public static boolean terminator = true;
@@ -38,7 +37,7 @@ class Main {
                     //System.out.println(calculationDriver.savedValue());
                     //System.out.println(count);
                 }
-                if (count.compareTo(BigInteger.valueOf(1000000)) == 1) {
+                if (count.compareTo(BigInteger.valueOf(1000000)) > 0) {
                     System.out.println(calculationDriver.savedValue());
                     gen.completeFile();
                     //* Used for the millionth number timer. Not a great solution. I don't want to put more effort

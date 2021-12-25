@@ -75,6 +75,24 @@ public class Test {
         return (tempParent.compareTo(grandParent) != 0);
     }*/
 
+        public void setNpnPassed3(BigInteger tempParent, BigInteger temp2){
+            //System.out.println("tempParent: " + tempParent);
+            tempParent = tempParent.multiply(Val.V);
+            tempParent = tempParent.add(Val.I);
+             int divider = tempParent.getLowestSetBit();
+             //System.out.println("divider now: " + divider);
+          //   divider = (int)Math.pow(2, divider);
+          //   System.out.println("divider later:" + divider);
+            BigInteger divider2 = Val.II.pow(divider);
+            tempParent = tempParent.divide(divider2);
+            //System.out.println("tempParent: " + tempParent);
+            //System.out.println("temp2: " + temp2);
+            npnPassed = tempParent.compareTo(temp2) == 0;
+            //System.out.println(npnPassed);
+
+        }
+
+
     public void setNpnPassed2(BigInteger tempParent, BigInteger temp2){
         //Much more efficient, I think, It takes out a ton of repetitive math, and only requires
         //accessing the parent of a node, which now is really easy to do! (Once Nodes is up and running)
@@ -85,13 +103,13 @@ public class Test {
         tempParent = tempParent.divide(Val.II);
 
         BigInteger Tested = tempParent.mod(Val.II);
-        int twisted = Tested.compareTo(Val.I);
+            int twisted = Tested.compareTo(Val.I);
 
-        while (twisted == -1)
-        {
-            tempParent = tempParent.divide(Val.II);
-            Tested = tempParent.mod(Val.II);
-            twisted = Tested.compareTo(Val.I);
+            while (twisted < 0)
+            {
+                tempParent = tempParent.divide(Val.II);
+                Tested = tempParent.mod(Val.II);
+                twisted = Tested.compareTo(Val.I);
             // If bearer is odd, twisted is 0.
             // If bearer is even, twisted is -1.
         }
@@ -118,7 +136,7 @@ public class Test {
     public boolean maxCheck(BigInteger parent) {
         int wizard = parent.compareTo(MAX_VAL);
         //Returns false if parent > MAX_VAL
-        return ((wizard!=1));
+        return wizard != 1;
     }
 
         public boolean sibMaxCheck(BigInteger parent){ //returns false if parent > maxValue

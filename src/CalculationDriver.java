@@ -1,6 +1,6 @@
 /*
 * Will be called by Main.
-* Communicates values between NolMath and Test.
+* Communicates various values between NolMath and Test.
 * Instantiates NolMath and Test.
 * Instantiates Node
 * This will be responsible for supplying Node with information, given from NolMath and Test.
@@ -33,7 +33,10 @@ public class CalculationDriver {
 
     public boolean getDepth(){  //CHANGE NODE
         // Goes from parent node to child.
-        // Runs tests to predict the next course of action (Breadth, depth, or complete?)
+        // Runs multiple tests to predict the next course of action (Breadth, depth, or complete?)
+        if (!ultimatum){
+            return false;
+        }
         revertEnd = false;
 
         /*if(bottom.getHasChild() ==null) { //This shouldn't actually be called, right???
@@ -66,6 +69,9 @@ public class CalculationDriver {
     }
 
     public boolean getBreadth(){ //CHANGE NODE
+        if (!ultimatum){
+            return false;
+        }
             bottom.setValue(bottom.transmute(bottom));
             //The sibling value of bottom will become the value of bottom.
             //bottom's sibling will become null.
@@ -86,11 +92,10 @@ public class CalculationDriver {
                 //bottom.setHasChild(true);
                 return false; //will call getDepth again
             }
-            else if (out && ! temp){ //if bottom has a value stored, but cannot have a child
+            else if (out){ //if bottom has a value stored, but cannot have a child
                 //bottom.setHasChild(false);
               if (sibCheck()){ //if bottom has a sibling (will call getBreadth again)
                   setSibling();
-                  return true;
               }
               else{ //if bottom's sibling is out of range
                   bottom.setSiblingWBigInteger(null);
@@ -102,8 +107,8 @@ public class CalculationDriver {
                         return false;
                   }
 
-                  return true;
               }
+                return true;
             }
             else{ //if bottom is null
                // bottom.setSibling(null);
@@ -134,7 +139,7 @@ public class CalculationDriver {
             return false;
         }
         boolean temp;
-        test.setNpnPassed2(bottom.getValue(), bottom.getParentValue());
+        test.setNpnPassed3(bottom.getValue(), bottom.getParentValue());
         if (test.getNpnPassed()){
             temp = pregnancyTest();
         }
@@ -187,7 +192,7 @@ public class CalculationDriver {
 
         }
         else{
-            bottom.setSibling();
+           bottom.setSibling();
             bottom.setSiblingWBigInteger(null);
         }
     }

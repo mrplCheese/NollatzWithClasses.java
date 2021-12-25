@@ -26,6 +26,8 @@ public class Node {
     public Node(){
 
     }
+
+
         public Node (BigInteger v, Node p){
             value = v;
             parent = p;
@@ -60,6 +62,7 @@ public class Node {
     }
 
     public void setSiblingWBigInteger(BigInteger siblingVal){ //It'll come out in the wash.
+       // sibling = new Node(siblingVal);
        sibling.setValue(siblingVal);
     }
 
