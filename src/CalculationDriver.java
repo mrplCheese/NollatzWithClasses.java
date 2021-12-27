@@ -18,15 +18,15 @@ public class CalculationDriver {
     // Looks at a section of the problem at a time.
     // Moves along the vast paths of the problem like a screen.
     private final Test test = new Test();
-    private boolean ultimatum = true;
+    private static boolean ultimatum = true;
     private boolean revertEnd = false;
-
-//Assume, for the sake of simplicity, that the node called powerful is the ultimate saviour.
 
     public CalculationDriver() {
         bottom.setValue(Val.I);
         bottom.setParent(null); //1 has a null parent.
-        bottom.setSibling(null); //1 has no siblings.
+        //bottom.setSibling(null); //1 has no siblings.
+        bottom.setSibling(); //Sibling can't be null, because we'll still have to "retrieve values"
+        bottom.setSiblingWBigInteger(null);
         //bottom.setHasChild(true);
         Window = new NolMath (Val.I);  // The value of '1' is the "Adam," or first parent.
     }
@@ -94,23 +94,32 @@ public class CalculationDriver {
             }
             else if (out){ //if bottom has a value stored, but cannot have a child
                 //bottom.setHasChild(false);
-              if (sibCheck()){ //if bottom has a sibling (will call getBreadth again)
+                 if (sibCheck()){ //if bottom has a sibling (will call getBreadth again)
                   setSibling();
-              }
-              else{ //if bottom's sibling is out of range
-                  bottom.setSiblingWBigInteger(null);
-                  revert();
-                  revertEnd = true;
-                  if (bottom.getValue()!=null && bottom.getValue().equals(Val.I)){
-                     System.out.println("Complete! With no errors.");
-                      ultimatum = false;
-                        return false;
-                  }
+                    }
+                    else{ //if bottom's sibling is out of range
+                      bottom.setSiblingWBigInteger(null);
+                      if (bottom!= null){
+                          revert();
+                          revertEnd = true;
+                      }
+                           if (bottom!= null && bottom.getValue()!=null && bottom.getValue().equals(Val.I)){
+                               System.out.println("Complete! With no errors.");
+                                 ultimatum = false;
+                               return false;
+                                 }
+                           else if (bottom == null){
+                                    System.out.println("COMPLETE? With 0 errors??");
+                                    ultimatum = false;
+                                    return false;
+                           }
 
-              }
+                         }
                 return true;
             }
-            else{ //if bottom is null
+
+
+            else if (bottom!=null){ //if bottom is null
                // bottom.setSibling(null);
                 revert();
                 revertEnd = true;
@@ -121,6 +130,11 @@ public class CalculationDriver {
                 }
                 return true;
             }
+            else{
+                System.out.println("Complete? With 00 errors?");
+                ultimatum = false;
+                return false;
+            }
 
     }
 
@@ -129,9 +143,12 @@ public class CalculationDriver {
     }
 
     private void revert(){
+
         bottom = bottom.search(bottom);
-        setSibling();
-        bottom.setValue(bottom.transmute(bottom));
+        if (bottom!= null){
+            setSibling();
+            bottom.setValue(bottom.transmute(bottom));
+        }
     }
 
     private boolean organizer(){
@@ -151,7 +168,7 @@ public class CalculationDriver {
     }
 
     private boolean sibCheck(){
-        if (bottom.getValue() == null){
+        if (bottom== null || bottom.getValue() == null){
             return false;
         }
         return test.sibMaxCheck(bottom.getValue());
@@ -165,7 +182,8 @@ public class CalculationDriver {
             //Child.setChild();
             return true;
         }
-        if (nCount>=100)
+        if (nCount>=100) //Changed from 100 to 5 to see if the program will complete itself without flaw.
+            //The prospect led to having to add even more nullPointerException counteractions.
         {
             //System.out.println("returned false.");
             return false;
@@ -191,10 +209,17 @@ public class CalculationDriver {
             bottom.setSiblingWBigInteger(Window.setChildfromChild(bottom.getValue()));
 
         }
+        else if (bottom == null){
+            System.out.println("Nully");
+        }
         else{
            bottom.setSibling();
             bottom.setSiblingWBigInteger(null);
         }
+    }
+
+    public static void buildUltimatum(){
+        ultimatum = false;
     }
 
 }

@@ -89,11 +89,14 @@ public class Node {
 
     public Node search(Node p){ //Will move up the chain until it finds a node whose sibling value is null
        // System.out.println("RRRR");
-        while (p.getSiblingVal() == null){
+        while ( p!=null && p.getSiblingVal() == null){
           //  System.out.println("AAAAA");
             p = p.getParent();//It seems the sibling of the parent has the same value as the parent? For some reason?
             CalculationDriver.nCount--;
         }
+      /*  if (p.getValue().compareTo(Val.I) !=0){
+            CalculationDriver.buildUltimatum();
+        }*/
         return p;
     }
     public void setParent(Node parent){

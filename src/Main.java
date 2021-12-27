@@ -37,17 +37,21 @@ class Main {
                     //System.out.println(calculationDriver.savedValue());
                     //System.out.println(count);
                 }
-                if (count.compareTo(BigInteger.valueOf(1000000)) > 0) {
+                if (count.compareTo(BigInteger.valueOf(1000000))== 0) {
                     System.out.println(calculationDriver.savedValue());
-                    gen.completeFile();
+                    System.out.println("nCount: " + CalculationDriver.nCount);
                     //* Used for the millionth number timer. Not a great solution. I don't want to put more effort
                     //* into this pursuit as of now. heh
+                }
+                else if (count.compareTo(BigInteger.valueOf(1000009))== 0){
+                    gen.completeFile();
                 }
             }
             //System.out.println("next partial loop ended");
             children = true;
             terminator = calculationDriver.getUltimatum();
         }
+
         gen.completeFile();
         System.out.println("Number of values generated: " + count);
         System.out.println("Terminated.");
