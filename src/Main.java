@@ -1,13 +1,16 @@
 import java.math.BigInteger;
+import java.lang.*;
+
 //I timed it, it takes about 1 minute, 20 seconds to exceed 1 million values as of now.
 class Main {
     public static boolean terminator = true;
     public static boolean children = true;
     public static FileGenerator gen = new FileGenerator();
     public static BigInteger count = Val.I;
+    public static double time = System.currentTimeMillis()/1000.0;
     public static void main(String[] args) {
         CalculationDriver calculationDriver = new CalculationDriver();
-
+        System.out.println(System.currentTimeMillis()/1000-time);
 
         while (terminator){ // Full loop
 
@@ -17,9 +20,11 @@ class Main {
 
                 if (!calculationDriver.isRevertEnd()){
                     gen.addToFile(calculationDriver.savedValue());
+                    timeTester();
                     count = count.add(Val.I);
                     //System.out.println(calculationDriver.savedValue());
                     //System.out.println(count);
+
                 }
             }
 
@@ -33,18 +38,10 @@ class Main {
                 if (!calculationDriver.isRevertEnd()){
                 //    System.out.println("Adding");
                     gen.addToFile(calculationDriver.savedValue());
+                    timeTester();
                     count = count.add(Val.I);
                     //System.out.println(calculationDriver.savedValue());
                     //System.out.println(count);
-                }
-                if (count.compareTo(BigInteger.valueOf(1000000))== 0) {
-                    System.out.println(calculationDriver.savedValue());
-                    System.out.println("nCount: " + CalculationDriver.nCount);
-                    //* Used for the millionth number timer. Not a great solution. I don't want to put more effort
-                    //* into this pursuit as of now. heh
-                }
-                else if (count.compareTo(BigInteger.valueOf(1000009))== 0){
-                    gen.completeFile();
                 }
             }
             //System.out.println("next partial loop ended");
@@ -56,5 +53,13 @@ class Main {
         System.out.println("Number of values generated: " + count);
         System.out.println("Terminated.");
 
+    }
+    public static void timeTester(){
+        if (count.mod(BigInteger.valueOf(1000000)).equals(Val.E)) {
+            System.out.println(System.currentTimeMillis()/1000.0-time);
+        }
+        else if (count.compareTo(BigInteger.valueOf(1000009))== 0){
+            gen.completeFile();
+        }
     }
 }
