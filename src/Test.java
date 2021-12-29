@@ -75,25 +75,19 @@ public class Test {
         return (tempParent.compareTo(grandParent) != 0);
     }*/
 
-        public void setNpnPassed3(BigInteger tempParent, BigInteger temp2){
-            //System.out.println("tempParent: " + tempParent);
+        public boolean setNpnPassed3(BigInteger tempParent, BigInteger temp2){
             tempParent = tempParent.multiply(Val.V);
             tempParent = tempParent.add(Val.I);
              int divider = tempParent.getLowestSetBit();
-             //System.out.println("divider now: " + divider);
-          //   divider = (int)Math.pow(2, divider);
-          //   System.out.println("divider later:" + divider);
             BigInteger divider2 = Val.II.pow(divider);
             tempParent = tempParent.divide(divider2);
-            //System.out.println("tempParent: " + tempParent);
-            //System.out.println("temp2: " + temp2);
             npnPassed = tempParent.compareTo(temp2) == 0;
-            //System.out.println(npnPassed);
-
+            //System.out.println("tempParent: " + tempParent + "temp2: " + temp2);
+            return npnPassed;
         }
 
 
-    public void setNpnPassed2(BigInteger tempParent, BigInteger temp2){
+    /*public void setNpnPassed2(BigInteger tempParent, BigInteger temp2){
         //Much more efficient, I think, It takes out a ton of repetitive math, and only requires
         //accessing the parent of a node, which now is really easy to do! (Once Nodes is up and running)
         //The old one would have to do this process up to 100 times for a lowest-level value.
@@ -117,7 +111,7 @@ public class Test {
         npnPassed = tempParent.compareTo(temp2) == 0;
     }
 
-  /*  public void setNpnPassed(BigInteger tempParent, BigInteger temp2) {
+    public void setNpnPassed(BigInteger tempParent, BigInteger temp2) {
             //System.out.println("tempParent: " + tempParent);
            // System.out.println("tempgrand: " + temp2);
         if (isNPN2(tempParent, temp2)) {

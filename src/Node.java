@@ -21,16 +21,26 @@ public class Node {
     private BigInteger value;
     private Node parent;
     private Node sibling;
+    private boolean colour;
+
+    public boolean getColour(){
+        return colour;
+    }
+
+    public void setColour(boolean c){
+        colour = c;
+    }
     //private Boolean hasChild;
 
-    public Node(){
-
+    public Node(){ //Is there redundancy here? I kinda feel like it.
+        colour = true;
     }
 
 
-        public Node (BigInteger v, Node p){
+        public Node (BigInteger v, Node p){ //We make a lot of nodes.
             value = v;
             parent = p;
+            colour = true;
         }
 
     public BigInteger getValue() {
@@ -43,7 +53,7 @@ public class Node {
 
     public Node getParent() {
         return parent;
-    }
+    } //Getters/setters: O(1)
 
     public BigInteger getParentValue(){
         return (parent.getValue());
@@ -57,9 +67,9 @@ public class Node {
         sibling = new Node();
     }
 
-    public void setSibling (Node n){
+    /*public void setSibling (Node n){
         sibling = n;
-    }
+    }*/
 
     public void setSiblingWBigInteger(BigInteger siblingVal){ //It'll come out in the wash.
        // sibling = new Node(siblingVal);
@@ -89,14 +99,37 @@ public class Node {
 
     public Node search(Node p){ //Will move up the chain until it finds a node whose sibling value is null
        // System.out.println("RRRR");
-        while ( p!=null && p.getSiblingVal() == null){
-          //  System.out.println("AAAAA");
-            p = p.getParent();//It seems the sibling of the parent has the same value as the parent? For some reason?
+        while ( p!=null && p.getSiblingVal() == null){ //This is linear BigO Time complexity? The further away it is,
+            //The more operations needed to be done.
+            //Is there a way to make this more efficient?
+            //2 to 198 possible operations within the loop.
+            p = p.getParent();
             CalculationDriver.nCount--;
         }
       /*  if (p.getValue().compareTo(Val.I) !=0){
             CalculationDriver.buildUltimatum();
         }*/
+        return p;
+    }
+
+    public Node search2(Node p){
+        //System.out.println("search2");
+        //if (p!=null && p.getSiblingVal() == null){
+            p = p.getParent();
+            CalculationDriver.nCount--;
+       // }
+        return p;
+    }
+
+    public Node search3 (Node p){
+        if (p.getColour()){
+            p = p.getParent();
+            CalculationDriver.nCount--;
+        }
+        else{
+            p = p.getParent().getParent();
+            CalculationDriver.nCount-=2; //Get ready for everything to be broken.
+        }
         return p;
     }
     public void setParent(Node parent){
@@ -105,8 +138,7 @@ public class Node {
 
     public Node generateChild(BigInteger v, Node p)
     {
-        Node child = new Node(v, p);
-        return child;
+        return new Node(v, p);
     }
     //Where can we reference the node itself?? Reference line 24.
     //The traditional ideas of a binary tree traversal and structure will not suffice.

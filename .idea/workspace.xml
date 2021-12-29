@@ -3,7 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="5ed1b119-e3fc-48bb-be04-c8dadda131cc" name="Changes" comment="I may be breaking github.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CalculationDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalculationDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FileGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FileGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NolMath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NolMath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Val.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Val.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,6 +139,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="I may be breaking github." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/NollatzWithClasses_java$Main.ic" NAME="Main Coverage Results" MODIFIED="1638150745513" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/NollatzWithClasses_java$Main.ic" NAME="Main Coverage Results" MODIFIED="1640663790514" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

@@ -9,15 +9,15 @@
 * This will likely act simply as a "factory" class. If all information is being fed into the system, no info needs
 * to be traversed more than one method in and out; it can be a class of static methods??
  */
-
+//If I'm not mistaken, everything in this class has a time complexity of O(1)??
 import java.math.BigInteger;
 
 public class NolMath {
     private int nVal;
-    private Node head = new Node();
 
     // Probably no longer necessary.
     public NolMath (BigInteger val){
+        Node head = new Node();
         head.setValue(val);
         head.setParent(null);
     }

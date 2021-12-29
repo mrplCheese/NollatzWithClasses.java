@@ -6,13 +6,12 @@
 import java.math.BigInteger;
 import java.io.*;
 public class FileGenerator {
-    private File r;
     private FileOutputStream fos;
     private PrintWriter pw;
     public FileGenerator(){
         try{
             BigInteger imp = BigInteger.ONE;
-            r = new File("Answers");
+            File r = new File("Answers");
             fos = new FileOutputStream(r);
             pw = new PrintWriter(fos);
         }
