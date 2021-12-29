@@ -1,3 +1,8 @@
+/*
+* This generates a file, adds to the file, and closes it.
+* As of now, there is no error log, which may be useful. I've looked into the prospect, however.
+* Instantiated once, by Main.
+ */
 import java.math.BigInteger;
 import java.io.*;
 public class FileGenerator {
@@ -12,6 +17,7 @@ public class FileGenerator {
             pw = new PrintWriter(fos);
         }
         catch(IOException ex) {
+            //TODO: Think about maybe logging to an error log
             ex.printStackTrace();
         }
     }

@@ -1,30 +1,40 @@
+/*
+*
+* Does all the math. It makes the data to be fed into "nodes"
+*
+* Will only be called by CalculationDriver
+*
+* Instantiated exactly once.
+*
+* This will likely act simply as a "factory" class. If all information is being fed into the system, no info needs
+* to be traversed more than one method in and out; it can be a class of static methods??
+ */
+
 import java.math.BigInteger;
 
-//NolMath will do all the math specifically related to the production of Nollatz numbers
 public class NolMath {
     private int nVal;
-    private BigInteger parent = BigInteger.ZERO;
-    private BigInteger child = BigInteger.ZERO;
-    //private boolean isRoot = false;
+    private Node head = new Node();
 
-    //Important BigInteger values for doing basic math more quickly when working with BigIntegers
-    public static final BigInteger R = BigInteger.valueOf(-1);
-    public static final BigInteger E = BigInteger.ZERO;
-    public static final BigInteger I = BigInteger.ONE;
-    public static final BigInteger II = BigInteger.TWO;
-    public static final BigInteger III = BigInteger.valueOf(3);
-    public static final BigInteger IV = BigInteger.valueOf(4);
-    public static final BigInteger V = BigInteger.valueOf(5);
-
+    // Probably no longer necessary.
     public NolMath (BigInteger val){
-        parent = val;
+        head.setValue(val);
+        head.setParent(null);
     }
-    public void setNVal() {
-        parent = parent.mod(V);
-        int tester4 = parent.compareTo(IV);
-        int tester3 = parent.compareTo(III);
-        int tester2 = parent.compareTo(II);
-        int tester1 = parent.compareTo(I);
+
+
+    private void setNVal(BigInteger parentNode) { // Based on the Nollatz functions. Nothing too fancy. This is the 'n' value
+        //based on the modulus of the "parent" function.
+        parentNode = parentNode.mod(Val.V);
+        int tester4 = parentNode.compareTo(Val.IV);
+        int tester3 = parentNode.compareTo(Val.III);
+        int tester2 = parentNode.compareTo(Val.II);
+        int tester1 = parentNode.compareTo(Val.I);
+        /*
+        If these were ints, it would look like:
+        if (parentNode%5==4){}
+        else if (parentNode%5==3){}, etc. etc. BigInteger has no quick way of doing that.
+        */
         if (tester4 == 0) {
             nVal = 20;
         } else if (tester3 == 0) {
@@ -38,16 +48,45 @@ public class NolMath {
         }
         }
 
-    public void setChild (int a) { //Goes from a parent to a child
-        BigInteger NFIN = BigInteger.valueOf(nVal);
-        BigInteger Temporary = BigInteger.valueOf(16);
-       Temporary = Temporary.pow(a);
-       BigInteger imm = BigInteger.valueOf(nVal/5);
-       Temporary = Temporary.subtract(imm);
-       child = Temporary.divide(NFIN);
+        public int hypoGetNVal (BigInteger parentNode){//hypothetical getNVal.
+        //Parent and child cannot change at this time, but we need to predict their properties beforehand.
+        setNVal(parentNode);
+        return nVal;
+        }
+
+        private BigInteger childMath(BigInteger parentNode){
+        /*
+         parentNode is like f(x),
+         we're generating: (1/n)*(f(x)*(16^b)-(n/5)
+         which may not seem clear since BigIntegers aren't kind.
+        */
+            setNVal(parentNode);
+            final BigInteger NFINAL = BigInteger.valueOf(nVal); //Too verbose? Eh, I like it.
+            BigInteger temporaryNode = BigInteger.valueOf(16);
+            temporaryNode = parentNode.multiply(temporaryNode);
+            temporaryNode = temporaryNode.subtract(BigInteger.valueOf(nVal/5));
+            return (temporaryNode.divide(NFINAL));
+        }
+
+    public BigInteger setChild (BigInteger parentNode) { //Goes from a parent to child
+         return(childMath(parentNode));
+    }
+/*
+    public BigInteger hypoSetChild(BigInteger parentNode){
+       return childMath(parentNode);
+    }
+    * I thought I would need hypoSetChild. It turns out I don't.
+*/
+    public BigInteger setChildfromChild (BigInteger childChanger) {
+        //Goes from a child to a child (Sibling node generated)
+        //I used algebra to prove this will always work (;
+        childChanger = childChanger.multiply(BigInteger.valueOf(16));
+        childChanger = childChanger.add(Val.III);
+        return (childChanger);
     }
 
-    private void setParent(int a){ //Goes from a child to a parent
+    /*
+    public void setParent(int a){ //Goes from a child to a parent
         BigInteger NFIN = BigInteger.valueOf(nVal);
         parent = parent.multiply(NFIN);
         BigInteger imm = BigInteger.valueOf(nVal/5);
@@ -55,29 +94,7 @@ public class NolMath {
         BigInteger Temporary = BigInteger.valueOf(16);
         Temporary = Temporary.pow(a);
         parent = parent.divide(Temporary);
-    }
-
-    public void childToParent(){
-        child = parent;
-    }
-
-    public void parentToChild(){
-        parent = child;
-    }
-
-    public BigInteger getParent(){
-        return parent;
-    }
-
-    public BigInteger getChild(){
-        return child;
-    }
-
-    public int getNVal(){
-        return nVal;
-    }
-
-
+    }*/
 
 
 }
