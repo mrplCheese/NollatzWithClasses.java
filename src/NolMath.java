@@ -16,12 +16,6 @@ public class NolMath {
     private int nVal;
 
     // Probably no longer necessary.
-    public NolMath (BigInteger val){
-        Node head = new Node();
-        head.setValue(val);
-        head.setParent(null);
-    }
-
 
     private void setNVal(BigInteger parentNode) { // Based on the Nollatz functions. Nothing too fancy. This is the 'n' value
         //based on the modulus of the "parent" function.

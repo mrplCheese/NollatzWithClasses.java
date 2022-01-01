@@ -76,6 +76,7 @@ public class Test {
     }*/
 
         public boolean setNpnPassed3(BigInteger tempParent, BigInteger temp2){
+           // System.out.println("Tested number: " + tempParent);
             tempParent = tempParent.multiply(Val.V);
             tempParent = tempParent.add(Val.I);
              int divider = tempParent.getLowestSetBit();

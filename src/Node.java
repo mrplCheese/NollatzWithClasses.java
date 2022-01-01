@@ -22,6 +22,7 @@ public class Node {
     private Node parent;
     private Node sibling;
     private boolean colour;
+    private int hypHeight;
 
     public boolean getColour(){
         return colour;
@@ -32,8 +33,15 @@ public class Node {
     }
     //private Boolean hasChild;
 
-    public Node(){ //Is there redundancy here? I kinda feel like it.
+    public Node(BigInteger s){
         colour = true;
+        value = s;
+        if (parent!=null) {
+            hypHeight = parent.getHypHeight() + 1;
+        }
+        else {
+            hypHeight = 1; //This else statement will probably ruin us.
+        }
     }
 
 
@@ -41,6 +49,15 @@ public class Node {
             value = v;
             parent = p;
             colour = true;
+            hypHeight = parent.getHypHeight() +1;
+        }
+
+        public int getHypHeight(){
+        return hypHeight;
+        }
+
+        public void setHypHeight(int h){
+        hypHeight = h;
         }
 
     public BigInteger getValue() {
@@ -63,9 +80,6 @@ public class Node {
         return sibling.getValue();
     }
 
-    public void setSibling() {
-        sibling = new Node();
-    }
 
     /*public void setSibling (Node n){
         sibling = n;
@@ -73,7 +87,7 @@ public class Node {
 
     public void setSiblingWBigInteger(BigInteger siblingVal){ //It'll come out in the wash.
        // sibling = new Node(siblingVal);
-       sibling.setValue(siblingVal);
+        sibling = new Node(siblingVal);
     }
 
    /* public Boolean getHasChild() {
@@ -89,12 +103,13 @@ public class Node {
         //System.out.println("Interesting...");
         if(node.getSiblingVal() != null) {
            // node.value = sibling.value;
+           // System.out.println("Transmute bef: " + node.value);
             node.value = node.sibling.getValue();
-            //node.sibling.setValue(Val.I); Heheheheheheh
-         //   System.out.println("Arg");
+            //System.out.println("Transmute aft: " + node.value);
+            //node.sibling.setValue(Val.I);
             return node.value;
         }
-        return null;
+        return null; //I think transmute works properly all the time?
     }
 
     public Node search(Node p){ //Will move up the chain until it finds a node whose sibling value is null
@@ -104,7 +119,7 @@ public class Node {
             //Is there a way to make this more efficient?
             //2 to 198 possible operations within the loop.
             p = p.getParent();
-            CalculationDriver.nCount--;
+           // CalculationDriver.nCount--; //May need to do something here? Maybe not.
         }
       /*  if (p.getValue().compareTo(Val.I) !=0){
             CalculationDriver.buildUltimatum();
@@ -116,19 +131,19 @@ public class Node {
         //System.out.println("search2");
         //if (p!=null && p.getSiblingVal() == null){
             p = p.getParent();
-            CalculationDriver.nCount--;
+           // CalculationDriver.nCount--; May need to do something here? Maybe not.
        // }
         return p;
     }
 
-    public Node search3 (Node p){
+    public Node search3 (Node p){ //If anything's wrong with Node, it'll be search.
         if (p.getColour()){
             p = p.getParent();
-            CalculationDriver.nCount--;
+           // CalculationDriver.nCount--;
         }
         else{
             p = p.getParent().getParent();
-            CalculationDriver.nCount-=2; //Get ready for everything to be broken.
+          //  CalculationDriver.nCount-=2; //Get ready for everything to be broken.
         }
         return p;
     }
@@ -136,10 +151,10 @@ public class Node {
         this.parent = parent;
     }
 
-    public Node generateChild(BigInteger v, Node p)
-    {
-        return new Node(v, p);
-    }
+    //public Node generateChild(BigInteger v, Node p)
+    //{
+    //    return new Node(v, p);
+    //}
     //Where can we reference the node itself?? Reference line 24.
     //The traditional ideas of a binary tree traversal and structure will not suffice.
     //search could eventually be a private method! This would entail that it's done regardless of getBreadth or getDepth.
