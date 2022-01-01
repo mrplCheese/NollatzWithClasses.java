@@ -28,7 +28,7 @@ public class CalculationDriver {
     private static boolean ultimatum = true;
     //If ultimatum becomes false, the entire program terminates.
 
-    private boolean revertEnd = false;
+    //private boolean revertEnd = false;
     //Prevents repeated values.
     //May want to rewrite this part to make it more smooth, with innate redundancy checks.
 
@@ -58,7 +58,7 @@ public class CalculationDriver {
             return false;
         }
         //revertEnd will already be dealt with when getDepth is called.
-        revertEnd = false;
+        //revertEnd = false;
         BigInteger x = (Window.setChild(bottom.getValue()));
         //System.out.println("bottom.getValue: " + bottom.getValue());
        // System.out.println("nCount: " + nCount);
@@ -80,20 +80,20 @@ public class CalculationDriver {
 
     /*
     * getBreadth in itself works perfectly.
-    *
-    *
+    * ....
+    * Maybe.....
     * */
 
     public boolean getBreadth() { //CHANGE NODE
       //  System.out.println("getBreadth");
-        if (!ultimatum || (bottom.getValue() != null
-                &&
-                bottom.getValue().compareTo(Val.I) == 0)) {
+        if (!ultimatum ||
+                (bottom.getValue() != null && bottom.getValue().compareTo(Val.I) == 0)) {
            // System.out.println("I got a false.");
             return false;
         }
 
-        bottom.setValue(bottom.transmute(bottom));
+        bottom.setValue(bottom.transmute());
+        //bottom.transmute2();
         //transmute gives the val
 
         //The sibling value of bottom will become the value of bottom.
@@ -122,19 +122,22 @@ public class CalculationDriver {
                // System.out.println("4");
                 return true;
                 //  System.out.println("How?");
-            } else { //if bottom's sibling is out of range
+            } else { //if bottom's sibling is out of range (horizontally)
                 bottom.setSiblingWBigInteger(null);
+                //bottom.sibling = new Node (null);
                 if (bottom != null) {
                   //  System.out.println("bottom!=null");
                     revert();
-                    revertEnd = true;
+                    //revertEnd = true;
+                    if (bottom != null && bottom.getValue() != null && bottom.getValue().equals(Val.I)) { //Short circuit!
+                        System.out.println("Complete! With no errors.");
+                        ultimatum = false;
+                        // System.out.println("2");
+                        return false;
+                    }
+                    return true;
                 }
-                if (bottom != null && bottom.getValue() != null && bottom.getValue().equals(Val.I)) {
-                    System.out.println("Complete! With no errors.");
-                    ultimatum = false;
-                   // System.out.println("2");
-                    return false;
-                } else if (bottom == null) {
+                 else if (bottom == null) {
                     System.out.println("COMPLETE? With 0 errors??");
                     ultimatum = false;
                     //System.out.println("3");
@@ -165,21 +168,23 @@ public class CalculationDriver {
     private void revert() {
 
         bottom = bottom.search3(bottom); //Trying out search3! :)
+        //bottom.search4(bottom);
         rock = false;
         if (bottom != null) {
             setSibling();
             //System.out.println("Why?");
-            System.out.println("bef: " + bottom.getValue());
-            bottom.setValue(bottom.transmute(bottom));
-            System.out.println("reverted hypHeight: " + bottom.getHypHeight());
-            System.out.println("Aft: "+ bottom.getValue());
+          //  System.out.println("bef: " + bottom.getValue());
+            bottom.setValue(bottom.transmute());
+            //bottom.transmute2();
+            //System.out.println("reverted hypHeight: " + bottom.getHypHeight());
+            //System.out.println("Aft: "+ bottom.getValue());
         }
     }
 
     private boolean organizer() { //Organizer is as perfect as it can be.
        // System.out.println("Organizer called. ");
         if (bottom.getValue() == null) {
-            System.out.println("It's a null!");
+           // System.out.println("It's a null!");
             return false;
         }
 
@@ -209,7 +214,7 @@ public class CalculationDriver {
            // System.out.println("returning true from PregTest");
             return true;
         }
-        if (bottom.getHypHeight() >= 3) //Only time, now, where nCount is used.
+        if (bottom.getHypHeight() >= 100) //Only time, now, where nCount is used.
         {
             rock = true;
             //System.out.println("returned false.");
@@ -221,9 +226,9 @@ public class CalculationDriver {
         }
     }
 
-    public boolean isRevertEnd() { //
-        return revertEnd;
-    }
+    //public boolean isRevertEnd() { //
+    //    return revertEnd;
+    //}
 
     public boolean getUltimatum() {
         return ultimatum;
@@ -234,6 +239,7 @@ public class CalculationDriver {
             //System.out.println("These are confusing times");
             //bottom.setSibling();
             bottom.setSiblingWBigInteger(Window.setChildfromChild(bottom.getValue()));
+            //bottom.sibling = new Node (Window.setChildfromChild(bottom.getValue()));
             //bottom.setColour(true);
             // System.out.println("Y");
         } else if (bottom == null) {
@@ -242,13 +248,14 @@ public class CalculationDriver {
         } else {
             //bottom.setSibling();
             bottom.setSiblingWBigInteger(null);
+            //bottom.sibling = new Node (null);
             if (bottom.getValue().compareTo(Val.I) != 0) {
                 bottom.setColour(false);
-                if (!bottom.getParent().getColour() &&bottom.getParent().getParentValue().compareTo(Val.I) != 0){ //Let's try this out
+                if (bottom.quickTest()){ //Let's try this out
                     //System.out.println("It happened. ");
-                    System.out.println("Value: " + bottom.getValue());
-                    System.out.println("Parent: " + bottom.getParentValue());
-                    bottom.setParent(bottom.getParent().getParent()); //Woah there! Idk.
+                   // System.out.println("Value: " + bottom.getValue());
+                    //System.out.println("Parent: " + bottom.getParentValue());
+                    bottom.setParentWeird();
 
                 }
             }

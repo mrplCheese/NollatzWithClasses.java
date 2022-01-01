@@ -24,9 +24,9 @@ public class Node {
     private boolean colour;
     private int hypHeight; //Now nodes hold 5 pieces of information each... Too much?
 
-    public boolean getColour(){
-        return colour;
-    }
+    //public boolean getColour(){
+    //    return colour;
+    //}
 
     public void setColour(boolean c){
         colour = c;
@@ -37,10 +37,12 @@ public class Node {
         colour = true;
         value = s;
         if (parent!=null) {
-            hypHeight = parent.getHypHeight() + 1;
+            hypHeight = parent.hypHeight + 1;
         }
         else {
-            hypHeight = 0; //This else statement will probably ruin us.
+            hypHeight = 0; //This else statement will probably ruin us...
+            //...
+            //Maybe not?
         }
     }
 
@@ -49,7 +51,7 @@ public class Node {
             value = v;
             parent = p;
             colour = true;
-            hypHeight = parent.getHypHeight() +1;
+            hypHeight = parent.hypHeight +1;
         }
 
         public int getHypHeight(){
@@ -73,11 +75,11 @@ public class Node {
     } //Getters/setters: O(1)
 
     public BigInteger getParentValue(){
-        return (parent.getValue());
+        return (parent.value);
     }
 
     public BigInteger getSiblingVal(){
-        return sibling.getValue();
+        return (sibling.value);
     }
 
 
@@ -98,21 +100,31 @@ public class Node {
         this.hasChild = hasChild;
     }*/
 
-    public BigInteger transmute(Node node){ //A parent with an exhausted child will change to its sibling
+    public BigInteger transmute(){ //A parent with an exhausted child will change to its sibling
         //the set of tests will ensue to get booleans for sibling and child
         //System.out.println("Interesting...");
-        if(node.getSiblingVal() != null) {
+        if(sibling.value != null) {
            // node.value = sibling.value;
            // System.out.println("Transmute bef: " + node.value);
-            node.value = node.sibling.getValue();
+            value = sibling.value;
             //System.out.println("Transmute aft: " + node.value);
             //node.sibling.setValue(Val.I);
-            return node.value;
+            return value;
         }
         return null; //I think transmute works properly all the time?
     }
 
-    public Node search(Node p){ //Will move up the chain until it finds a node whose sibling value is null
+    /*public void transmute2(){ //Not sure why this method slows it down... Looks more efficient to me.
+
+        if (sibling.value != null){
+            value = sibling.value;
+        }
+        else {
+            value = null;
+        }
+    }*/
+
+   /* public Node search(Node p){ //Will move up the chain until it finds a node whose sibling value is null
        // System.out.println("RRRR");
         while ( p!=null && p.getSiblingVal() == null){ //This is linear BigO Time complexity? The further away it is,
             //The more operations needed to be done.
@@ -121,35 +133,52 @@ public class Node {
             p = p.getParent();
            // CalculationDriver.nCount--; //May need to do something here? Maybe not.
         }
-      /*  if (p.getValue().compareTo(Val.I) !=0){
-            CalculationDriver.buildUltimatum();
-        }*/
+      //  if (p.getValue().compareTo(Val.I) !=0){
+        //    CalculationDriver.buildUltimatum();
+        //}
         return p;
-    }
+    } */
 
-    public Node search2(Node p){
+   /* public Node search2(Node p){
         //System.out.println("search2");
         //if (p!=null && p.getSiblingVal() == null){
             p = p.getParent();
            // CalculationDriver.nCount--; May need to do something here? Maybe not.
        // }
         return p;
-    }
+    }*/
+
+    public void search4 (){
+        if (colour){
+           parent = this;
+        }
+        else{
+            parent.parent = this; //No clue if this will work. hehehe
+        }
+    } //Paradox of self-reference prevents this from working :(
 
     public Node search3 (Node p){ //If anything's wrong with Node, it'll be search.
-        if (p.getColour()){
-            p = p.getParent();
+        if (colour){
+            p = p.parent;
            // CalculationDriver.nCount--;
         }
         else{
-            p = p.getParent().getParent();
-            System.out.println("Scenario");
+            p = p.parent.parent;
+           // System.out.println("Scenario");
           //  CalculationDriver.nCount-=2; //Get ready for everything to be broken.
         }
         return p;
     }
     public void setParent(Node parent){
         this.parent = parent;
+    }
+
+    public void setParentWeird(){
+        this.parent = parent.parent;
+    }
+
+    public boolean quickTest(){ //Is hopefully a bit faster....
+        return parent.parent.value.compareTo(Val.I) == 0 && !(parent.colour);
     }
 
     //public Node generateChild(BigInteger v, Node p)

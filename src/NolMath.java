@@ -16,7 +16,40 @@ public class NolMath {
     private int nVal;
 
     // Probably no longer necessary.
+    private void setNVal2(BigInteger parentNode) { // Based on the Nollatz functions. Nothing too fancy. This is the 'n' value
+        //based on the modulus of the "parent" function.
+        //setNVal2 is a smidge faster, since it reuses variables, and will (most of the time) return more quickly than before.
 
+        parentNode = parentNode.mod(Val.V);
+        int tester = parentNode.compareTo(Val.IV);
+        if (tester == 0) {
+            nVal = 20;
+            return;
+        }
+        tester = parentNode.compareTo(Val.III);
+        if (tester == 0) {
+            nVal = 40;
+            return;
+        }
+        tester = parentNode.compareTo(Val.II);
+        if (tester == 0) {
+            nVal = 10;
+            return;
+        }
+        tester = parentNode.compareTo(Val.I);
+        if (tester == 0) {
+            nVal = 5;
+            return;
+        } else {
+            nVal = 0;
+        }
+        /*
+        If these were ints, it would look like:
+        if (parentNode%5==4){}
+        else if (parentNode%5==3){}, etc. etc. BigInteger has no quick way of doing that.
+        */
+
+    }
     private void setNVal(BigInteger parentNode) { // Based on the Nollatz functions. Nothing too fancy. This is the 'n' value
         //based on the modulus of the "parent" function.
         parentNode = parentNode.mod(Val.V);
@@ -44,7 +77,7 @@ public class NolMath {
 
         public int hypoGetNVal (BigInteger parentNode){//hypothetical getNVal.
         //Parent and child cannot change at this time, but we need to predict their properties beforehand.
-        setNVal(parentNode);
+        setNVal2(parentNode);
         return nVal;
         }
 
@@ -54,7 +87,7 @@ public class NolMath {
          we're generating: (1/n)*(f(x)*(16^b)-(n/5)
          which may not seem clear since BigIntegers aren't kind.
         */
-            setNVal(parentNode);
+            setNVal2(parentNode);
             final BigInteger NFINAL = BigInteger.valueOf(nVal); //Too verbose? Eh, I like it.
             BigInteger temporaryNode = BigInteger.valueOf(16);
             temporaryNode = parentNode.multiply(temporaryNode);

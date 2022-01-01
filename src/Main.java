@@ -1,9 +1,7 @@
 import java.math.BigInteger;
 import java.lang.*;
 
-//Roughly 3.6 seconds for 1 million values, linearly (Tested up to 1 billion values)
-//At this rate, it's 1 hr, 24 seconds per billion values. Still will take a while to even get to 10^19 values.
-//Even longer to get to 10^70 values, which would probably be where this program is completed.
+//Roughly 3.24 seconds for 1 million values, linearly. Goal: Get it 3x faster.
 class Main {
     public static boolean terminator = true;
     public static boolean children = true;
@@ -45,9 +43,9 @@ class Main {
                     //System.out.println(calculationDriver.savedValue());
                     //System.out.println(count);
                 }
-                else{
+                /*else{
                     System.out.println("Value: " + calculationDriver.savedValue());
-                }
+                }*/
             }
             //System.out.println("next partial loop ended");
             children = true;

@@ -2,19 +2,17 @@ import java.math.BigInteger;
 
 /*
 * Called via CalculationDriver.
-* Stores exactly one node data piece at a time, and performs tests when asked to do so.
-* Since it stores a value, it can perform many tests after having been given one piece of data only once.
-* When asked to do so, it can return values to CalculationDriver.
+* The future is here.
 *
-* In the future, data storing may be a thing of the past, to prevent confusion.
+* The only things that are stored are 2 finals used for tests.
+*
+*
 */
 
 public class Test {
     public static final BigInteger MAX_VAL = BigInteger.valueOf(10).pow(100);
     public static final BigInteger MAX_SIB = (MAX_VAL.divide(BigInteger.valueOf(16))).subtract(Val.III);
 
-
-    private boolean npnPassed = false;
     //private boolean isRoot = false;
 
    /* private boolean isNPN(BigInteger tempParent, int length){
@@ -77,6 +75,7 @@ public class Test {
 
         public boolean setNpnPassed3(BigInteger tempParent, BigInteger temp2){
            // System.out.println("Tested number: " + tempParent);
+            boolean npnPassed;
             tempParent = tempParent.multiply(Val.V);
             tempParent = tempParent.add(Val.I);
              int divider = tempParent.getLowestSetBit();
@@ -144,7 +143,7 @@ public class Test {
         return (!(nVal==0));
     }*/
 
-    public boolean getNpnPassed(){
+    /*public boolean getNpnPassed(){
         return npnPassed;
-        }
+        }*/
 }
