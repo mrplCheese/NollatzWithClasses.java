@@ -20,7 +20,7 @@ class Main {
              // System.out.println("Iteration 1");
                 children = calculationDriver.getDepth();
 
-                if (!calculationDriver.isRevertEnd()){
+                if (calculationDriver.savedValue() != null){
                     gen.addToFile(calculationDriver.savedValue());
                     timeTester();
                     count = count.add(Val.I);
@@ -37,13 +37,16 @@ class Main {
             while (children && terminator){ //Breadth loop (also partial)
               //System.out.println("Iteration 2");
                 children = calculationDriver.getBreadth();
-                if (!calculationDriver.isRevertEnd()){
+                if (calculationDriver.savedValue() != null){ //TODO some values are placed twice (consecutively), but with previous conditions weren't placed at all.
                 //    System.out.println("Adding");
                     gen.addToFile(calculationDriver.savedValue());
                     timeTester();
                     count = count.add(Val.I);
                     //System.out.println(calculationDriver.savedValue());
                     //System.out.println(count);
+                }
+                else{
+                    System.out.println("Value: " + calculationDriver.savedValue());
                 }
             }
             //System.out.println("next partial loop ended");

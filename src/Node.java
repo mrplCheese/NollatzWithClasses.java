@@ -22,7 +22,7 @@ public class Node {
     private Node parent;
     private Node sibling;
     private boolean colour;
-    private int hypHeight;
+    private int hypHeight; //Now nodes hold 5 pieces of information each... Too much?
 
     public boolean getColour(){
         return colour;
@@ -40,7 +40,7 @@ public class Node {
             hypHeight = parent.getHypHeight() + 1;
         }
         else {
-            hypHeight = 1; //This else statement will probably ruin us.
+            hypHeight = 0; //This else statement will probably ruin us.
         }
     }
 
@@ -56,9 +56,9 @@ public class Node {
         return hypHeight;
         }
 
-        public void setHypHeight(int h){
+        /*public void setHypHeight(int h){
         hypHeight = h;
-        }
+        } */
 
     public BigInteger getValue() {
         return value;
@@ -143,6 +143,7 @@ public class Node {
         }
         else{
             p = p.getParent().getParent();
+            System.out.println("Scenario");
           //  CalculationDriver.nCount-=2; //Get ready for everything to be broken.
         }
         return p;

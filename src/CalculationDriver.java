@@ -40,7 +40,7 @@ public class CalculationDriver {
         //bottom.setSiblingWBigInteger(null);
         //bottom.setHasChild(true);
         //All of this is commented out because it was added to the Node() constructor
-        bottom.setHypHeight(0);
+        //bottom.setHypHeight(0);
         Window = new NolMath();  // The value of '1' is the "Adam," or first parent.
     }
 
@@ -169,17 +169,17 @@ public class CalculationDriver {
         if (bottom != null) {
             setSibling();
             //System.out.println("Why?");
-            //System.out.println("bef: " + bottom.getValue());
+            System.out.println("bef: " + bottom.getValue());
             bottom.setValue(bottom.transmute(bottom));
-            //System.out.println("reverted hypHeight: " + bottom.getHypHeight());
-            //System.out.println("Aft: "+ bottom.getValue());
+            System.out.println("reverted hypHeight: " + bottom.getHypHeight());
+            System.out.println("Aft: "+ bottom.getValue());
         }
     }
 
     private boolean organizer() { //Organizer is as perfect as it can be.
        // System.out.println("Organizer called. ");
         if (bottom.getValue() == null) {
-         //   System.out.println("It's a null!");
+            System.out.println("It's a null!");
             return false;
         }
 
@@ -209,7 +209,7 @@ public class CalculationDriver {
            // System.out.println("returning true from PregTest");
             return true;
         }
-        if (bottom.getHypHeight() >= 100) //Only time, now, where nCount is used.
+        if (bottom.getHypHeight() >= 3) //Only time, now, where nCount is used.
         {
             rock = true;
             //System.out.println("returned false.");
@@ -246,8 +246,8 @@ public class CalculationDriver {
                 bottom.setColour(false);
                 if (!bottom.getParent().getColour() &&bottom.getParent().getParentValue().compareTo(Val.I) != 0){ //Let's try this out
                     //System.out.println("It happened. ");
-                    //System.out.println("Value: " + bottom.getValue());
-                    //System.out.println("Parent: " + bottom.getParentValue());
+                    System.out.println("Value: " + bottom.getValue());
+                    System.out.println("Parent: " + bottom.getParentValue());
                     bottom.setParent(bottom.getParent().getParent()); //Woah there! Idk.
 
                 }
