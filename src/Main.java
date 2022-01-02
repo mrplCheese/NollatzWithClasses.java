@@ -34,7 +34,7 @@ class Main {
 
             while (children && terminator){ //Breadth loop (also partial)
               //System.out.println("Iteration 2");
-                children = calculationDriver.getBreadth();
+                children = calculationDriver.getBreadth2();
                 if (calculationDriver.savedValue() != null){ //TODO some values are placed twice (consecutively), but with previous conditions weren't placed at all.
                 //    System.out.println("Adding");
                     gen.addToFile(calculationDriver.savedValue());

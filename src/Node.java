@@ -148,30 +148,30 @@ public class Node {
         return p;
     }*/
 
-    public void search4 (){
-        if (colour){
-           parent = this;
-        }
-        else{
-            parent.parent = this; //No clue if this will work. hehehe
-        }
-    } //Paradox of self-reference prevents this from working :(
+//    public void search4 (){
+//        if (colour){
+//            (Node.this) = parent;
+//        }
+//        else{
+//            Node.this = parent.parent; //No clue if this will work. hehehe
+//        }
+//    } //Paradox of self-reference prevents this from working :(
 
     public Node search3 (Node p){ //If anything's wrong with Node, it'll be search.
         if (colour){
-            p = p.parent;
+            p = parent;
            // CalculationDriver.nCount--;
         }
         else{
-            p = p.parent.parent;
+            p = parent.parent;
            // System.out.println("Scenario");
           //  CalculationDriver.nCount-=2; //Get ready for everything to be broken.
         }
         return p;
     }
-    public void setParent(Node parent){
-        this.parent = parent;
-    }
+    //public void setParent(Node parent){
+    //    this.parent = parent;
+    //}
 
     public void setParentWeird(){
         this.parent = parent.parent;

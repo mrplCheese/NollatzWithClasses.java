@@ -83,9 +83,52 @@ public class CalculationDriver {
     * ....
     * Maybe.....
     * */
+    public boolean getBreadth2() {
+        if (!ultimatum ||
+                (bottom.getValue() != null && bottom.getValue().compareTo(Val.I) == 0)) {
+            // System.out.println("I got a false.");
+            return false;
+        }
+        bottom.setValue(bottom.transmute());
+
+
+        if (bottom == null){
+            ultimatum = false;
+            System.out.println("Complete with 00 errors?");
+            return false;
+        }
+        if (!rock) {
+            if (organizer()){
+                return false;
+            }
+        }
+
+        return (getEnd());
+    }
+
+    private boolean getEnd(){
+        if (sibCheck()){
+            setSibling();
+            return true;
+        }
+        bottom.setSiblingWBigInteger(null);
+        if (bottom != null) {
+            //  System.out.println("bottom!=null");
+            revert();
+            if (bottom == null || bottom.getValue() == null){
+                return true;
+            }
+            if (bottom.getValue().compareTo(Val.I) == 0){
+                return false;
+            }
+            return true;
+        }
+        return true;
+    }
 
     public boolean getBreadth() { //CHANGE NODE
       //  System.out.println("getBreadth");
+
         if (!ultimatum ||
                 (bottom.getValue() != null && bottom.getValue().compareTo(Val.I) == 0)) {
            // System.out.println("I got a false.");
@@ -128,6 +171,16 @@ public class CalculationDriver {
                 if (bottom != null) {
                   //  System.out.println("bottom!=null");
                     revert();
+
+
+
+
+
+
+
+
+
+
                     //revertEnd = true;
                     if (bottom != null && bottom.getValue() != null && bottom.getValue().equals(Val.I)) { //Short circuit!
                         System.out.println("Complete! With no errors.");
@@ -137,22 +190,17 @@ public class CalculationDriver {
                     }
                     return true;
                 }
-                 else if (bottom == null) {
+                 else {
                     System.out.println("COMPLETE? With 0 errors??");
                     ultimatum = false;
                     //System.out.println("3");
                     return false;
                 }
-                else if (bottom.getParent() == null){
-                    System.out.println(bottom.getValue());
-                    System.out.println("testing12");
-                    ultimatum = false; //Huh. I have no idea.
-                    return false;
-                }
                // System.out.println("Odd return"); //
-                return true;
             }
-        } else {
+        }
+
+        else {
             System.out.println("Complete? With 00 errors?");
             ultimatum = false;
            // System.out.println("5");
