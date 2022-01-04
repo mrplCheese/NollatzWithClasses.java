@@ -1,0 +1,32 @@
+Index: src/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.math.BigInteger;\r\nimport java.io.*;\r\n//I timed it, it takes about 1 minute, 20 seconds to exceed 1 million values as of now.\r\nclass Main {\r\n    public static boolean terminator = true;\r\n    public static boolean children = true;\r\n    public static FileGenerator gen = new FileGenerator();\r\n    public static BigInteger count = Val.I;\r\n    public static void main(String[] args) {\r\n        CalculationDriver calculationDriver = new CalculationDriver();\r\n\r\n        while (terminator){ // Full loop\r\n\r\n            while (children) { // Depth loop (A partial)\r\n               //System.out.println(\"Iteration 1\");\r\n                children = calculationDriver.getDepth();\r\n\r\n                if (!calculationDriver.isRevertEnd()){\r\n                    gen.addToFile(calculationDriver.savedValue());\r\n                    count = count.add(Val.I);\r\n                    //System.out.println(calculationDriver.savedValue());\r\n                    //System.out.println(count);\r\n                }\r\n            }\r\n\r\n            //System.out.println(\"loop ended\");\r\n            children = true;\r\n            terminator = calculationDriver.getUltimatum();\r\n\r\n            while (children && terminator){ //Breadth loop (also partial)\r\n               //System.out.println(\"Iteration 2\");\r\n                children = calculationDriver.getBreadth();\r\n                if (!calculationDriver.isRevertEnd()){\r\n                    gen.addToFile(calculationDriver.savedValue());\r\n                    count = count.add(Val.I);\r\n                    //System.out.println(calculationDriver.savedValue());\r\n                    //System.out.println(count);\r\n                }\r\n                if (count.compareTo(BigInteger.valueOf(1000000)) == 1) {\r\n                    System.out.println(calculationDriver.savedValue());\r\n                    gen.completeFile();\r\n                    //* Used for the millionth number timer. Not a great solution. I don't want to put more effort\r\n                    //* into this pursuit as of now. heh\r\n                }\r\n            }\r\n            //System.out.println(\"next partial loop ended\");\r\n            children = true;\r\n            terminator = calculationDriver.getUltimatum();\r\n        }\r\n        gen.completeFile();\r\n        System.out.println(\"Number of values generated: \" + count);\r\n        System.out.println(\"Terminated.\");\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Main.java b/src/Main.java
+--- a/src/Main.java	
++++ b/src/Main.java	
+@@ -1,11 +1,21 @@
+ import java.math.BigInteger;
+ import java.io.*;
++import java.time.Clock;
++import java.time.ZoneId;
++
+ //I timed it, it takes about 1 minute, 20 seconds to exceed 1 million values as of now.
+ class Main {
+     public static boolean terminator = true;
+     public static boolean children = true;
+     public static FileGenerator gen = new FileGenerator();
+     public static BigInteger count = Val.I;
++    private long systemTime = System.currentTimeMillis();
++
++    private long getElapsedTime(long systemTime) {
++        long currentTime = System.currentTimeMillis();
++        return (currentTime - systemTime)/1000;
++    }
++
+     public static void main(String[] args) {
+         CalculationDriver calculationDriver = new CalculationDriver();
+ 

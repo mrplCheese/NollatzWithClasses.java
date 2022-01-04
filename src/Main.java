@@ -8,6 +8,7 @@ class Main {
     public static final FileGenerator gen = new FileGenerator();
     public static BigInteger count = Val.I;
     public static final double time = System.currentTimeMillis()/1000.0;
+    private PropertyGenerator test = new PropertyGenerator();
     public static void main(String[] args) {
         CalculationDriver calculationDriver = new CalculationDriver();
         System.out.println(System.currentTimeMillis()/1000.0-time);
@@ -24,8 +25,8 @@ class Main {
                     count = count.add(Val.I);
                     //System.out.println(calculationDriver.savedValue());
                     //System.out.println(count);
-
                 }
+
             }
 
             //System.out.println("loop ended");
@@ -58,6 +59,7 @@ class Main {
         System.out.println("Last generated value: " + calculationDriver.savedValue());
 
     }
+
     public static void timeTester(){
         if (count.mod(BigInteger.valueOf(1000000)).equals(Val.E)) {
             System.out.println(System.currentTimeMillis()/1000.0-time);
