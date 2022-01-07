@@ -9,7 +9,7 @@ class Main {
     public static BigInteger count = Val.I;
     public static final double time = System.currentTimeMillis()/1000.0;
     private PropertyGenerator test = new PropertyGenerator();
-    private static double timeMarker = System.nanoTime()/(Math.pow(10, 9));
+    private static double timeMarker = System.nanoTime()/(Val.SCINO);
     public static void main(String[] args) {
         CalculationDriver calculationDriver = new CalculationDriver();
 
@@ -63,8 +63,8 @@ class Main {
 
     public static void timeTester(){
         if (count.mod(BigInteger.valueOf(1000000)).equals(Val.E)) {
-            System.out.println((System.nanoTime()/Math.pow(10,9)-timeMarker));
-            timeMarker = System.nanoTime()/Math.pow(10,9);
+            System.out.println((System.nanoTime()/Val.SCINO-timeMarker));
+            timeMarker = System.nanoTime()/Val.SCINO;
         }
         else if (count.compareTo(BigInteger.valueOf(1000009))== 0){
             gen.completeFile();

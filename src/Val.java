@@ -13,4 +13,5 @@ public final class Val {
     public static final BigInteger III = BigInteger.valueOf(3);
     public static final BigInteger IV = BigInteger.valueOf(4);
     public static final BigInteger V = BigInteger.valueOf(5);
+    public static final double SCINO = Math.pow(10,9);
 }
