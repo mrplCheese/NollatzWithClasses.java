@@ -7,8 +7,6 @@ class Main {
     public static boolean children = true;
     public static final FileGenerator gen = new FileGenerator();
     public static BigInteger count = Val.I;
-    public static final double time = System.currentTimeMillis()/1000.0;
-    private PropertyGenerator test = new PropertyGenerator();
     private static double timeMarker = System.nanoTime()/(Val.SCINO);
     public static void main(String[] args) {
         CalculationDriver calculationDriver = new CalculationDriver();
@@ -20,7 +18,7 @@ class Main {
              // System.out.println("Iteration 1");
                 children = calculationDriver.getDepth();
 
-                if (calculationDriver.savedValue() != null){
+                if (calculationDriver.bottom != null && calculationDriver.savedValue() != null){
                     gen.addToFile(calculationDriver.savedValue());
                     timeTester();
                     count = count.add(Val.I);
@@ -37,7 +35,7 @@ class Main {
             while (children && terminator){ //Breadth loop (also partial)
               //System.out.println("Iteration 2");
                 children = calculationDriver.getBreadth2();
-                if (calculationDriver.savedValue() != null){ //TODO some values are placed twice (consecutively), but with previous conditions weren't placed at all.
+                if (calculationDriver.bottom != null && calculationDriver.savedValue() != null){ //TODO some values are placed twice (consecutively), but with previous conditions weren't placed at all.
                 //    System.out.println("Adding");
                     gen.addToFile(calculationDriver.savedValue());
                     timeTester();
@@ -65,6 +63,7 @@ class Main {
         if (count.mod(BigInteger.valueOf(1000000)).equals(Val.E)) {
             System.out.println((System.nanoTime()/Val.SCINO-timeMarker));
             timeMarker = System.nanoTime()/Val.SCINO;
+            //System.out.println("Count: " + count);
         }
         else if (count.compareTo(BigInteger.valueOf(1000009))== 0){
             gen.completeFile();

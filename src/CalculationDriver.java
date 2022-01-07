@@ -19,7 +19,7 @@ public class CalculationDriver {
     // Moves along the vast paths of the problem like a screen.
     private boolean rockBottom = false;
     //rock will be true if rock-bottom is hit, preventing excess calculations.
-    private Node bottom = new Node(Val.I);
+    public Node bottom = new Node(Val.I);
     //The "head" node will have a null sibling, and a null parent, but will be a "red" node. Evil, I know haha
 
     private final PropertyGenerator property = new PropertyGenerator();
@@ -70,8 +70,8 @@ public class CalculationDriver {
 
 
     public boolean getBreadth2() {
-        if (!ultimatum ||
-                (bottom.getValue() != null && bottom.getValue().compareTo(Val.I) == 0)) {
+        if (!ultimatum
+                ||(bottom.getValue() != null && bottom.getValue().compareTo(Val.I) == 0)) { //||(bottom.getValue() != null && bottom.getValue().compareTo(Val.I) == 0)
             // System.out.println("I got a false.");
             return false;
         }
@@ -84,11 +84,10 @@ public class CalculationDriver {
             return false;
         }
         if (!rockBottom) {
-            if (organizer()){
+            if (breadthOrganizer()){
                 return false;
             }
         }
-
         return (getEnd());
     }
 
@@ -104,9 +103,7 @@ public class CalculationDriver {
             if (bottom == null || bottom.getValue() == null){
                 return true;
             }
-            if (bottom.getValue().compareTo(Val.I) == 0){
-                return false; //Only instance of returning false. Maybe we could isolate it?
-            }
+            return bottom.getValue().compareTo(Val.I) != 0; //Only instance of returning false. Maybe we could isolate it?
             //return true;
         }
         return true;
@@ -142,11 +139,11 @@ public class CalculationDriver {
     }
 
     private boolean organizer() { //Organizer is as perfect as it can be.
-       // System.out.println("Organizer called. ");
+       //System.out.println("Organizer called. ");
         if (bottom.getValue() == null) {
-           // System.out.println("It's a null!");
-            return false;
-        }
+        //    System.out.println("It's a null!");
+          return false;
+       }
 
         //System.out.println("bottom.getValue(): " + bottom.getValue());
         boolean bob = property.setNpnPassed(bottom.getValue(), bottom.getParentValue());
@@ -174,16 +171,15 @@ public class CalculationDriver {
            // System.out.println("returning true from PregTest");
             return true;
         }
-        if (bottom.getHypHeight() >= 100) //Only time, now, where nCount is used.
+        if (bottom.getHypHeight() >= 3) //Only time, now, where nCount is used.
         {
             rockBottom = true;
             //System.out.println("returned false.");
            // System.out.println("Out of bounds!");
             return false;
-        } else {
+        }
           //  System.out.println("else");
             return (Window.hypoGetNVal(bottom.getValue() )!=0);
-        }
     }
 
     //public boolean isRevertEnd() { //

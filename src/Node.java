@@ -31,14 +31,9 @@ public class Node {
     public Node(BigInteger s){
         colour = true;
         value = s;
-        if (parent!=null) {
-            hypHeight = parent.hypHeight + 1;
-        }
-        else {
-            hypHeight = 0; //This else statement will probably ruin us...
-            //...
-            //Maybe not?
-        }
+        hypHeight = 0; //This else statement will probably ruin us...
+        //...
+        //Maybe not?
     }
 
 
