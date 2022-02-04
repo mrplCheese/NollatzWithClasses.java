@@ -40,6 +40,17 @@ public class CalculationDriver implements Runnable {
     * We'll see!
     *
     * */
+    public boolean getDepth2(){ //Implementing threading
+        if (!ultimatum){
+            return false;
+        }
+
+
+
+        return true; //Just here for now so we won't get a runtime error.
+    }
+
+
     public boolean getDepth() {
         //System.out.println("getDepth");
         // Goes from parent node to child.

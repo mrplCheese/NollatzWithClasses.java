@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5ed1b119-e3fc-48bb-be04-c8dadda131cc" name="Changes" comment="I may be breaking github.">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_1_2_2022_4_39_PM_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_1_2_2022_4_39_PM__Changes_1.xml" beforeDir="false" />
+    <list default="true" id="5ed1b119-e3fc-48bb-be04-c8dadda131cc" name="Changes" comment="I finally fixed the bug!">
+      <change afterPath="$PROJECT_DIR$/src/BreadthThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CalculationDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalculationDriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +21,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="node_progress" />
+        <entry key="$PROJECT_DIR$" value="iBrokeStuff" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -119,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1640332590026</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="I finally fixed the bug!">
+      <created>1644003048624</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1644003048624</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -127,7 +132,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="feature/IsNPN2" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -139,7 +156,8 @@
     <MESSAGE value="Test commit (Not quite sure how to do it yet)" />
     <MESSAGE value="Commit when it matters, I guess." />
     <MESSAGE value="I may be breaking github." />
-    <option name="LAST_COMMIT_MESSAGE" value="I may be breaking github." />
+    <MESSAGE value="I finally fixed the bug!" />
+    <option name="LAST_COMMIT_MESSAGE" value="I finally fixed the bug!" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/NollatzWithClasses_java$Main.ic" NAME="Main Coverage Results" MODIFIED="1640663790514" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
