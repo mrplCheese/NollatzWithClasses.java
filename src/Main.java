@@ -55,7 +55,7 @@ class Main {
         gen.completeFile();
         System.out.println("Number of values generated: " + count);
         System.out.println("Terminated.");
-        System.out.println("Last generated value: " + calculationDriver.savedValue());
+        //System.out.println("Last generated value: " + calculationDriver.getSavedValue());
 
     }
 

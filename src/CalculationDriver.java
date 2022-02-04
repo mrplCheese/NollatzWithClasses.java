@@ -10,7 +10,7 @@
 
 import java.math.BigInteger;
 
-public class CalculationDriver {
+public class CalculationDriver implements Runnable {
     //public static int nCount;
     //keeps track of the "depth" of our node tree, vicariously giving us the nCount for any given value.
 
@@ -27,6 +27,7 @@ public class CalculationDriver {
 
     private static boolean ultimatum = true;
     //If ultimatum becomes false, the entire program terminates.
+
 
 
     public CalculationDriver() {
@@ -70,8 +71,12 @@ public class CalculationDriver {
 
 
     public boolean getBreadth2() {
-        if (!ultimatum
-                ||(bottom.getValue() != null && bottom.getValue().compareTo(Val.I) == 0)) { //||(bottom.getValue() != null && bottom.getValue().compareTo(Val.I) == 0)
+        if (bottom == null){
+            ultimatum = false;
+            System.out.println("Complete with 00 errors?");
+            return false;
+        }
+        if (!ultimatum ||(bottom!= null &&(bottom.getValue() != null && bottom.getValue().compareTo(Val.I) == 0)) ){ //||(bottom.getValue() != null && bottom.getValue().compareTo(Val.I) == 0)
             // System.out.println("I got a false.");
             return false;
         }
@@ -103,7 +108,7 @@ public class CalculationDriver {
             if (bottom == null || bottom.getValue() == null){
                 return true;
             }
-            return bottom.getValue().compareTo(Val.I) != 0; //Only instance of returning false. Maybe we could isolate it?
+            return bottom.getValue().compareTo(Val.I) != 0;
             //return true;
         }
         return true;
@@ -168,10 +173,9 @@ public class CalculationDriver {
         if (bottom.getValue().compareTo(Val.I) == 0) {
 
             bottom.setValue(Window.setChildfromChild(Val.I));
-           // System.out.println("returning true from PregTest");
             return true;
         }
-        if (bottom.getHypHeight() >= 3) //Only time, now, where nCount is used.
+        if (bottom.getHypHeight() >= 100)
         {
             rockBottom = true;
             //System.out.println("returned false.");
@@ -180,6 +184,24 @@ public class CalculationDriver {
         }
           //  System.out.println("else");
             return (Window.hypoGetNVal(bottom.getValue() )!=0);
+    }
+
+    private boolean pregnancyTestThread() { //
+        //Assume the NPNTest is true.
+        if (bottom.getValue().compareTo(Val.I) == 0) {
+
+            bottom.setValue(Window.setChildfromChild(Val.I));
+            return true;
+        }
+        if (bottom.getHypHeight() >= 3)
+        {
+            rockBottom = true;
+            Thread RockSlider = new Thread("RockSlider");
+            RockSlider.start();
+            return false;
+        }
+        //  System.out.println("else");
+        return (Window.hypoGetNVal(bottom.getValue() )!=0);
     }
 
     //public boolean isRevertEnd() { //
@@ -208,6 +230,11 @@ public class CalculationDriver {
                 //}
             }
         }
+    }
+
+    @Override
+    public void run(){
+
     }
 
 
