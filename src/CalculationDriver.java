@@ -60,14 +60,25 @@ public class CalculationDriver {
 
         return true; //Just here for now so we won't get a runtime error.
     }
-
-    public void getBreadthThread(){
-        //Traverses from cousin to cousin. Only happens consecutively at the very bottom (I think)
-        //In the future, this could possibly start more nodal Breadth searches (see BreadthThread checker (the first checker))
-        //
+    /*
+    * CousinGlide and CousinLink allow flexibility when complicating the "familial traversal"
+    * Not only will they play a crucial role in properly reverting, but they will also prevent overlap,
+    * they will also implement nodes in a weird way, that will allow them to begin variations of the getBreadth threads.
+    * See the CousinSlider method in BreadthGet
+    * */
+    public void cousinGlide(){ // This method will be used at rockBottom, returning many elements very quickly.
+        //It's like a shorthand, corner-cut version of getBreadth for special cases
 
     }
 
+    public void cousinLink(){//Only happens once in a row, for upper reverts.
+
+    }
+
+    //Now, there are three decisions we are always making. And that's pretty agonizing. We can break it down into two decisions, I guess.
+    //Cousin transmute or getDepth. Not sure how helpful this will be, though. A cool thing though, we're replacing a
+    //getBreadth method with something that does so much more than getBreadth. It gets important values in O(1) time.
+    //Absolutely amazing, if it works.
 
 
 

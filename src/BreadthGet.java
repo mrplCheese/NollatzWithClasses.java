@@ -39,4 +39,10 @@ public class BreadthGet implements Runnable{
         }
 
     }
+
+    public void cousinSlider(){
+
+    }
+
+
 }

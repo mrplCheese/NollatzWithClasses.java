@@ -15,7 +15,7 @@ public class BreadthThread implements Callable<ArrayList<BigInteger>> {
     public BreadthThread(BigInteger versatile, BigInteger parent){
         /*
         When this constructor is called, we're effectively making a new thread,
-        this is how we can pass information to a new class! Pretty exciting stuff.
+        this is how we can pass information to a new thread! Pretty exciting stuff.
         */
         this.versatile = versatile;
         this.parent = parent;
@@ -25,7 +25,7 @@ public class BreadthThread implements Callable<ArrayList<BigInteger>> {
     public BreadthThread(BigInteger versatile, BigInteger parent, int count){
         /*
         When this constructor is called, we're effectively making a new thread,
-        this is how we can pass information to a new class! Pretty exciting stuff.
+        this is how we can pass information to a new thread! Pretty exciting stuff.
         */
         this.versatile = versatile;
         this.parent = parent;
@@ -49,8 +49,11 @@ public class BreadthThread implements Callable<ArrayList<BigInteger>> {
             else{
                 checker2();
                 if (propertyFull){ //If all predicted sibling values pass all property questions.
-                    prepare(); //Creates the first child of each sibling of the passed BigInteger value
-                    return stored;
+                    prepare();//Creates the first child of each sibling of the passed BigInteger value
+                    //Also runs NPNChecks on all values generated.
+                    if (propertyFull){
+                        return stored;
+                    }
                 }
             }
         }
@@ -90,11 +93,26 @@ public class BreadthThread implements Callable<ArrayList<BigInteger>> {
 
         public void prepare (){
         //Precondition: We're not at rockBottom, and all values generated passed the property checks.
-            for (int i = 0; i<stored.size(); i++){
-                stored.set(i, NolMath.setChild(stored.get(i)));
+            BigInteger child;
+            for (int i = 0; i<stored.size(); i++) {
+                child = NolMath.setChild(stored.get(i));
+                //Let's run  propertyChecks here. It may need to be removed later, but for now it seems pretty useful.
+                if (propGen.setNpnPassed(parent, child)) {
+                    stored.set(i, child);
+                } else {
+                    propertyFull = false;
+                    break;
+                }
+            }
                 //Here, we're replacing the "parent" nodes with their children and store them.
                 //Later, we can traverse these lists to start new iterations of getDepth more quickly.
-             }
+                //While it may seem that we are "losing" information here, we're actually simply "processing" it...
+                //Albeit in a crude way.
+                //Here is where I can implement arguably the most exciting principle of our program: Vicarious Properties.
+                //The idea is that, if we think a value has a hypHeight of 100, and we know that in 2 steps it reaches
+                //a value that has a hypHeight of 98, not only do we learn that the original value has a count of 100,
+                //we also know that the number it reaches in 1 step has a count of 99.
+                //I think this will play a crucial role in implementing Threads in the very near future.
         }
 
 }

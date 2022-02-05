@@ -27,6 +27,8 @@ public class Node {
     private BigInteger value;
     private Node parent;
     private Node sibling; //The sibling node may become obsolete.
+    //Sibling may end up being replaced with something more useful: nephewNode
+    private Node nephewNode;
     private boolean colour;
     private final int hypHeight;
     private ArrayList<BigInteger> nephews;
@@ -59,6 +61,7 @@ public class Node {
         colour = true;
         hypHeight = parent.hypHeight +1;
         future = executor.submit(new BreadthThread(value, getParentValue(), hypHeight));
+        //This isn't too terribly important without its "successor," the get() method found in getArrayList.
     }
 
     public int getHypHeight(){
@@ -132,6 +135,19 @@ public class Node {
 
     public Node getParent (){
         return parent;
+    }
+
+    public void nephewTraversal(int index){
+        nephewNode.setValue(nephews.get(index));
+        //It's possible that nephews will need to carry unique sets of data, being different structurally from
+        //our parent/sibling node family tree.
+        //The held data may include: grandParent (Node), nephewIndex (int), value (BigInteger), passedChecks (boolean),
+        //and isAtRockBottom (boolean)
+
+        //For now, though, I can just leave it as it is. We'll see if this change is necessary later.
+
+        //At that point, it may be useful to make a brand new Node.java, and get rid of the one we have now.
+        //Threads really do change the importance of nodes.
     }
 
 

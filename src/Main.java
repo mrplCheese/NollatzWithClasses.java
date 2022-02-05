@@ -1,6 +1,16 @@
 import java.math.BigInteger;
 import java.lang.*;
-
+/*
+* First instance of repeated values: 37292836625076443667
+* This happens at a revert call
+* Every time revert is called, one value is handed back from getBreadth, and it's the same value that's handed back
+* in GetDepth... (At least, that's my assumption. I could be wrong).
+*
+* My guess is that when we fully implement multithreading, it won't have this repetition.
+* ...
+* Not quite sure though.
+*
+* */
 //Roughly 3.24 seconds for 1 million values, linearly. Goal: Get it 3x faster.
 class Main {
     public static boolean terminator = true;
