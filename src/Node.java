@@ -16,13 +16,24 @@
 */
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
 public class Node {
 
     private BigInteger value;
     private Node parent;
-    private Node sibling;
+    private Node sibling; //The sibling node may become obsolete.
     private boolean colour;
     private final int hypHeight;
+    private ArrayList<BigInteger> nephews;
+    private  Future<ArrayList<BigInteger>> future;
+
+    private ExecutorService executor = Executors.newSingleThreadExecutor();
+
 
     public void setColour(boolean c){
         colour = c;
@@ -31,17 +42,17 @@ public class Node {
     public Node(BigInteger s){
         colour = true;
         value = s;
-        hypHeight = 0; //This else statement will probably ruin us...
-        //...
-        //Maybe not?
+        hypHeight = 0;
     }
 
 
-    public Node (BigInteger v, Node p){ //We make a lot of nodes.
+    public Node (BigInteger v, Node p){ //This makes a lot of nodes.
         value = v;
         parent = p;
         colour = true;
         hypHeight = parent.hypHeight +1;
+        future = executor.submit(new BreadthThread(value, getParentValue(), hypHeight));
+        //Oi. that's a horrifically-complex line of code.
     }
 
     public int getHypHeight(){
@@ -67,6 +78,16 @@ public class Node {
         sibling = new Node(siblingVal);
     }
 
+    public BigInteger nephewValue(int index){
+        return (nephews.get(index));
+    }
+    /*
+    * We'll need a method that generates nodes based on values of nephews... I think??
+    * */
+    public void idk (){
+
+    }
+
 
     public BigInteger transmute(){ //A parent with an exhausted child will change to its sibling
         if(sibling.value != null) {
@@ -76,7 +97,7 @@ public class Node {
         return null; //I think transmute works properly all the time?
     }
 
-    public Node search3 (Node p){ //If anything's wrong with Node, it'll be search.
+    public Node search3 (Node p){
         if (colour){
             p = parent;
             //System.out.println("true");
@@ -92,9 +113,17 @@ public class Node {
         return p;
     }
 
+    public void getArrayList () throws ExecutionException, InterruptedException {
+        nephews = future.get();
+    }
+
     //public boolean quickTest(){ //Is hopefully a bit faster....
     //    return parent.parent.value.compareTo(Val.I) == 0 && !(parent.colour);
     //}
+
+    public Node getParent (){
+        return parent;
+    }
 
 
 

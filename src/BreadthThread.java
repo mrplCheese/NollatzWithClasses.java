@@ -1,18 +1,16 @@
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.concurrent.Callable;
 
-public class BreadthThread extends Thread {
+public class BreadthThread implements Callable<ArrayList<BigInteger>> {
     private final BigInteger XVI = BigInteger.valueOf(16);
-    private BigInteger versatile;
-    private final BigInteger parent;
-    private boolean propertyFull = true;
-    private final boolean storeImp;
-    private ArrayList<BigInteger> stored = new ArrayList<BigInteger>();
-
-    private NolMath NolMath = new NolMath ();
-    //I'll just use ArrayLists for now...
-    // Maybe there's a better way.
-    private PropertyGenerator propGen = new PropertyGenerator();
+    private BigInteger versatile; //Old information
+    private final BigInteger parent; //Old information
+    private boolean propertyFull = true; //new information
+    private ArrayList<BigInteger> stored = new ArrayList<BigInteger>(); //new information
+    private final boolean storeImp; //Interior information
+    private NolMath NolMath = new NolMath (); //Interior process
+    private PropertyGenerator propGen = new PropertyGenerator(); //Interior process
 
     public BreadthThread(BigInteger versatile, BigInteger parent){
         /*
@@ -39,28 +37,27 @@ public class BreadthThread extends Thread {
         }
     }
 
-
-    @Override
-    public void run (){
+    public ArrayList<BigInteger> call() throws Exception{
         if (versatile != null){
-            if (storeImp){
-                checker();
+            if (!storeImp){
+                checker(); //Happens when we're at rockBottom and don't need to return values
+                stored.add(Val.E);//Placeholder to differentiate from a "false," which is a null return
+                     if (propertyFull){
+                        return stored;
+                     }
             }
             else{
                 checker2();
-                if (propertyFull){
-                    prepare();
+                if (propertyFull){ //If all predicted sibling values pass all property questions.
+                    prepare(); //Creates the first child of each sibling of the passed BigInteger value
+                    return stored;
                 }
             }
         }
         else{
             System.out.println("It was void (:");
         }
-
-    }
-
-    public boolean getPropertyFull(){
-        return propertyFull;
+        return null;
     }
 
     public void checker () {
@@ -81,7 +78,8 @@ public class BreadthThread extends Thread {
                     versatile = versatile.add(Val.III);
 
                          if (!versatile.mod(Val.V).equals(0)){
-                            stored.add(versatile);
+                            stored.add(versatile); //stored at the end of a successful for-iteration will contain all
+                             //siblings of the originally-passed BigInteger value that DO have children
                          }
 
                 } else {
@@ -94,8 +92,8 @@ public class BreadthThread extends Thread {
         //Precondition: We're not at rockBottom, and all values generated passed the property checks.
             for (int i = 0; i<stored.size(); i++){
                 stored.set(i, NolMath.setChild(stored.get(i)));
-                //Here, we're replacing the "parent" nodes with their children and storing them.
-                //Later, we can traverse these lists to start new iterations of getBreadth more quickly.
+                //Here, we're replacing the "parent" nodes with their children and store them.
+                //Later, we can traverse these lists to start new iterations of getDepth more quickly.
              }
         }
 

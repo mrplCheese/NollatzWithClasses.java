@@ -10,7 +10,7 @@
 
 import java.math.BigInteger;
 
-public class CalculationDriver implements Runnable {
+public class CalculationDriver {
     //public static int nCount;
     //keeps track of the "depth" of our node tree, vicariously giving us the nCount for any given value.
 
@@ -40,15 +40,35 @@ public class CalculationDriver implements Runnable {
     * We'll see!
     *
     * */
-    public boolean getDepth2(){ //Implementing threading
+    public boolean getDepthThread(){ //Implementing threading
+
+        //This will tell Node to start threads (see BreadthThread checker2)
+        //Many of the "cousins" on each level will be generated as this is traversed to rockBottom
+        //The confusion comes from how to go from a lower level of nephews to a higher one without causing mass chaos.
+
         if (!ultimatum){
             return false;
         }
+        BigInteger x = (Window.setChild(bottom.getValue()));
+        //Going from a parent to a child value, then using that to generate the child node.
+        bottom = new Node (x, bottom);
+        boolean temp = organizer();
+        if (ultimatum){ // if (the NPN check was passed and the program is not yet complete.)
 
 
+        }
 
         return true; //Just here for now so we won't get a runtime error.
     }
+
+    public void getBreadthThread(){
+        //Traverses from cousin to cousin. Only happens consecutively at the very bottom (I think)
+        //In the future, this could possibly start more nodal Breadth searches (see BreadthThread checker (the first checker))
+        //
+
+    }
+
+
 
 
     public boolean getDepth() {
@@ -242,11 +262,5 @@ public class CalculationDriver implements Runnable {
             }
         }
     }
-
-    @Override
-    public void run(){
-
-    }
-
 
 }
