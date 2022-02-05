@@ -30,9 +30,16 @@ public class Node {
     private boolean colour;
     private final int hypHeight;
     private ArrayList<BigInteger> nephews;
+
     private  Future<ArrayList<BigInteger>> future;
+   /* Future is a way to get access to information created asynchronously.
+    We have to know the return type that will be returned sometime in the future.
+    The information will be pulled by the future.get() method.
+    If the asynchronous task isn't complete by the time we call future.get(), it will wait until it is. */
 
     private ExecutorService executor = Executors.newSingleThreadExecutor();
+    /*This creates a new thread (just 1) that can perform asynchronous tasks from the main program.
+    We'll use it to "get" pizzas from BreadthThread, using a special thread BreadthGet*/
 
 
     public void setColour(boolean c){
@@ -52,7 +59,6 @@ public class Node {
         colour = true;
         hypHeight = parent.hypHeight +1;
         future = executor.submit(new BreadthThread(value, getParentValue(), hypHeight));
-        //Oi. that's a horrifically-complex line of code.
     }
 
     public int getHypHeight(){
@@ -114,6 +120,9 @@ public class Node {
     }
 
     public void getArrayList () throws ExecutionException, InterruptedException {
+        //Basically, future.get() means the node stops whatever it's doing and holds out its hands.
+        //They will wait until the pizza restaurant gives them their pizza, and then they will store the pizza in their
+        //private variable "nephews"
         nephews = future.get();
     }
 
