@@ -141,8 +141,8 @@ public class Node { //Possible rename: DirectLineage
         nephews = future.get();
         executor.shutdown();
         System.out.println("Nephews retrieved from object with hypHeight: " + hypHeight);
-        if (hypHeight == 9){
-            //System.out.println(nephews.get(0));
+        if (hypHeight == 10){ //Eventually: hypHeight == 100
+            System.out.println(nephews.get(0));
         }
     }
 

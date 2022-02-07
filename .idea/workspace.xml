@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5ed1b119-e3fc-48bb-be04-c8dadda131cc" name="Changes" comment="Fixed 2 bugs, completed 2 TODOs, commented out bug printlns, replaced some misleading variable names">
+    <list default="true" id="5ed1b119-e3fc-48bb-be04-c8dadda131cc" name="Changes" comment="Added a TODO: Found another bug">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BreadthThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BreadthThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CalculationDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalculationDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Node.java" afterDir="false" />
     </list>
     <list id="e9665079-afe8-4e96-9c10-7b65948440a1" name="Changes by dennyjoy" comment="">
       <change beforePath="$PROJECT_DIR$/src/BreadthGet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BreadthGet.java" afterDir="false" />
@@ -49,12 +52,12 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="full.screen.before.presentation.mode" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Answers" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Java" />
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/Answers" />
   </component>
   <component name="RecentsManager">
@@ -175,7 +178,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644242172740</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Added a TODO: Found another bug">
+      <created>1644242664789</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1644242664789</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -215,7 +225,8 @@
     <MESSAGE value="Added some possibly-important classes, cleaned up, added more comments." />
     <MESSAGE value="Pullin' an Ezekiel on 'em. Dry bone becomes flesh: Began to implement threading, Diagnostic prints,TODOs, Meaningful comments, is now runnable" />
     <MESSAGE value="Fixed 2 bugs, completed 2 TODOs, commented out bug printlns, replaced some misleading variable names" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed 2 bugs, completed 2 TODOs, commented out bug printlns, replaced some misleading variable names" />
+    <MESSAGE value="Added a TODO: Found another bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a TODO: Found another bug" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/NollatzWithClasses_java$Main.ic" NAME="Main Coverage Results" MODIFIED="1640663790514" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

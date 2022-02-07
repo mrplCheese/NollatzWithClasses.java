@@ -198,7 +198,7 @@ public class CalculationDriver {
             bottom.setValue(Window.setChildfromChild(Val.I));
             return true;
         }
-        if (bottom.getHypHeight() >= 10)
+        if (bottom.getHypHeight() >= 10) //Eventually: bottom.getHypHeight>=100
         {
             System.out.println("rockbottom");
             rockBottom = true;
@@ -218,7 +218,7 @@ public class CalculationDriver {
             bottom.setValue(Window.setChildfromChild(Val.I));
             return true;
         }
-        if (bottom.getHypHeight() >= 10)
+        if (bottom.getHypHeight() >= 10)//Eventually: bottom.getHypHeight>=100
         {
             rockBottom = true;
             Thread RockSlider = new Thread("RockSlider");

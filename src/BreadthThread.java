@@ -31,7 +31,7 @@ public class BreadthThread implements Callable<ArrayList<BigInteger>> {
         this.parent = parent;
         //System.out.println("Retrieved parent: " + parent);
         //System.out.println("Retrieved child: " + versatile);
-        if (count<100){
+        if (count<10){ //To be replaced with: count<100 eventually.
             aboveRockBottom = true;
         }
         else {
@@ -77,7 +77,7 @@ public class BreadthThread implements Callable<ArrayList<BigInteger>> {
 
     public void checker () {
         while (propGen.maxCheck(versatile) && propertyFull) {
-            if (propGen.setNpnPassed(parent, versatile)) {
+            if (propGen.setNpnPassed(versatile, parent)) {
                 versatile = versatile.multiply(XVI);
                 versatile = versatile.add(Val.III);
             } else {
@@ -114,7 +114,7 @@ public class BreadthThread implements Callable<ArrayList<BigInteger>> {
             for (int i = 0; i<stored.size(); i++) {
                 child = NolMath.setChild(stored.get(i));
                 //Let's run  propertyChecks here. It may need to be removed later, but for now it seems pretty useful.
-                if (propGen.setNpnPassed(child, parent)) { //TODO: There's now a bug here! Something to do with the value of parent and the value of child.
+                if (propGen.setNpnPassed(child, stored.get(i))) {
                     stored.set(i, child);
                 } else {
                     propertyFull = false;
