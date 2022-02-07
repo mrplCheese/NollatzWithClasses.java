@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5ed1b119-e3fc-48bb-be04-c8dadda131cc" name="Changes" comment="Added some possibly-important classes, cleaned up, added more comments.">
+    <list default="true" id="5ed1b119-e3fc-48bb-be04-c8dadda131cc" name="Changes" comment="Pullin' an Ezekiel on 'em. Dry bone becomes flesh: Began to implement threading, Diagnostic prints,TODOs, Meaningful comments, is now runnable">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BreadthGet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BreadthGet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BreadthThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BreadthThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CalculationDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalculationDriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CalculationDriverThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalculationDriverThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/NephewNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NephewNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Node.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PropertyGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PropertyGenerator.java" afterDir="false" />
     </list>
@@ -42,20 +38,6 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/BreadthGet.java">
-      <ranges>
-        <range start1="26" end1="26" start2="26" end2="27" changelist="5ed1b119-e3fc-48bb-be04-c8dadda131cc" />
-        <range start1="39" end1="40" start2="40" end2="41" changelist="e9665079-afe8-4e96-9c10-7b65948440a1" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/NephewNode.java">
-      <ranges>
-        <range start1="8" end1="9" start2="8" end2="9" changelist="5ed1b119-e3fc-48bb-be04-c8dadda131cc" />
-        <range start1="15" end1="16" start2="15" end2="24" changelist="e9665079-afe8-4e96-9c10-7b65948440a1" />
-      </ranges>
-    </file>
   </component>
   <component name="ProjectId" id="20Nymayh2t1gk3qabqiuxyVxVXR" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -182,7 +164,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644091943784</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Pullin' an Ezekiel on 'em. Dry bone becomes flesh: Began to implement threading, Diagnostic prints,TODOs, Meaningful comments, is now runnable">
+      <created>1644208339673</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1644208339673</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -220,18 +209,8 @@
     <MESSAGE value="Added more meaningful comments" />
     <MESSAGE value="Added even more comments, and potentially important variables/objects" />
     <MESSAGE value="Added some possibly-important classes, cleaned up, added more comments." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added some possibly-important classes, cleaned up, added more comments." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/BreadthThread.java</url>
-          <line>70</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Pullin' an Ezekiel on 'em. Dry bone becomes flesh: Began to implement threading, Diagnostic prints,TODOs, Meaningful comments, is now runnable" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pullin' an Ezekiel on 'em. Dry bone becomes flesh: Began to implement threading, Diagnostic prints,TODOs, Meaningful comments, is now runnable" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/NollatzWithClasses_java$Main.ic" NAME="Main Coverage Results" MODIFIED="1640663790514" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

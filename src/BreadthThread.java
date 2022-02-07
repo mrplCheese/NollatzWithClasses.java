@@ -5,10 +5,10 @@ import java.util.concurrent.Callable;
 public class BreadthThread implements Callable<ArrayList<BigInteger>> {
     private final BigInteger XVI = BigInteger.valueOf(16); //Quick math with BigIntegers (improved readability)
     private BigInteger versatile; //Old information
-    private final BigInteger parent; //Old information
+    private BigInteger parent; //Old information
     private boolean propertyFull = true; //new information
     private ArrayList<BigInteger> stored = new ArrayList<BigInteger>(); //new information
-    private final boolean storeImp; //Interior information
+    private final boolean aboveRockBottom; //Interior information
     private NolMath NolMath = new NolMath (); //Interior process
     private PropertyGenerator propGen = new PropertyGenerator(); //Interior process
 
@@ -19,7 +19,7 @@ public class BreadthThread implements Callable<ArrayList<BigInteger>> {
         */
         this.versatile = versatile;
         this.parent = parent;
-        storeImp = true;
+        aboveRockBottom = true;
     }
 
     public BreadthThread(BigInteger versatile, BigInteger parent, int count){
@@ -29,17 +29,19 @@ public class BreadthThread implements Callable<ArrayList<BigInteger>> {
         */
         this.versatile = versatile;
         this.parent = parent;
+        //System.out.println("Retrieved parent: " + parent);
+        //System.out.println("Retrieved child: " + versatile);
         if (count<100){
-            storeImp = true;
+            aboveRockBottom = true;
         }
         else {
-            storeImp = false;
+            aboveRockBottom = false;
         }
     }
 
     public ArrayList<BigInteger> call() throws Exception{
         if (versatile != null){
-            if (!storeImp){
+            if (!aboveRockBottom){
                 System.out.println("At rockBottom ");
                 checker(); //Happens when we're at rockBottom and don't need to return values
                 stored.add(Val.E);//Placeholder to differentiate from a "false," which is a null return
@@ -50,6 +52,8 @@ public class BreadthThread implements Callable<ArrayList<BigInteger>> {
             }
             else{
                 System.out.println("Not at rockBottom");
+                //System.out.println("Parent going into Checker2: " + parent);
+                //System.out.println("Child going into checker2: " + versatile);
                 checker2();
                 if (propertyFull){ //If all predicted sibling values pass all property questions.
                     System.out.println("Property questions passed");
@@ -84,18 +88,20 @@ public class BreadthThread implements Callable<ArrayList<BigInteger>> {
 
         public void checker2() {
             while (propGen.maxCheck(versatile) && propertyFull) {
-                if (propGen.setNpnPassed(parent, versatile)) {
-  //TODO: Occasionally, we're getting a 'false' here when we shouldn't be. One test: parent: count of 8, child, count of 10, (instead of 2 consecutive numbers)
+                //System.out.println("began while loop"); //The first setNPpnPAssed happens, but with the wrong values?
+                //System.out.println("Parent inside while loop: " + parent);
+                //System.out.println("Child inside while loop: " + versatile);
+                if (propGen.setNpnPassed(versatile, parent)) {
                     versatile = versatile.multiply(XVI);
                     versatile = versatile.add(Val.III);
 
-                         if (!versatile.mod(Val.V).equals(0)){
+                         if (!(versatile.mod(Val.V).compareTo(Val.E) == 0)){
                             stored.add(versatile); //stored at the end of a successful for-iteration will contain all
                              //siblings of the originally-passed BigInteger value that DO have children
                          }
 
                 } else {
-                    System.out.println("propertyFull is false.");
+                    System.out.println("propertyFull is false at length: " + stored.size());
                     propertyFull = false;
                 }
             }

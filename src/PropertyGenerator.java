@@ -13,18 +13,18 @@ public class PropertyGenerator {
     public static final BigInteger MAX_SIB = (MAX_VAL.divide(BigInteger.valueOf(16))).subtract(Val.III);
 
 
-    public boolean setNpnPassed(BigInteger tempParent, BigInteger temp2){
+    public boolean setNpnPassed(BigInteger childValue, BigInteger parentValue){
         // System.out.println("Tested number: " + tempParent);
-        tempParent = tempParent.multiply(Val.V);
-        tempParent = tempParent.add(Val.I);
-        int divider = tempParent.getLowestSetBit();
-        tempParent = tempParent.divide(Val.II.pow(divider));
+        childValue = childValue.multiply(Val.V);
+        childValue = childValue.add(Val.I);
+        int divider = childValue.getLowestSetBit();
+        childValue = childValue.divide(Val.II.pow(divider));
         //System.out.println("tempParent: " + tempParent + "temp2: " + temp2);
-        if (tempParent.compareTo(temp2) != 0){
-            System.out.println("Troubled number: " + temp2);
-            System.out.println("Troubling parent: " + tempParent);
+        if (childValue.compareTo(parentValue) != 0){
+            System.out.println("Troubling parent: " + parentValue);
+            System.out.println("Troubled child: " + childValue);
         }
-        return tempParent.compareTo(temp2) == 0;
+        return childValue.compareTo(parentValue) == 0;
     }
 
 

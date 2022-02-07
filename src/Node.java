@@ -60,10 +60,13 @@ public class Node { //Possible rename: DirectLineage
     public Node (BigInteger v, Node p){ //This makes a lot of nodes.
         value = v;
         parent = p;
+        //System.out.println("At time of Node generation: ");
+        //System.out.println(v);
+        //System.out.println(p.value);
         colour = true;
         hypHeight = parent.hypHeight +1;
         System.out.println("Future ");
-        future = executor.submit(new BreadthThread(value, getParentValue(), hypHeight));
+        future = executor.submit(new BreadthThread(value, p.value, hypHeight));
         if (hypHeight ==10){ //TODO May want to rethink the instantiation of breadthGet threads. (possibly thread pooling?/ For specific processes)
             executor = Executors.newSingleThreadExecutor();
             breadthGet = new BreadthGet(this);
@@ -140,9 +143,6 @@ public class Node { //Possible rename: DirectLineage
         System.out.println("Nephews retrieved from object with hypHeight: " + hypHeight);
         if (hypHeight == 9){
             //System.out.println(nephews.get(0));
-            /*TODO Possibly directly caused by problem TODO'd in BreadthThread:
-            *  Getting null-pointer exceptions when referencing nephews (element 0)
-            * */
         }
     }
 
