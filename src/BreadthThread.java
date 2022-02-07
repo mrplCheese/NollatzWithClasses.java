@@ -88,7 +88,7 @@ public class BreadthThread implements Callable<ArrayList<BigInteger>> {
 
         public void checker2() {
             while (propGen.maxCheck(versatile) && propertyFull) {
-                //System.out.println("began while loop"); //The first setNPpnPAssed happens, but with the wrong values?
+                System.out.println("began while loop"); //The first setNPpnPAssed happens, but with the wrong values?
                 //System.out.println("Parent inside while loop: " + parent);
                 //System.out.println("Child inside while loop: " + versatile);
                 if (propGen.setNpnPassed(versatile, parent)) {
@@ -114,7 +114,7 @@ public class BreadthThread implements Callable<ArrayList<BigInteger>> {
             for (int i = 0; i<stored.size(); i++) {
                 child = NolMath.setChild(stored.get(i));
                 //Let's run  propertyChecks here. It may need to be removed later, but for now it seems pretty useful.
-                if (propGen.setNpnPassed(parent, child)) {
+                if (propGen.setNpnPassed(child, parent)) { //TODO: There's now a bug here! Something to do with the value of parent and the value of child.
                     stored.set(i, child);
                 } else {
                     propertyFull = false;
