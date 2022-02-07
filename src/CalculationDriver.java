@@ -11,6 +11,7 @@
 import java.math.BigInteger;
 
 public class CalculationDriver {
+
     //public static int nCount;
     //keeps track of the "depth" of our node tree, vicariously giving us the nCount for any given value.
 
@@ -197,9 +198,11 @@ public class CalculationDriver {
             bottom.setValue(Window.setChildfromChild(Val.I));
             return true;
         }
-        if (bottom.getHypHeight() >= 100)
+        if (bottom.getHypHeight() >= 10)
         {
+            System.out.println("rockbottom");
             rockBottom = true;
+
             //System.out.println("returned false.");
            // System.out.println("Out of bounds!");
             return false;
@@ -215,7 +218,7 @@ public class CalculationDriver {
             bottom.setValue(Window.setChildfromChild(Val.I));
             return true;
         }
-        if (bottom.getHypHeight() >= 3)
+        if (bottom.getHypHeight() >= 10)
         {
             rockBottom = true;
             Thread RockSlider = new Thread("RockSlider");

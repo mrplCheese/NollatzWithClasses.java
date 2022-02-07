@@ -6,7 +6,7 @@
 * */
     import java.math.BigInteger;
 
-public class NephewNode{ //May possibly extend node??? I'm not sure if that would be helpful at this point... We'll see.
+public class NephewNode { //May possibly implement an interface "node" in the future.
     private Node grandParent;
     private int nephewIndex;
     private BigInteger value;

@@ -22,13 +22,14 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-public class Node {
-
+public class Node { //Possible rename: DirectLineage
+                    //May possibly implement interface called node.
+    private BreadthGet breadthGet;
     private BigInteger value;
     private Node parent;
     private Node sibling; //The sibling node may become obsolete.
     //Sibling may end up being replaced with something more useful: nephewNode
-    private Node nephewNode;
+    private NephewNode nephewNode; //We'll see how this turns out.
     private boolean colour;
     private final int hypHeight;
     private ArrayList<BigInteger> nephews;
@@ -43,6 +44,7 @@ public class Node {
     /*This creates a new thread (just 1) that can perform asynchronous tasks from the main program.
     We'll use it to "get" pizzas from BreadthThread, using a special thread BreadthGet*/
 
+    private ExecutorService executor2 = null;
 
     public void setColour(boolean c){
         colour = c;
@@ -60,7 +62,14 @@ public class Node {
         parent = p;
         colour = true;
         hypHeight = parent.hypHeight +1;
+        System.out.println("Future ");
         future = executor.submit(new BreadthThread(value, getParentValue(), hypHeight));
+        if (hypHeight ==10){ //TODO May want to rethink the instantiation of breadthGet threads. (possibly thread pooling?/ For specific processes)
+            executor = Executors.newSingleThreadExecutor();
+            breadthGet = new BreadthGet(this);
+            Thread t = new Thread(breadthGet);
+            t.start();
+        }
         //This isn't too terribly important without its "successor," the get() method found in getArrayList.
     }
 
@@ -127,6 +136,14 @@ public class Node {
         //They will wait until the pizza restaurant gives them their pizza, and then they will store the pizza in their
         //private variable "nephews"
         nephews = future.get();
+        executor.shutdown();
+        System.out.println("Nephews retrieved from object with hypHeight: " + hypHeight);
+        if (hypHeight == 9){
+            //System.out.println(nephews.get(0));
+            /*TODO Possibly directly caused by problem TODO'd in BreadthThread:
+            *  Getting null-pointer exceptions when referencing nephews (element 0)
+            * */
+        }
     }
 
     //public boolean quickTest(){ //Is hopefully a bit faster....
@@ -138,7 +155,8 @@ public class Node {
     }
 
     public void nephewTraversal(int index){
-        nephewNode.setValue(nephews.get(index));
+        //nephewNode.setValue(nephews.get(index));
+
         //It's possible that nephews will need to carry unique sets of data, being different structurally from
         //our parent/sibling node family tree.
         //The held data may include: grandParent (Node), nephewIndex (int), value (BigInteger), passedChecks (boolean),

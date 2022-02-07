@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.concurrent.Callable;
 
 public class BreadthThread implements Callable<ArrayList<BigInteger>> {
-    private final BigInteger XVI = BigInteger.valueOf(16);
+    private final BigInteger XVI = BigInteger.valueOf(16); //Quick math with BigIntegers (improved readability)
     private BigInteger versatile; //Old information
     private final BigInteger parent; //Old information
     private boolean propertyFull = true; //new information
@@ -40,27 +40,35 @@ public class BreadthThread implements Callable<ArrayList<BigInteger>> {
     public ArrayList<BigInteger> call() throws Exception{
         if (versatile != null){
             if (!storeImp){
+                System.out.println("At rockBottom ");
                 checker(); //Happens when we're at rockBottom and don't need to return values
                 stored.add(Val.E);//Placeholder to differentiate from a "false," which is a null return
                      if (propertyFull){
+                         System.out.println("Property questions passed (rockBottom, only 1 round)");
                         return stored;
                      }
             }
             else{
+                System.out.println("Not at rockBottom");
                 checker2();
                 if (propertyFull){ //If all predicted sibling values pass all property questions.
+                    System.out.println("Property questions passed");
                     prepare();//Creates the first child of each sibling of the passed BigInteger value
                     //Also runs NPNChecks on all values generated.
                     if (propertyFull){
+                        System.out.println("Property questions round 2 passed");
+                        System.out.println("propertyFull");
                         return stored;
                     }
                 }
             }
+
         }
         else{
             System.out.println("It was void (:");
         }
-        return null;
+        System.out.println("null");
+        return null; //Fun.
     }
 
     public void checker () {
@@ -77,6 +85,7 @@ public class BreadthThread implements Callable<ArrayList<BigInteger>> {
         public void checker2() {
             while (propGen.maxCheck(versatile) && propertyFull) {
                 if (propGen.setNpnPassed(parent, versatile)) {
+  //TODO: Occasionally, we're getting a 'false' here when we shouldn't be. One test: parent: count of 8, child, count of 10, (instead of 2 consecutive numbers)
                     versatile = versatile.multiply(XVI);
                     versatile = versatile.add(Val.III);
 
@@ -86,12 +95,14 @@ public class BreadthThread implements Callable<ArrayList<BigInteger>> {
                          }
 
                 } else {
+                    System.out.println("propertyFull is false.");
                     propertyFull = false;
                 }
             }
         }
 
         public void prepare (){
+        System.out.println("prepare");
         //Precondition: We're not at rockBottom, and all values generated passed the property checks.
             BigInteger child;
             for (int i = 0; i<stored.size(); i++) {

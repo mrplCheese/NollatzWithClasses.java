@@ -24,6 +24,7 @@ public class BreadthGet implements Runnable{
 
     @Override
     public void run() {
+        System.out.println("BreadthGet run");
         while (child.getHypHeight()>moveUpTo) { //moveUpTo prevents the "limb" from overlapping/redoing the "trunk"
             try {
                 child.getArrayList();

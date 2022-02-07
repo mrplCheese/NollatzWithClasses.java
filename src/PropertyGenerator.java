@@ -20,13 +20,18 @@ public class PropertyGenerator {
         int divider = tempParent.getLowestSetBit();
         tempParent = tempParent.divide(Val.II.pow(divider));
         //System.out.println("tempParent: " + tempParent + "temp2: " + temp2);
+        if (tempParent.compareTo(temp2) != 0){
+            System.out.println("Troubled number: " + temp2);
+            System.out.println("Troubling parent: " + tempParent);
+        }
         return tempParent.compareTo(temp2) == 0;
     }
+
 
     public boolean maxCheck(BigInteger parent) {
         int wizard = parent.compareTo(MAX_VAL);
         //Returns false if parent > MAX_VAL
-        return wizard != 1;
+        return wizard != 1; //"Wizard." - Mando
     }
 
     public boolean sibMaxCheck(BigInteger parent){ //returns false if parent > maxValue
