@@ -20,6 +20,7 @@ public class BreadthThread implements Callable<ArrayList<BigInteger>> {
         this.versatile = versatile;
         this.parent = parent;
         aboveRockBottom = true;
+
     }
 
     public BreadthThread(BigInteger versatile, BigInteger parent, int count){

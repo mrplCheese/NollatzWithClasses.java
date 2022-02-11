@@ -33,7 +33,17 @@ public class CalculationDriverThread {
 
 
         return false; //Just to stop the red squiggles.
+
+        //getDepth will be focused not on returning data, but generating pathways for more threads. There will be
+        //"follower" thread that will go behind and add the information to files.
+
+        //There will be many objects of CalculationDriverThread made, one for each "driverThread."
+
     }
+
+    //Something to think about: Nephews won't always need to generate children, but will always need to generate siblings.
+
+    //Traversal is key. Traverse all the necessary nodes.
 
 
 

@@ -169,5 +169,17 @@ public class Node { //Possible rename: DirectLineage
     }
 
 
+    /*
+    * New concept for Nodes:
+    *
+    *       Since we'll need to do a nodal traversal, and since each node will carry a set of information, which links
+    *       to other information.... What if we, at rockBottom, begin to pass all the information up? So eventually the
+    *       head node would contain a giant list of all the required information?
+    *
+    *       Or.... What if we have a thread that follows CalculationDriver, whose job is to "collect" and "insert"
+    *       important values to the file? I want threads to implement other threads.
+    *
+    * */
+
 
 }
