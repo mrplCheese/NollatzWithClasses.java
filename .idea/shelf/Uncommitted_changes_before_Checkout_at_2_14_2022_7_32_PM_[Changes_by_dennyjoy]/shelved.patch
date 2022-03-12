@@ -1,0 +1,42 @@
+Index: src/BreadthGet.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/*\r\n* BreadthGet is like the uber driver who drives from one pizza place to the next.\r\n* The nodes will be told when to hold out their hands as they're being passed \"pizzas\" (ArrayList<BigInteger>).\r\n* The pizzas are being created in BreadthThread.java\r\n* If the pizzas aren't done when this method is called, it will block the program.... Or at least this thread.\r\n* That's what I'm unsure of as of now.\r\n* */\r\n\r\nimport java.util.concurrent.ExecutionException;\r\n\r\npublic class BreadthGet implements Runnable{\r\n    private Node child;\r\n    int moveUpTo;\r\n\r\n    public BreadthGet (Node child){\r\n        this.child = child;\r\n        moveUpTo = 1;\r\n    }\r\n\r\n    public BreadthGet (Node child, int moveUpTo){\r\n        this.child = child;\r\n        this.moveUpTo = moveUpTo;\r\n    }\r\n\r\n    @Override\r\n    public void run() {\r\n        System.out.println(\"BreadthGet run\");\r\n        while (child.getHypHeight()>moveUpTo) { //moveUpTo prevents the \"limb\" from overlapping/redoing the \"trunk\"\r\n            try {\r\n                child.getArrayList();\r\n            } catch (ExecutionException e) {\r\n                e.printStackTrace();\r\n            } catch (InterruptedException e) {\r\n                e.printStackTrace();\r\n            }\r\n            //We may want to add a join method to ensure the \"get\" actually completes before we move on to the next\r\n            //get method. I'm not sure if it's necessary yet, however.\r\n            child = child.getParent(); //When \"child\" becomes \"parent,\"\r\n            // the hypHeight goes down by 1 (In some cases 2 or 3)\r\n        }\r\n\r\n    }\r\n\r\n    public void cousinSlider(){\r\n\r\n    }\r\n\r\n\r\n}
+===================================================================
+diff --git a/src/BreadthGet.java b/src/BreadthGet.java
+--- a/src/BreadthGet.java	
++++ b/src/BreadthGet.java	
+@@ -38,7 +38,7 @@
+             child = child.getParent(); //When "child" becomes "parent,"
+             // the hypHeight goes down by 1 (In some cases 2 or 3)
+         }
+-
++        System.out.println("BreadthGet completed");
+     }
+ 
+     public void cousinSlider(){
+Index: src/NephewNode.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/*\r\n* It's very possible that the creation of nephew nodes within a new class will be ultimately futile.\r\n*\r\n* But since nephews are so different in structure, data, and uses than the original parent-child nodes, it seems like a\r\n* good fit, at least for now.\r\n* */\r\n    import java.math.BigInteger;\r\n\r\npublic class NephewNode { //May possibly implement an interface \"node\" in the future.\r\n    private Node grandParent;\r\n    private int nephewIndex;\r\n    private BigInteger value;\r\n    private boolean passedChecks;\r\n    private boolean isAtRockBottom;\r\n    private boolean length;\r\n\r\n    public NephewNode(boolean passedChecks, int nephewIndex, BigInteger value){\r\n       // super();\r\n        this.passedChecks = passedChecks;\r\n        this.nephewIndex = nephewIndex;\r\n        this.value = value;\r\n    }\r\n        /*\r\n        * Many nephews will have children of their own. So the nephew class should be used interchangeably with Node.\r\n        * So, a Node could reference either another Node or a  NephewNode.\r\n        * And a NephewNode could reference either another NephewNode or a Node.\r\n        * This won't be too important at the first getDepth, but could get increasingly complicated after just a few reverts.\r\n        *\r\n        *\r\n        * */\r\n            //Well, this is all I have the mental capacity to do for now. Maybe I'll work on it later.\r\n\r\n\r\n}\r\n
+===================================================================
+diff --git a/src/NephewNode.java b/src/NephewNode.java
+--- a/src/NephewNode.java	
++++ b/src/NephewNode.java	
+@@ -13,7 +13,15 @@
+     private boolean passedChecks;
+     private boolean isAtRockBottom;
+     private boolean length;
+-
++    /*
++    1-{a--A, b--B, c--B, d--D, e--E, }
++    |
++    2 -{a, b, c, d, e, }
++    |
++    3-{a, b, c, d, e, }
++    |
++    4-{a, b, c, d, e, }
++*/
+     public NephewNode(boolean passedChecks, int nephewIndex, BigInteger value){
+        // super();
+         this.passedChecks = passedChecks;

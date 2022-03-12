@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5ed1b119-e3fc-48bb-be04-c8dadda131cc" name="Changes" comment="Fixed the bug. Added some comments.">
-      <change afterPath="$PROJECT_DIR$/src/BufferedWriterGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/NodeInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Triangulator.java" afterDir="false" />
+    <list default="true" id="5ed1b119-e3fc-48bb-be04-c8dadda131cc" name="Changes" comment="Added comments on future processes, made some classes.">
+      <change afterPath="$PROJECT_DIR$/src/Lambdas.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BreadthThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BreadthThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CalculationDriverThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalculationDriverThread.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Node.java" afterDir="false" />
     </list>
-    <list id="e9665079-afe8-4e96-9c10-7b65948440a1" name="Changes by dennyjoy" comment="">
-      <change beforePath="$PROJECT_DIR$/src/BreadthGet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BreadthGet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/NephewNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NephewNode.java" afterDir="false" />
-    </list>
+    <list id="e9665079-afe8-4e96-9c10-7b65948440a1" name="Changes by dennyjoy" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,6 +18,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -84,6 +79,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
       </list>

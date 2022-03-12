@@ -133,4 +133,8 @@ public class BreadthThread implements Callable<ArrayList<BigInteger>> {
                 //I think this will play a crucial role in implementing Threads in the very near future.
         }
 
+        //Why not use lambda functions to give each node a property based on how they were born. Each lambda function will
+       //allow every node to be attached to more nodes according to both their mathematical properties and their functionally-
+            //corresponding processes. So a nephew node with children at rockBottom will hold a method that
+
 }

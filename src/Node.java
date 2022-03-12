@@ -13,6 +13,9 @@
 *
 * Not entirely sure, however. I'll experiment with that later.
 *
+* Nodes will individually generate 1 new thread each. They will perform tasks to organize relationships between nodes,
+* their children, and nephew nodes.
+*
 */
 
 import java.math.BigInteger;
@@ -178,6 +181,30 @@ public class Node { //Possible rename: DirectLineage
     *
     *       Or.... What if we have a thread that follows CalculationDriver, whose job is to "collect" and "insert"
     *       important values to the file? I want threads to implement other threads.
+    *
+    * */
+
+
+    /*
+    * Yet another look at nodes:
+    *
+    * The iterative processes facilitating the production of nodes is actually 100% recursive.
+    *
+    * This information will allow us to scale the problem without fearing insane amounts of chaotic distortion/run Away
+    *
+    * The problem is, the recursive process has to be a little flexible and has to restrict itself in order to prevent
+    * overstimulating, redundancies, and broken patterns.
+    *
+    * So we just need to get that enum up and running, the generation of nodes will soon follow.
+    *
+    * As of now, no triangulation will be added, and only one thread will be generated at a time.
+    *
+    * Nodal references don't need their initial values referenced, only their nephew nodes. Nephew values become actual values?
+    * And are deleted from the arrayList!!!??? WOAH! Multidimensional corners are now meaningful!!!! WOAHHHHHHHHHH.
+    *
+    * Now I'm no longer confused.
+    *
+    * Enlightened.
     *
     * */
 
